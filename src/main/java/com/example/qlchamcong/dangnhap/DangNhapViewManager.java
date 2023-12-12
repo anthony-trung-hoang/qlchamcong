@@ -1,6 +1,7 @@
 package com.example.qlchamcong.dangnhap;
 
 import com.example.qlchamcong.service.ServiceInitializer;
+import com.example.qlchamcong.thanhdieuhuongqlns.ThanhDHController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,6 +33,7 @@ public class DangNhapViewManager implements Initializable {
         Stage stage = (Stage) dangNhap.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongqlns/dieu-huong-qlns.fxml"));
         Parent root = loader.load();
+        new ThanhDHController(loader.getController());
         Scene scene = new Scene(root);
         stage.setScene(scene);
         System.out.println("Dang nhap thanh cong");

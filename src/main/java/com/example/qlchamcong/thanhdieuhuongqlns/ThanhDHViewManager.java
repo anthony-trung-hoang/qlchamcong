@@ -1,10 +1,10 @@
 package com.example.qlchamcong.thanhdieuhuongqlns;
 
-import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.NavigationManager;
-import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -23,23 +23,18 @@ public class ThanhDHViewManager implements Initializable {
     @FXML
     public Button dangXuat;
 
-    private ThanhDHController thanhDHController;
-
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        NavigationManager.getInstance().setContentPane(contentPane);
-        IActionChangeGUI navigationUtil = new NavigationUtil();
-        thanhDHController = new ThanhDHController(navigationUtil);
+    public void initialize(URL url, ResourceBundle resourceBundle) { }
+
+    public void addImportCCButtonAction(EventHandler<ActionEvent> event) {
+        importDLCC.setOnAction(event);
     }
 
-    @FXML
-    public void handleImportDLCCButtonAction() throws IOException {
-        thanhDHController.toAttendanceTrackingImportScreen();
+    public void addHomePageButtonAction(EventHandler<ActionEvent> event) throws IOException {
+        homePage.setOnAction(event);
     }
 
-    @FXML
-    public void handleHomeButtonAction() throws IOException {
-        thanhDHController.toHomeScreen();
+    public void displayContentPane(Parent root) {
+        contentPane.getChildren().setAll(root);
     }
-
 }

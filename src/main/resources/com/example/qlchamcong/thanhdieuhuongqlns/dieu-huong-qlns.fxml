@@ -13,8 +13,8 @@
             <children>
                 <VBox alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="371.0" prefWidth="131.0" spacing="20.0">
                     <children>
-                        <Button fx:id="homePage" mnemonicParsing="false" onAction="#handleHomeButtonAction" text="Home Page" />
-                        <Button fx:id="importDLCC" mnemonicParsing="false" onAction="#handleImportDLCCButtonAction" text="Import DLCC" />
+                        <Button fx:id="homePage" mnemonicParsing="false" text="Home Page" />
+                        <Button fx:id="importDLCC" mnemonicParsing="false" text="Import DLCC" />
                         <Button fx:id="dangXuat" mnemonicParsing="false" text="Đăng xuất" />
                     </children>
                 </VBox>
