@@ -1,20 +1,17 @@
 package com.example.qlchamcong.importdlcc;
 
-import com.example.qlchamcong.thanhdieuhuongqlns.IQLNSThanhDieuHuongDoiManHinh;
-import com.example.qlchamcong.thanhdieuhuongqlns.NavigationManager;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 
 import java.io.IOException;
 
 public class ImportDLCCController {
-    private IQLNSThanhDieuHuongDoiManHinh thanhDieuHuongDoiManHinh;
+    private final IActionChangeGUI navUtil;
 
-    public ImportDLCCController(IQLNSThanhDieuHuongDoiManHinh thanhDieuHuongDoiManHinh) {
-        this.thanhDieuHuongDoiManHinh = thanhDieuHuongDoiManHinh;
+    public ImportDLCCController(IActionChangeGUI navUtil) {
+        this.navUtil = navUtil;
     }
 
     public void handleReturnToHome() throws IOException {
-        thanhDieuHuongDoiManHinh.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
+        navUtil.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
     }
 }

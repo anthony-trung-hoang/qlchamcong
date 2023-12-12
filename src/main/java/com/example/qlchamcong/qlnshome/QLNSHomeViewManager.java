@@ -1,8 +1,6 @@
 package com.example.qlchamcong.qlnshome;
 
 import com.example.qlchamcong.HelloApplication;
-import com.example.qlchamcong.entity.BanGhiChamCong;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,7 +12,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class QLNSHomeViewManager implements Initializable {
@@ -42,8 +39,7 @@ public class QLNSHomeViewManager implements Initializable {
             stage.setTitle("My New Stage Title");
             stage.setScene(new Scene(root));
             stage.show();
-            // Hide this current window (if this is what you want)
-//            ((Node)(event.getSource())).getScene().getWindow().hide();
+
         }
         catch (IOException e) {
             e.printStackTrace();

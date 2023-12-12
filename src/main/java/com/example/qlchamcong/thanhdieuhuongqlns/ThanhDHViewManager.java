@@ -1,5 +1,8 @@
 package com.example.qlchamcong.thanhdieuhuongqlns;
 
+import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
+import com.example.qlchamcong.changeGUIUtility.NavigationManager;
+import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,31 +23,23 @@ public class ThanhDHViewManager implements Initializable {
     @FXML
     public Button dangXuat;
 
-    private IQLNSThanhDieuHuongDoiManHinh thanhDieuHuongController;
-
-
+    private ThanhDHController thanhDHController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        thanhDieuHuongController = new IQLNSThanhDieuHuongDoiManHinh() {
-            @Override
-            public void changeGUI(String viewResource) throws IOException {
-                NavigationManager.getInstance().setContentPane(contentPane);
-
-                NavigationManager.getInstance().changeGUI(viewResource);
-            }
-        };
+        NavigationManager.getInstance().setContentPane(contentPane);
+        IActionChangeGUI navigationUtil = new NavigationUtil();
+        thanhDHController = new ThanhDHController(navigationUtil);
     }
 
     @FXML
     public void handleImportDLCCButtonAction() throws IOException {
-        thanhDieuHuongController.changeGUI("/com/example/qlchamcong/importdlcc/import-dlcc.fxml");
+        thanhDHController.toAttendanceTrackingImportScreen();
     }
 
     @FXML
-    public void handleHomeButtonAction() throws IOException
-    {
-        thanhDieuHuongController.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
+    public void handleHomeButtonAction() throws IOException {
+        thanhDHController.toHomeScreen();
     }
 
 }

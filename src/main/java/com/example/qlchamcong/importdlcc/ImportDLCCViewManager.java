@@ -1,12 +1,10 @@
 package com.example.qlchamcong.importdlcc;
 
-import com.example.qlchamcong.thanhdieuhuongqlns.IQLNSThanhDieuHuongDoiManHinh;
-import com.example.qlchamcong.thanhdieuhuongqlns.NavigationManager;
+import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
+import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
@@ -20,18 +18,12 @@ public class ImportDLCCViewManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        IQLNSThanhDieuHuongDoiManHinh thanhDieuHuongDoiManHinh = new IQLNSThanhDieuHuongDoiManHinh() {
-            @Override
-            public void changeGUI(String viewResource) throws IOException {
-                        NavigationManager.getInstance().changeGUI(viewResource);
-            }
-        };
-
-        importDLCCController = new ImportDLCCController(thanhDieuHuongDoiManHinh);
+        IActionChangeGUI navUtil = new NavigationUtil();
+        importDLCCController = new ImportDLCCController(navUtil);
     }
 
     @FXML
-    protected void onReturnHomeButtonAction(ActionEvent event) throws IOException {
+    protected void onReturnHomeButtonAction() throws IOException {
         importDLCCController.handleReturnToHome();
     }
 

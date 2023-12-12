@@ -1,4 +1,4 @@
-package com.example.qlchamcong.thanhdieuhuongqlns;
+package com.example.qlchamcong.changeGUIUtility;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,10 +19,6 @@ public class NavigationManager {
             instance = new NavigationManager();
         }
         return instance;
-    }
-
-    public Pane getPane() {
-        return this.contentPane;
     }
 
     public void setContentPane(Pane contentPane) {
