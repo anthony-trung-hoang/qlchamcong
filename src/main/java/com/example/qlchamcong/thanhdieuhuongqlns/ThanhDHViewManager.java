@@ -30,6 +30,15 @@ public class ThanhDHViewManager implements Initializable {
         NavigationManager.getInstance().setContentPane(contentPane);
         IActionChangeGUI navigationUtil = new NavigationUtil();
         thanhDHController = new ThanhDHController(navigationUtil);
+        try {
+            this.setHomeScreen();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setHomeScreen() throws IOException {
+        thanhDHController.setHomeScreen();
     }
 
     @FXML

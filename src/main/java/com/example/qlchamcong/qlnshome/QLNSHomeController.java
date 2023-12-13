@@ -1,8 +1,21 @@
 package com.example.qlchamcong.qlnshome;
 
+import com.example.qlchamcong.entity.WorkerAttendanceData;
+import com.example.qlchamcong.service.*;
+
+import java.util.List;
+
 public class QLNSHomeController {
 
-    public String getListBGCC(String content) {
-        return "List ban ghi cham cong";
+    private IAttendanceDataService attendanceDataService;
+
+    public QLNSHomeController() {
+        this.attendanceDataService = ServiceInitializer.getAttendanceDataService();
     }
+
+    public List<WorkerAttendanceData> fetchTableData() {
+        List<WorkerAttendanceData> workerAttendanceData = attendanceDataService.getWorkerAttendanceData();
+        return workerAttendanceData;
+    }
+
 }

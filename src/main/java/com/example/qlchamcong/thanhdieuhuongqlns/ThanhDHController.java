@@ -13,12 +13,15 @@ public class ThanhDHController {
     }
 
     public void toHomeScreen() throws IOException {
-        navUtil.changeGUI("/com/example/qlchamcong/importdlcc/import-dlcc.fxml");
-    }
-
-    public void toAttendanceTrackingImportScreen() throws IOException {
         navUtil.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
     }
 
+    public void toAttendanceTrackingImportScreen() throws IOException {
+        navUtil.changeGUI("/com/example/qlchamcong/importdlcc/import-dlcc.fxml");
+    }
 
+
+    public void setHomeScreen() throws IOException {
+        navUtil.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
+    }
 }
