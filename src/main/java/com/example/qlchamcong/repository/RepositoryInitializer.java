@@ -7,11 +7,14 @@ import java.sql.Connection;
 public class RepositoryInitializer {
     private static INguoiDungRepository nguoiDungRepository;
     private static IWorkerAttendanceDataRepository workerAttendanceDataRepository;
+    private static IAttendanceRecordRepository attendanceRecordRepository;
     public RepositoryInitializer(Connection connection, DatabaseType databaseType) {
         switch (databaseType) {
             case MYSQL:
                 nguoiDungRepository = new MySQLNguoiDungRepository(connection);
                 workerAttendanceDataRepository = new MySQLWorkerAttendanceDataRepository();
+                attendanceRecordRepository = new MySQLAttendanceRecordRepository();
+
         }
     }
 
@@ -20,5 +23,8 @@ public class RepositoryInitializer {
     }
     public static IWorkerAttendanceDataRepository getWorkerAttendanceDataRepository() {
         return workerAttendanceDataRepository;
+    }
+    public static IAttendanceRecordRepository getAttendanceRecordRepository() {
+        return attendanceRecordRepository;
     }
 }

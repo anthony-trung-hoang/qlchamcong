@@ -6,14 +6,15 @@ public class ServiceInitializer {
     private static IDangNhapService dangNhapService;
     private static IImportDLCCService importDLCCService;
     private static IQLNSHomeService qlnsHomeService;
-
+    private static IAttendanceRecordService attendanceRecordService;
     private static IAttendanceDataService attendanceDataService;
 
     public ServiceInitializer() {
-        this.dangNhapService = new DangNhapService(RepositoryInitializer.getNguoiDungRepository());
-        this.importDLCCService = new ImportDLCCService();
-        this.qlnsHomeService = new QLNSHomeService();
-        this.attendanceDataService = new AttendanceDataService();
+        dangNhapService = new DangNhapService(RepositoryInitializer.getNguoiDungRepository());
+        importDLCCService = new ImportDLCCService();
+        qlnsHomeService = new QLNSHomeService();
+        attendanceDataService = new AttendanceDataService();
+        attendanceRecordService = new AttendanceRecordService();
     }
 
     public static IDangNhapService getDangNhapService() {
@@ -31,4 +32,6 @@ public class ServiceInitializer {
     public static IAttendanceDataService getAttendanceDataService() {
         return attendanceDataService;
     }
+
+    public static IAttendanceRecordService getAttendanceRecordService() {return attendanceRecordService;}
 }
