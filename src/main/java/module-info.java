@@ -10,6 +10,10 @@ module com.example.qlchamcong {
     opens com.example.qlchamcong.thanhdieuhuongqlns to javafx.fxml;
     opens com.example.qlchamcong.importdlcc to javafx.fxml;
     opens com.example.qlchamcong.qlnshome to javafx.fxml;
+    opens com.example.qlchamcong.viewattendancerecord to javafx.fxml;
+
+
+    exports com.example.qlchamcong.viewattendancerecord;
     exports com.example.qlchamcong;
     exports com.example.qlchamcong.dangnhap;
     exports com.example.qlchamcong.thanhdieuhuongqlns;

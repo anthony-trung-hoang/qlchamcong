@@ -3,71 +3,70 @@ package com.example.qlchamcong.entity;
 import java.util.Date;
 
 public class WorkerAttendanceData {
-    private Long id;
-    private Long staffId;
-    private Date workDate;
-    private double hoursForShift1;
-    private double hoursForShift2;
-    private double hoursForShift3;
+    private int id;
+    private int employeeId;
+    private Date date;
+    private double hoursShift1;
+    private double hoursShift2;
+    private double hoursShift3;
 
-    // Constructors, getters, and setters
 
-    public WorkerAttendanceData(Long id, Long staffId, Date workDate, double hoursForShift1, double hoursForShift2, double hoursForShift3) {
+    public WorkerAttendanceData(int id, int employeeId, Date date, double hoursShift1, double hoursShift2, double hoursShift3) {
         this.id = id;
-        this.staffId = staffId;
-        this.workDate = workDate;
-        this.hoursForShift1 = hoursForShift1;
-        this.hoursForShift2 = hoursForShift2;
-        this.hoursForShift3 = hoursForShift3;
+        this.employeeId = employeeId;
+        this.date = date;
+        this.hoursShift1 = hoursShift1;
+        this.hoursShift2 = hoursShift2;
+        this.hoursShift3 = hoursShift3;
     }
 
-    // Getters and setters
-
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getStaffId() {
-        return staffId;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setStaffId(Long staffId) {
-        this.staffId = staffId;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
-    public Date getWorkDate() {
-        return workDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setWorkDate(Date workDate) {
-        this.workDate = workDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public double getHoursForShift1() {
-        return hoursForShift1;
+    public double getHoursShift1() {
+        return hoursShift1;
     }
 
-    public void setHoursForShift1(double hoursForShift1) {
-        this.hoursForShift1 = hoursForShift1;
+    public void setHoursShift1(double hoursShift1) {
+        this.hoursShift1 = hoursShift1;
     }
 
-    public double getHoursForShift2() {
-        return hoursForShift2;
+    public double getHoursShift2() {
+        return hoursShift2;
     }
 
-    public void setHoursForShift2(double hoursForShift2) {
-        this.hoursForShift2 = hoursForShift2;
+    public void setHoursShift2(double hoursShift2) {
+        this.hoursShift2 = hoursShift2;
     }
 
-    public double getHoursForShift3() {
-        return hoursForShift3;
+    public double getHoursShift3() {
+        return hoursShift3;
     }
 
-    public void setHoursForShift3(double hoursForShift3) {
-        this.hoursForShift3 = hoursForShift3;
+    public void setHoursShift3(double hoursShift3) {
+        this.hoursShift3 = hoursShift3;
     }
+
+
 }
