@@ -2,8 +2,8 @@ package com.example.qlchamcong.repository;
 
 import com.example.qlchamcong.entity.AttendanceRecord;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MySQLAttendanceRecordRepository implements IAttendanceRecordRepository{
@@ -12,6 +12,7 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
 
     @Override
     public List<AttendanceRecord> getAllAttendanceRecord() {
+        attendanceRecordList.clear();
         for (int i = 1; i <= 10; i++) {
            AttendanceRecord sampleData = createSampleObject(i);
             attendanceRecordList.add(sampleData);
@@ -25,8 +26,8 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
         int employeeId = 1;
         String timeStamp = "Time" + i;
         int timeKeeperId = 12;
-        Date date = new Date();
-
-        return new AttendanceRecord(i, employeeId, timeStamp, timeKeeperId, date);
+        String type = "Checkin";
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        return new AttendanceRecord(i, employeeId, timeStamp, timeKeeperId, timestamp, type);
     }
 }

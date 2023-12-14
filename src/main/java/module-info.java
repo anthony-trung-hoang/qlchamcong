@@ -11,6 +11,7 @@ module com.example.qlchamcong {
     opens com.example.qlchamcong.importdlcc to javafx.fxml;
     opens com.example.qlchamcong.qlnshome to javafx.fxml;
     opens com.example.qlchamcong.viewattendancerecord to javafx.fxml;
+    opens com.example.qlchamcong.service to javafx.fxml;
 
 
     exports com.example.qlchamcong.viewattendancerecord;
@@ -20,7 +21,7 @@ module com.example.qlchamcong {
     exports com.example.qlchamcong.importdlcc;
     exports com.example.qlchamcong.qlnshome;
     exports com.example.qlchamcong.service;
-    opens com.example.qlchamcong.service to javafx.fxml;
+    exports com.example.qlchamcong.entity;
     exports com.example.qlchamcong.repository;
     opens com.example.qlchamcong.repository to javafx.fxml;
 }

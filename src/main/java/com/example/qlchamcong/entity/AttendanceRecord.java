@@ -1,24 +1,27 @@
 package com.example.qlchamcong.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class AttendanceRecord {
     private int id;
 
     private int employeeId;
 
-    private String timeStamp;
+    private String time;
 
     private int timeKeeperId;
 
-    private Date date;
+    private Timestamp timestamp;
 
-    public AttendanceRecord(int id, int employeeId, String timeStamp, int timeKeeperId, Date date) {
+    private String type;
+
+    public AttendanceRecord(int id, int employeeId, String time, int timeKeeperId, Timestamp timestamp, String type) {
         this.id = id;
         this.employeeId = employeeId;
-        this.timeStamp = timeStamp;
+        this.time = time;
         this.timeKeeperId = timeKeeperId;
-        this.date = date;
+        this.timestamp = timestamp;
+        this.type = type;
     }
 
     public int getId() {
@@ -37,12 +40,12 @@ public class AttendanceRecord {
         this.employeeId = employeeId;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getTime() {
+        return time;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getTimeKeeperId() {
@@ -53,12 +56,19 @@ public class AttendanceRecord {
         this.timeKeeperId = timeKeeperId;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getTimestamp() {
+        return timestamp;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

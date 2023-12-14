@@ -13,6 +13,7 @@ public class MySQLWorkerAttendanceDataRepository implements IWorkerAttendanceDat
 
     @Override
     public List<WorkerAttendanceData> getAllAttendanceData() {
+        workerAttendanceDataList.clear();
         workerAttendanceDataList.add(createSampleObject(1, 101, new Date(), 8.0, 7.5, 6.5));
         workerAttendanceDataList.add(createSampleObject(2, 102, new Date(), 7.0, 7.5, 8.0));
         workerAttendanceDataList.add(createSampleObject(3, 103, new Date(), 6.0, 6.5, 7.5));

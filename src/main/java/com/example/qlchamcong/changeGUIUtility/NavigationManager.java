@@ -2,7 +2,10 @@ package com.example.qlchamcong.changeGUIUtility;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -52,6 +55,33 @@ public class NavigationManager {
             Parent root = loader.load();
 
             contentPane.getChildren().setAll(root);
+        } else {
+            System.out.println("Error: contentPane is null. Set contentPane first.");
+        }
+    }
+
+    public void showModal(String modalResource, String title) throws IOException {
+        if (contentPane != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(modalResource));
+            Parent modalRoot = loader.load();
+
+            Stage modalStage = new Stage();
+            modalStage.setTitle(title);
+            modalStage.initOwner(contentPane.getScene().getWindow());
+            modalStage.setOnShown(event -> {
+                modalStage.setX(
+                        contentPane.getScene().getWindow().getX() +
+                                contentPane.getScene().getWindow().getWidth() / 2 -
+                                modalStage.getWidth() / 2);
+
+                modalStage.setY(
+                        contentPane.getScene().getWindow().getY() +
+                                contentPane.getScene().getWindow().getHeight() / 2 -
+                                modalStage.getHeight() / 2);
+            });
+            modalStage.setScene(new Scene(modalRoot));
+            modalStage.initModality(Modality.WINDOW_MODAL);
+            modalStage.showAndWait();
         } else {
             System.out.println("Error: contentPane is null. Set contentPane first.");
         }

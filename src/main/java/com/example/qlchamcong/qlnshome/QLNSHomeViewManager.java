@@ -92,6 +92,7 @@ public class QLNSHomeViewManager implements Initializable {
         });
 
         List<WorkerAttendanceData> workerAttendanceDataList = qlnsHomeController.fetchTableData();
+        System.out.println(workerAttendanceDataList.size());
         ObservableList<WorkerAttendanceData> observableList = FXCollections.observableArrayList(workerAttendanceDataList);
         attendanceTableView.setItems(observableList);
 

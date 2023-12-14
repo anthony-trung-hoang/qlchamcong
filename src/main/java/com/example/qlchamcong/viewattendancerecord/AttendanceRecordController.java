@@ -6,6 +6,7 @@ import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.service.IAttendanceRecordService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -31,4 +32,8 @@ public class AttendanceRecordController {
         System.out.println("From controller: " + employeeId + ", " + date);
         return attendanceRecordService.getRecordsOfAnEmployeeInADay(employeeId, date);
     }
+
+    public void showUpdateModal() throws IOException {
+        navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/add-record.fxml", "Update attendance record");
+    }git
 }

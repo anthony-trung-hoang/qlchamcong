@@ -7,4 +7,11 @@ public class NavigationUtil implements IActionChangeGUI {
     public void changeGUI(String viewResource) throws IOException {
         NavigationManager.getInstance().changeGUI(viewResource);
     }
+
+    @Override
+    public void showModal(String modalResource, String modalTitle) throws IOException {
+        NavigationManager.getInstance().showModal(modalResource, modalTitle);
+    }
+
+
 }
