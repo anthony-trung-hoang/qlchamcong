@@ -35,5 +35,5 @@ public class AttendanceRecordController {
 
     public void showUpdateModal() throws IOException {
         navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/add-record.fxml", "Update attendance record");
-    }git
+    }
 }
