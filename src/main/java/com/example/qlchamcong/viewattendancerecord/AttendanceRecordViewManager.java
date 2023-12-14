@@ -1,7 +1,9 @@
 package com.example.qlchamcong.viewattendancerecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
+import com.example.qlchamcong.changeGUIUtility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
+import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -18,6 +20,10 @@ public class AttendanceRecordViewManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         IActionChangeGUI navUtil = new NavigationUtil();
-        attendanceRecordController = new AttendanceRecordController(navUtil);
+        IPassArgument argumentUtil = new PassArgumentUtil();
+        attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
+
+        int shareData = attendanceRecordController.getEmployeeId();
+        this.pageTitle.setText(shareData +"");
     }
 }

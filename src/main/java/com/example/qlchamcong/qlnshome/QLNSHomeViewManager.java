@@ -1,27 +1,21 @@
 package com.example.qlchamcong.qlnshome;
 
-import com.example.qlchamcong.HelloApplication;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
+import com.example.qlchamcong.changeGUIUtility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
+import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
-import com.example.qlchamcong.importdlcc.ImportDLCCController;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -61,7 +55,8 @@ public class QLNSHomeViewManager implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         IActionChangeGUI navUtil = new NavigationUtil();
-        qlnsHomeController = new QLNSHomeController(navUtil);
+        IPassArgument argumentUtil = new PassArgumentUtil();
+        qlnsHomeController = new QLNSHomeController(navUtil, argumentUtil);
 
         fetchAndDisplayTableData();
     }
@@ -104,6 +99,6 @@ public class QLNSHomeViewManager implements Initializable {
 
     private void handleViewDetailsAction(WorkerAttendanceData workerAttendanceData) throws IOException {
         System.out.println("Xem chi tiết cho nhân viên: " + workerAttendanceData.getId());
-        qlnsHomeController.showDetails();
+        qlnsHomeController.showDetails(workerAttendanceData.getId());
     }
 }
