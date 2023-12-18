@@ -1,6 +1,8 @@
 package com.example.qlchamcong.entity;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class AttendanceRecord {
     private int id;
@@ -60,4 +62,24 @@ public class AttendanceRecord {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String getFormattedDate() {
+        LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
+        int year = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day = localDate.getDayOfMonth();
+
+        return day + "/" + month + "/" + year;
+    }
+
+    public String getFormattedTime() {
+        LocalDateTime localDateTime = timestamp.toLocalDateTime();
+
+        int hour = localDateTime.getHour();
+        int minute = localDateTime.getMinute();
+        int second = localDateTime.getSecond();
+
+        return hour + ":" + minute + ":" + second;
+    }
+
 }

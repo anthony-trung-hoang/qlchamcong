@@ -29,12 +29,16 @@ public class AttendanceRecordController {
     }
 
     public List<AttendanceRecord> fetchListOfRecords(int employeeId, Date date) {
-        System.out.println("From controller: " + employeeId + ", " + date);
         return viewAttendanceRecordsService.getRecordsOfAnEmployeeInADay(employeeId, date);
     }
 
     public void showUpdateModal(AttendanceRecord attendanceRecord) throws IOException {
         argumentUtil.setSharedData("fromAttendanceRecordToUpdateRecord", attendanceRecord);
-        navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/add-record.fxml", "Update attendance record");
+        navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/update-record.fxml", "Update attendance record");
+    }
+
+    public void showAddNewRecordModal(AttendanceRecord attendanceRecord) throws IOException {
+        argumentUtil.setSharedData("fromAttendanceRecordToNewRecord", attendanceRecord);
+        navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/add-record.fxml", "Add a new record");
     }
 }

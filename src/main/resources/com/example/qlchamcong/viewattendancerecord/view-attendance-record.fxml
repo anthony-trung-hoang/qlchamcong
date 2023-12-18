@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,17 +13,22 @@
       <font>
          <Font size="22.0" />
       </font></Label>
-    <TableView fx:id="attendanceRecordTableView" layoutX="26.0" layoutY="199.0" prefHeight="478.0" prefWidth="786.0">
+    <TableView fx:id="attendanceRecordTableView" layoutX="24.0" layoutY="169.0" prefHeight="515.0" prefWidth="795.0">
         <columns>
             <TableColumn fx:id="idColumn" text="ID" />
-            <TableColumn fx:id="timeStampColumn" text="Timestamp" />
-            <TableColumn fx:id="typeColumn" text="Type" />
-            <TableColumn fx:id="timeKeeperIdColumn" text="Timekeeper ID" />
-            <TableColumn fx:id="recordVoidTableColumn" text="Operation" />
+            <TableColumn fx:id="timeStampColumn" prefWidth="251.19995880126953" text="Timestamp" />
+            <TableColumn fx:id="typeColumn" prefWidth="98.4000244140625" text="Type" />
+            <TableColumn fx:id="timeKeeperIdColumn" prefWidth="139.99996948242188" text="Timekeeper ID" />
+            <TableColumn fx:id="recordVoidTableColumn" prefWidth="224.79998779296875" text="Operation" />
         </columns>
     </TableView>
    <Label layoutX="26.0" layoutY="74.0" prefHeight="18.0" prefWidth="174.0" text="Employee Id" />
    <Label fx:id="employeeIdLabel" layoutX="264.0" layoutY="75.0" prefHeight="18.0" prefWidth="201.0" text="xxx" />
    <Label layoutX="26.0" layoutY="119.0" text="Date" />
    <Label fx:id="dateLabel" layoutX="264.0" layoutY="119.0" prefHeight="18.0" prefWidth="202.0" text="yyy" />
+   <Button layoutX="572.0" layoutY="80.0" mnemonicParsing="false" onAction="#showAddNewRecordModal" prefHeight="49.0" prefWidth="223.0" text="Thêm bản ghi mới">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Button>
 </AnchorPane>

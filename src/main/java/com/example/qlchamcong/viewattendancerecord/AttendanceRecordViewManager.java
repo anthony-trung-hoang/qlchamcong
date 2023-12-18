@@ -27,11 +27,7 @@ public class AttendanceRecordViewManager implements Initializable {
     @FXML
     public TableView<AttendanceRecord> attendanceRecordTableView;
     @FXML
-
     public TableColumn<AttendanceRecord, Integer> idColumn;
-
-    @FXML
-    public TableColumn<AttendanceRecord, String> timeColumn;
     @FXML
     public TableColumn<AttendanceRecord, Timestamp> timeStampColumn;
     @FXML
@@ -55,13 +51,12 @@ public class AttendanceRecordViewManager implements Initializable {
         attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
 
         WorkerAttendanceData shareData = getInitialData();
-        setInitialUI(getInitialData());
+        setInitialUI(shareData);
         fetchAndDisplayTableData(shareData.getEmployeeId(), shareData.getDate());
     }
 
     public WorkerAttendanceData getInitialData() {
-        WorkerAttendanceData data = (WorkerAttendanceData) attendanceRecordController.getInitialData();
-        return data;
+        return (WorkerAttendanceData) attendanceRecordController.getInitialData();
     }
 
     public void setInitialUI(WorkerAttendanceData initialData) {
@@ -106,11 +101,18 @@ public class AttendanceRecordViewManager implements Initializable {
 
 
         List<AttendanceRecord> attendanceRecordList = attendanceRecordController.fetchListOfRecords(employeeId, date);
+        passToNewRecordModal = attendanceRecordList.get(0);
         ObservableList<AttendanceRecord> observableList = FXCollections.observableArrayList(attendanceRecordList);
         attendanceRecordTableView.setItems(observableList);
     }
 
+    private AttendanceRecord passToNewRecordModal;
+
     public void showUpdateModal(AttendanceRecord attendanceRecord) throws IOException {
         attendanceRecordController.showUpdateModal(attendanceRecord);
+    }
+
+    public void showAddNewRecordModal() throws IOException {
+        attendanceRecordController.showAddNewRecordModal(this.passToNewRecordModal);
     }
 }

@@ -1,22 +1,21 @@
-package com.example.qlchamcong.viewattendancerecord.updaterecord;
+package com.example.qlchamcong.viewattendancerecord.addrecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.changeGUIUtility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
 import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UpdateRecordViewManager implements Initializable {
-
-    UpdateRecordController updateRecordController;
+public class AddRecordViewManager implements Initializable {
+    AddRecordController updateRecordController;
     @FXML
     public Label employeeIdLabel;
     @FXML
@@ -28,17 +27,24 @@ public class UpdateRecordViewManager implements Initializable {
     @FXML
     public TextField timeKeeperIdTextField;
 
-    public void saveButtonAction(ActionEvent event) {
+    public void saveButtonAction() {
+
     }
 
-    public void cancelButtonAction(ActionEvent event) {
+    public void cancelButtonAction() throws IOException {
+        System.out.println("Button clicked");
+        updateRecordController.returnToAttendanceRecordListView();
     }
+
+//    public AttendanceRecord getNewRecordFromUI() {
+//
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         IActionChangeGUI navUtil = new NavigationUtil();
         IPassArgument argumentUtil = new PassArgumentUtil();
-        this.updateRecordController = new UpdateRecordController(navUtil, argumentUtil);
+        this.updateRecordController = new AddRecordController(navUtil, argumentUtil);
         this.setInitialData(getInitialData());
     }
 
@@ -52,11 +58,6 @@ public class UpdateRecordViewManager implements Initializable {
 
         employeeIdLabel.setText(employeeId);
         attendanceDateLabel.setText(attendanceRecord.getFormattedDate());
-        timeTextField.setPromptText(attendanceRecord.getFormattedTime());
-        timeKeeperIdTextField.setFocusTraversable(false);
-        timeTextField.setFocusTraversable(false);
-        timeKeeperIdTextField.setPromptText(timeKeeperId);
     }
-
 
 }
