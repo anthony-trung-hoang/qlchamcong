@@ -1,5 +1,7 @@
 package com.example.qlchamcong.entity;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class WorkerAttendanceData {
@@ -69,4 +71,12 @@ public class WorkerAttendanceData {
     }
 
 
+    public String getFormattedDate() {
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int year = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day = localDate.getDayOfMonth();
+
+        return day + "/" + month + "/" + year;
+    }
 }

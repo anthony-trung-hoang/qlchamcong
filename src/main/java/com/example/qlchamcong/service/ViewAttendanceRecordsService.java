@@ -7,10 +7,10 @@ import com.example.qlchamcong.repository.RepositoryInitializer;
 import java.util.Date;
 import java.util.List;
 
-public class AttendanceRecordService implements  IAttendanceRecordService {
+public class ViewAttendanceRecordsService implements IViewAttendanceRecordsService {
     private IAttendanceRecordRepository attendanceRecordRepository;
 
-    public AttendanceRecordService() {
+    public ViewAttendanceRecordsService() {
         this.attendanceRecordRepository = RepositoryInitializer.getAttendanceRecordRepository();
     }
 

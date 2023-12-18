@@ -4,6 +4,6 @@ import com.example.qlchamcong.entity.WorkerAttendanceData;
 
 import java.util.List;
 
-public interface IAttendanceDataService {
+public interface IHomeScreenService {
     List<WorkerAttendanceData> getWorkerAttendanceData();
 }

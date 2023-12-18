@@ -7,18 +7,15 @@ public class AttendanceRecord {
 
     private int employeeId;
 
-    private String time;
-
     private int timeKeeperId;
 
     private Timestamp timestamp;
 
     private String type;
 
-    public AttendanceRecord(int id, int employeeId, String time, int timeKeeperId, Timestamp timestamp, String type) {
+    public AttendanceRecord(int id, int employeeId, int timeKeeperId, Timestamp timestamp, String type) {
         this.id = id;
         this.employeeId = employeeId;
-        this.time = time;
         this.timeKeeperId = timeKeeperId;
         this.timestamp = timestamp;
         this.type = type;
@@ -38,14 +35,6 @@ public class AttendanceRecord {
 
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public int getTimeKeeperId() {

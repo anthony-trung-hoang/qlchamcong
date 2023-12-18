@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.qlchamcong.viewattendancerecord.AttendanceRecordViewManager"
-            prefHeight="700.0" prefWidth="835.0">
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="pageTitle" layoutX="95.0" layoutY="14.0" prefHeight="28.0" prefWidth="76.0"
-           text="Details in day"/>
-    <TableView fx:id="attendanceRecordTableView" prefWidth="600">
+<AnchorPane prefHeight="700.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewattendancerecord.AttendanceRecordViewManager">
+
+    <Label fx:id="pageTitle" layoutX="26.0" layoutY="27.0" prefHeight="28.0" prefWidth="352.0" text="Checkin/checkout record detail">
+      <font>
+         <Font size="22.0" />
+      </font></Label>
+    <TableView fx:id="attendanceRecordTableView" layoutX="26.0" layoutY="199.0" prefHeight="478.0" prefWidth="786.0">
         <columns>
-            <TableColumn text="ID" fx:id="idColumn"/>
-            <TableColumn text="Checkin/checkout time" fx:id="timeColumn"/>
-            <TableColumn text="Timestamp" fx:id="timeStampColumn"/>
-            <TableColumn text="Type" fx:id="typeColumn"/>
-            <TableColumn text="Timekeeper ID" fx:id="timeKeeperIdColumn"/>
-            <TableColumn text="Operation" fx:id="viewDetailsColumn"/>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="timeStampColumn" text="Timestamp" />
+            <TableColumn fx:id="typeColumn" text="Type" />
+            <TableColumn fx:id="timeKeeperIdColumn" text="Timekeeper ID" />
+            <TableColumn fx:id="recordVoidTableColumn" text="Operation" />
         </columns>
     </TableView>
+   <Label layoutX="26.0" layoutY="74.0" prefHeight="18.0" prefWidth="174.0" text="Employee Id" />
+   <Label fx:id="employeeIdLabel" layoutX="264.0" layoutY="75.0" prefHeight="18.0" prefWidth="201.0" text="xxx" />
+   <Label layoutX="26.0" layoutY="119.0" text="Date" />
+   <Label fx:id="dateLabel" layoutX="264.0" layoutY="119.0" prefHeight="18.0" prefWidth="202.0" text="yyy" />
 </AnchorPane>
-
-
-
-
-

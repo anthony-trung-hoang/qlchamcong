@@ -3,7 +3,7 @@ package com.example.qlchamcong.viewattendancerecord;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.changeGUIUtility.IPassArgument;
 import com.example.qlchamcong.entity.AttendanceRecord;
-import com.example.qlchamcong.service.IAttendanceRecordService;
+import com.example.qlchamcong.service.IViewAttendanceRecordsService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
 import java.io.IOException;
@@ -16,24 +16,25 @@ public class AttendanceRecordController {
     private final IActionChangeGUI navUtil;
     private final IPassArgument argumentUtil;
 
-    private IAttendanceRecordService attendanceRecordService;
+    private final IViewAttendanceRecordsService viewAttendanceRecordsService;
 
     public AttendanceRecordController(IActionChangeGUI navUtil, IPassArgument argumentUtil) {
         this.argumentUtil = argumentUtil;
         this.navUtil = navUtil;
-        this.attendanceRecordService = ServiceInitializer.getAttendanceRecordService();
+        this.viewAttendanceRecordsService = ServiceInitializer.getViewAttendanceRecordsService();
     }
 
-    public int getEmployeeId() {
-        return (int) argumentUtil.getSharedData("fromHomeToAttendanceRecord");
+    public Object getInitialData() {
+        return argumentUtil.getSharedData("fromHomeToAttendanceRecord");
     }
 
     public List<AttendanceRecord> fetchListOfRecords(int employeeId, Date date) {
         System.out.println("From controller: " + employeeId + ", " + date);
-        return attendanceRecordService.getRecordsOfAnEmployeeInADay(employeeId, date);
+        return viewAttendanceRecordsService.getRecordsOfAnEmployeeInADay(employeeId, date);
     }
 
-    public void showUpdateModal() throws IOException {
+    public void showUpdateModal(AttendanceRecord attendanceRecord) throws IOException {
+        argumentUtil.setSharedData("fromAttendanceRecordToUpdateRecord", attendanceRecord);
         navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/add-record.fxml", "Update attendance record");
     }
 }

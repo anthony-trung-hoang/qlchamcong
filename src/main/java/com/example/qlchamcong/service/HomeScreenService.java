@@ -6,10 +6,10 @@ import com.example.qlchamcong.repository.RepositoryInitializer;
 
 import java.util.List;
 
-public class AttendanceDataService implements  IAttendanceDataService{
-    private IWorkerAttendanceDataRepository workerAttendanceDataRepository;
+public class HomeScreenService implements IHomeScreenService {
+    private final IWorkerAttendanceDataRepository workerAttendanceDataRepository;
 
-    public AttendanceDataService() {
+    public HomeScreenService() {
         this.workerAttendanceDataRepository = RepositoryInitializer.getWorkerAttendanceDataRepository();
     }
     @Override

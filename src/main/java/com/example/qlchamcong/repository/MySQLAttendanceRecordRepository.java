@@ -24,10 +24,9 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
     //    mock data
     private AttendanceRecord createSampleObject(int i) {
         int employeeId = 1;
-        String timeStamp = "Time" + i;
         int timeKeeperId = 12;
         String type = "Checkin";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        return new AttendanceRecord(i, employeeId, timeStamp, timeKeeperId, timestamp, type);
+        return new AttendanceRecord(i, employeeId, timeKeeperId, timestamp, type);
     }
 }

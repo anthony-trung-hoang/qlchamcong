@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ThanhDHViewManager implements Initializable {
+public class NavigationBarViewManager implements Initializable {
 
     @FXML
     public Pane contentPane;
@@ -23,13 +23,13 @@ public class ThanhDHViewManager implements Initializable {
     @FXML
     public Button dangXuat;
 
-    private ThanhDHController thanhDHController;
+    private NavigationBarController thanhDHController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         NavigationManager.getInstance().setContentPane(contentPane);
         IActionChangeGUI navigationUtil = new NavigationUtil();
-        thanhDHController = new ThanhDHController(navigationUtil);
+        thanhDHController = new NavigationBarController(navigationUtil);
         try {
             this.setHomeScreen();
         } catch (IOException e) {

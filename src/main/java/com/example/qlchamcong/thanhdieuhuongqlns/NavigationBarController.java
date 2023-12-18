@@ -4,11 +4,11 @@ import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 
 import java.io.IOException;
 
-public class ThanhDHController {
+public class NavigationBarController {
 
     private final IActionChangeGUI navUtil;
 
-    public ThanhDHController(IActionChangeGUI navUtil) {
+    public NavigationBarController(IActionChangeGUI navUtil) {
         this.navUtil = navUtil;
     }
 

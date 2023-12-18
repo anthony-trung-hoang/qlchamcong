@@ -8,25 +8,24 @@ import com.example.qlchamcong.service.*;
 import java.io.IOException;
 import java.util.List;
 
-public class QLNSHomeController {
+public class HRHomeController {
 
     private final IActionChangeGUI navUtil;
     private final IPassArgument argumentUtil;
-    private IAttendanceDataService attendanceDataService;
+    private IHomeScreenService homeScreenService;
 
-    public QLNSHomeController(IActionChangeGUI navUtil, IPassArgument argumentUtil) {
+    public HRHomeController(IActionChangeGUI navUtil, IPassArgument argumentUtil) {
         this.navUtil = navUtil;
         this.argumentUtil = argumentUtil;
-        this.attendanceDataService = ServiceInitializer.getAttendanceDataService();
+        this.homeScreenService = ServiceInitializer.getHomeScreenService();
     }
 
     public List<WorkerAttendanceData> fetchTableData() {
-        return attendanceDataService.getWorkerAttendanceData();
+        return homeScreenService.getWorkerAttendanceData();
     }
 
-    public void showDetails(int id) throws IOException {
-//        navUtil.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
-        argumentUtil.setSharedData("fromHomeToAttendanceRecord", id);
+    public void showDetails(WorkerAttendanceData data) throws IOException {
+        argumentUtil.setSharedData("fromHomeToAttendanceRecord", data);
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 
