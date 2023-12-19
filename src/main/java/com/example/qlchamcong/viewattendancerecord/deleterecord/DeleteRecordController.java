@@ -27,4 +27,9 @@ public class DeleteRecordController {
         navUtil.closeModal();
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
+
+    public void closeModal() throws IOException {
+        navUtil.closeModal();
+        navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
+    }
 }

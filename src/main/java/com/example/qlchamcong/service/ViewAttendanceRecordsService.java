@@ -23,4 +23,14 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
     public void deleteRecord(AttendanceRecord currentRecord) {
         attendanceRecordRepository.deleteRecordById(currentRecord.getId());
     }
+
+    @Override
+    public void createANewRecord(AttendanceRecord newRecord) {
+        attendanceRecordRepository.createANewRecord(newRecord);
+    }
+
+    @Override
+    public void updateRecord(AttendanceRecord newRecord) {
+        attendanceRecordRepository.updateRecordById(newRecord);
+    }
 }

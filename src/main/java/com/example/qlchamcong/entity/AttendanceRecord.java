@@ -27,6 +27,33 @@ public class AttendanceRecord {
 
     }
 
+    public AttendanceRecord(int employeeId, Timestamp timestamp, int timeKeeperId, String type) {
+        this.employeeId = employeeId;
+        this.timestamp = timestamp;
+        this.timeKeeperId = timeKeeperId;
+        this.type = type;
+        this.id = 0; // new record without id queried from the db
+    }
+
+    public AttendanceRecord(int id, int employeeId, Timestamp timestamp, int timeKeeperId, String type) {
+        this.employeeId = employeeId;
+        this.timestamp = timestamp;
+        this.timeKeeperId = timeKeeperId;
+        this.type = type;
+        this.id = id; // new record without id queried from the db
+    }
+
+    @Override
+    public String toString() {
+        return "AttendanceRecord{" +
+                "id=" + id +
+                ", employeeId=" + employeeId +
+                ", timeKeeperId=" + timeKeeperId +
+                ", timestamp=" + timestamp +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

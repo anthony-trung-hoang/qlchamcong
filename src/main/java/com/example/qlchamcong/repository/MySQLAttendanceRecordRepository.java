@@ -56,4 +56,48 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
         }
     }
 
+    @Override
+    public void createANewRecord(AttendanceRecord newRecord) {
+        String query = "INSERT INTO AttendanceRecord (employeeId, timeKeeperId, timestamp, type) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setInt(1, newRecord.getEmployeeId());
+            preparedStatement.setInt(2, newRecord.getTimeKeeperId());
+            preparedStatement.setTimestamp(3, newRecord.getTimestamp());
+            preparedStatement.setString(4, newRecord.getType());
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Creating record failed, no rows affected.");
+            }
+
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    newRecord.setId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Creating record failed, no ID obtained.");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateRecordById(AttendanceRecord updatedRecord) {
+        String query = "UPDATE AttendanceRecord SET timestamp = ?, timeKeeperId = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setTimestamp(1, updatedRecord.getTimestamp());
+            preparedStatement.setInt(2, updatedRecord.getTimeKeeperId());
+            preparedStatement.setInt(3, updatedRecord.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

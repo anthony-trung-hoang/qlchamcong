@@ -9,4 +9,8 @@ public interface IAttendanceRecordRepository {
     List<AttendanceRecord> getAttendanceRecordsByEmployeeAndDate(int employeeId, Date date);
 
     void deleteRecordById(int id);
+
+    void createANewRecord(AttendanceRecord newRecord);
+
+    void updateRecordById(AttendanceRecord newRecord);
 }

@@ -12,10 +12,15 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddRecordViewManager implements Initializable {
-    AddRecordController updateRecordController;
+    AddRecordController addRecordController;
     @FXML
     public Label employeeIdLabel;
     @FXML
@@ -27,25 +32,62 @@ public class AddRecordViewManager implements Initializable {
     @FXML
     public TextField timeKeeperIdTextField;
 
-    public void saveButtonAction() {
+    private AttendanceRecord currentRecord;
+
+    public void saveButtonAction() throws ParseException, IOException {
+        AttendanceRecord newRecord = getNewRecordFromUI();
+//        System.out.println(newRecord);
+        addRecordController.saveNewRecord(newRecord);
+        addRecordController.closeModal();
+    }
+
+    private AttendanceRecord getNewRecordFromUI() throws ParseException {
+        String newTimestamp = timeTextField.getText();
+        int newTimekeeperId = Integer.parseInt(timeKeeperIdTextField.getText());
+        Timestamp updatedTimestamp = getTimestamp(newTimestamp);
+
+//        System.out.println("Chuỗi ban đầu: " + newTimestamp);
+//        System.out.println("Timestamp sau cập nhật: " + updatedTimestamp);
+//        System.out.println("New Timekeeper Id: " + newTimekeeperId);
+        return new AttendanceRecord(currentRecord.getEmployeeId(), updatedTimestamp, newTimekeeperId, currentRecord.getType());
 
     }
 
+    private Timestamp getTimestamp(String newTimestamp) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        Date parsedDate = dateFormat.parse(newTimestamp);
+
+        Timestamp currentTs = currentRecord.getTimestamp();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(currentTs.getTime());
+
+        Calendar newCalendar = Calendar.getInstance();
+        newCalendar.setTime(parsedDate);
+
+        calendar.set(Calendar.HOUR_OF_DAY, newCalendar.get(Calendar.HOUR_OF_DAY));
+        calendar.set(Calendar.MINUTE, newCalendar.get(Calendar.MINUTE));
+        calendar.set(Calendar.SECOND, newCalendar.get(Calendar.SECOND));
+
+        return new Timestamp(calendar.getTimeInMillis());
+    }
+
     public void cancelButtonAction() throws IOException {
-        System.out.println("Button clicked");
-        updateRecordController.closeModal();
+        System.out.println("Cancel button clicked");
+        addRecordController.closeModal();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         IActionChangeGUI navUtil = new NavigationUtil();
         IPassArgument argumentUtil = new PassArgumentUtil();
-        this.updateRecordController = new AddRecordController(navUtil, argumentUtil);
+        this.addRecordController = new AddRecordController(navUtil, argumentUtil);
         this.setInitialData(getInitialData());
     }
 
     public AttendanceRecord getInitialData() {
-        return (AttendanceRecord) updateRecordController.getInitialData();
+        currentRecord = (AttendanceRecord) addRecordController.getInitialData();
+        return currentRecord;
     }
 
     private void setInitialData(AttendanceRecord attendanceRecord) {

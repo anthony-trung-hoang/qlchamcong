@@ -23,7 +23,8 @@ public class DeleteRecordViewManager implements Initializable {
     public Label timeKeeperIdLabel;
 
     @FXML
-    public void cancelButtonAction() {
+    public void cancelButtonAction() throws IOException {
+        deleteRecordController.closeModal();
     }
 
     @FXML
