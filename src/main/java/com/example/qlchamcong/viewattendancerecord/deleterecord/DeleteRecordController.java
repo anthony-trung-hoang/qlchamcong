@@ -2,8 +2,11 @@ package com.example.qlchamcong.viewattendancerecord.deleterecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.service.IViewAttendanceRecordsService;
 import com.example.qlchamcong.service.ServiceInitializer;
+
+import java.io.IOException;
 
 public class DeleteRecordController {
     private final IViewAttendanceRecordsService viewAttendanceRecordsService;
@@ -17,5 +20,11 @@ public class DeleteRecordController {
 
     public Object getInitialData() {
         return argumentUtil.getSharedData("fromAttendanceRecordToDeleteRecord");
+    }
+
+    public void deleteAndCloseModal(AttendanceRecord currentRecord) throws IOException {
+        viewAttendanceRecordsService.deleteRecord(currentRecord);
+        navUtil.closeModal();
+        navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 }

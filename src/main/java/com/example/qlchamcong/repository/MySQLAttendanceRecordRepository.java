@@ -44,4 +44,16 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
         return records;
     }
 
+    @Override
+    public void deleteRecordById(int id) {
+        String query = "DELETE FROM AttendanceRecord WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

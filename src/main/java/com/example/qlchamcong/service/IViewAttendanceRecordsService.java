@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IViewAttendanceRecordsService {
     List<AttendanceRecord> getRecordsOfAnEmployeeInADay(int employeeId, Date date);
+
+    void deleteRecord(AttendanceRecord currentRecord);
 }

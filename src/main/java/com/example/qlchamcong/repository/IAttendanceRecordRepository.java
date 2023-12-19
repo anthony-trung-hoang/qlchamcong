@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IAttendanceRecordRepository {
     List<AttendanceRecord> getAttendanceRecordsByEmployeeAndDate(int employeeId, Date date);
+
+    void deleteRecordById(int id);
 }
