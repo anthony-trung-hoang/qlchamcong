@@ -46,6 +46,7 @@ public class AttendanceRecordViewManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Attendance record view: reload");
         IActionChangeGUI navUtil = new NavigationUtil();
         IPassArgument argumentUtil = new PassArgumentUtil();
         attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
@@ -86,6 +87,14 @@ public class AttendanceRecordViewManager implements Initializable {
                     }
                 });
 
+                deleteButton.setOnAction(event -> {
+                    try {
+                        showDeleteModal(getTableView().getItems().get(getIndex()));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
             }
 
             @Override
@@ -104,6 +113,10 @@ public class AttendanceRecordViewManager implements Initializable {
         passToNewRecordModal = attendanceRecordList.get(0);
         ObservableList<AttendanceRecord> observableList = FXCollections.observableArrayList(attendanceRecordList);
         attendanceRecordTableView.setItems(observableList);
+    }
+
+    private void showDeleteModal(AttendanceRecord attendanceRecord) throws IOException {
+        attendanceRecordController.showDeleteModal(attendanceRecord);
     }
 
     private AttendanceRecord passToNewRecordModal;

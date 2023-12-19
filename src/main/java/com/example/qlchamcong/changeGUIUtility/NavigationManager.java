@@ -17,6 +17,12 @@ public class NavigationManager {
 
     private Map<String, Object> sharedDataMap;
 
+    public void setCurrentScene(Scene currentScene) {
+        this.currentScene = currentScene;
+    }
+
+    private Scene currentScene;
+
     private NavigationManager() {
         sharedDataMap = new HashMap<>();
     }
@@ -30,15 +36,6 @@ public class NavigationManager {
 
     public void setContentPane(Pane contentPane) {
         this.contentPane = contentPane;
-    }
-
-
-    public Map<String, Object> getSharedDataMap() {
-        return sharedDataMap;
-    }
-
-    public void setSharedDataMap(Map<String, Object> sharedDataMap) {
-        this.sharedDataMap = sharedDataMap;
     }
 
     public void setSharedData(String key, Object sharedData) {
@@ -79,12 +76,20 @@ public class NavigationManager {
                                 contentPane.getScene().getWindow().getHeight() / 2 -
                                 modalStage.getHeight() / 2);
             });
-            modalStage.setScene(new Scene(modalRoot));
+            Scene newScene = new Scene(modalRoot);
+            modalStage.setScene(newScene);
+            this.setCurrentScene(newScene);
             modalStage.initModality(Modality.WINDOW_MODAL);
             modalStage.showAndWait();
         } else {
             System.out.println("Error: contentPane is null. Set contentPane first.");
         }
+    }
+
+    public void closeModal() {
+        Stage currentStage = (Stage) currentScene.getWindow();
+        currentStage.close();
+        currentScene = null;
     }
 }
 

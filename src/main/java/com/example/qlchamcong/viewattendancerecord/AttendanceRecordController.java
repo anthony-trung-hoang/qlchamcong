@@ -41,4 +41,9 @@ public class AttendanceRecordController {
         argumentUtil.setSharedData("fromAttendanceRecordToNewRecord", attendanceRecord);
         navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/add-record.fxml", "Add a new record");
     }
+
+    public void showDeleteModal(AttendanceRecord attendanceRecord) throws IOException {
+        argumentUtil.setSharedData("fromAttendanceRecordToDeleteRecord", attendanceRecord);
+        navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/confirm-delete.fxml", "Confirm deletion");
+    }
 }

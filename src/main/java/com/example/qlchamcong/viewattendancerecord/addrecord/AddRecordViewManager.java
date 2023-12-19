@@ -33,12 +33,8 @@ public class AddRecordViewManager implements Initializable {
 
     public void cancelButtonAction() throws IOException {
         System.out.println("Button clicked");
-        updateRecordController.returnToAttendanceRecordListView();
+        updateRecordController.closeModal();
     }
-
-//    public AttendanceRecord getNewRecordFromUI() {
-//
-//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

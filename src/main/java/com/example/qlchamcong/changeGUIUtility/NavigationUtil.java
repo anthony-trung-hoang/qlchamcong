@@ -13,5 +13,10 @@ public class NavigationUtil implements IActionChangeGUI {
         NavigationManager.getInstance().showModal(modalResource, modalTitle);
     }
 
+    @Override
+    public void closeModal() {
+        NavigationManager.getInstance().closeModal();
+    }
+
 
 }

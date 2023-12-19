@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewattendancerecord.updaterecord.UpdateRecordViewManager">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewattendancerecord.updaterecord.UpdateRecordViewManager">
    <HBox alignment="CENTER" prefHeight="74.0" prefWidth="601.0">
       <children>
       
@@ -90,8 +90,8 @@
    </GridPane>
    <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
       <children>
-         <Button mnemonicParsing="false" text="Save" />
-         <Button mnemonicParsing="false" text="Cancel">
+         <Button mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />
+         <Button mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel">
             <HBox.margin>
                <Insets left="12.0" right="12.0" />
             </HBox.margin>

@@ -5,6 +5,8 @@ import com.example.qlchamcong.changeGUIUtility.IPassArgument;
 import com.example.qlchamcong.service.IViewAttendanceRecordsService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
+import java.io.IOException;
+
 public class UpdateRecordController {
 
     private final IActionChangeGUI navUtil;
@@ -21,5 +23,10 @@ public class UpdateRecordController {
 
     public Object getInitialData() {
         return argumentUtil.getSharedData("fromAttendanceRecordToUpdateRecord");
+    }
+
+    public void closeModal() throws IOException {
+        navUtil.closeModal();
+        navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 }

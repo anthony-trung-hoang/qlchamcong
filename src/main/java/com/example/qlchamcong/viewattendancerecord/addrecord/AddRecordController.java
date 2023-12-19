@@ -25,7 +25,8 @@ public class AddRecordController {
         return argumentUtil.getSharedData("fromAttendanceRecordToNewRecord");
     }
 
-    public void returnToAttendanceRecordListView() throws IOException {
+    public void closeModal() throws IOException {
+        navUtil.closeModal();
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 }

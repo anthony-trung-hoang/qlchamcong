@@ -5,12 +5,12 @@ import com.example.qlchamcong.changeGUIUtility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
 import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,10 +28,12 @@ public class UpdateRecordViewManager implements Initializable {
     @FXML
     public TextField timeKeeperIdTextField;
 
-    public void saveButtonAction(ActionEvent event) {
+    public void saveButtonAction() {
     }
 
-    public void cancelButtonAction(ActionEvent event) {
+    public void cancelButtonAction() throws IOException {
+        System.out.println("Cancel button clicked");
+        updateRecordController.closeModal();
     }
 
     @Override
