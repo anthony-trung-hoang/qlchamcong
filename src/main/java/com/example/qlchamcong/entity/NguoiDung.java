@@ -4,9 +4,9 @@ public class NguoiDung {
     private String tenDangNhap;
     private String matKhau;
     private String salt;
-    private VaiTro vaiTro;
+    private Role vaiTro;
 
-    public NguoiDung(String tenDangNhap, String matKhau, String salt, VaiTro vaiTro) {
+    public NguoiDung(String tenDangNhap, String matKhau, String salt, Role vaiTro) {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
         this.salt = salt;
@@ -29,7 +29,7 @@ public class NguoiDung {
         this.matKhau = matKhau;
     }
 
-    public VaiTro getVaiTro() {
+    public Role getVaiTro() {
         return vaiTro;
     }
 
@@ -41,7 +41,7 @@ public class NguoiDung {
         this.salt = salt;
     }
 
-    public void setVaiTro(VaiTro vaiTro) {
+    public void setVaiTro(Role vaiTro) {
         this.vaiTro = vaiTro;
     }
 }

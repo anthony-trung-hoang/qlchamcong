@@ -13,7 +13,7 @@ public class AttendanceRecord {
 
     private Timestamp timestamp;
 
-    private String type;
+    private String type; // checkin or checkout
 
     public AttendanceRecord(int id, int employeeId, int timeKeeperId, Timestamp timestamp, String type) {
         this.id = id;
@@ -21,6 +21,10 @@ public class AttendanceRecord {
         this.timeKeeperId = timeKeeperId;
         this.timestamp = timestamp;
         this.type = type;
+    }
+
+    public AttendanceRecord() {
+
     }
 
     public int getId() {

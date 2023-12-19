@@ -62,7 +62,7 @@ public class AttendanceRecordViewManager implements Initializable {
 
     public void setInitialUI(WorkerAttendanceData initialData) {
         employeeIdLabel.setText(initialData.getEmployeeId() + "");
-        dateLabel.setText(initialData.getFormattedDate());
+        dateLabel.setText(initialData.getDate().toString());
     }
 
     public void fetchAndDisplayTableData(int employeeId, Date date) {
