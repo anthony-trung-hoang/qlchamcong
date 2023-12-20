@@ -31,7 +31,7 @@ public class DangNhapViewManager implements Initializable {
 
         String role = tenDangNhap.getText();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/hrnavbar/dieu-huong-qlns.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/hrnavbar/hr-navbar.fxml"));
         if (Objects.equals(role, "1")) {
             System.out.println(role);
 
