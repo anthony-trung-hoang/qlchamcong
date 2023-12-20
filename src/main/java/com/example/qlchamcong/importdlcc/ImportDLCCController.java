@@ -1,7 +1,5 @@
 package com.example.qlchamcong.importdlcc;
 
-import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
 import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.Tuple2;
@@ -10,7 +8,6 @@ import com.example.qlchamcong.exception.InvalidFileFormatException;
 import com.example.qlchamcong.service.IImportDLCCService;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class ImportDLCCController {

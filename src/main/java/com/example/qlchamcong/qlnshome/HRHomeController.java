@@ -1,7 +1,7 @@
 package com.example.qlchamcong.qlnshome;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
 import com.example.qlchamcong.service.*;
 

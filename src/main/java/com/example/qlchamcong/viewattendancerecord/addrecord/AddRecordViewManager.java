@@ -1,9 +1,9 @@
 package com.example.qlchamcong.viewattendancerecord.addrecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
-import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
+import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AddRecordViewManager implements Initializable {
+    @FXML
+    public Label errorLabel;
     AddRecordController addRecordController;
     @FXML
     public Label employeeIdLabel;
@@ -36,21 +38,19 @@ public class AddRecordViewManager implements Initializable {
 
     public void saveButtonAction() throws ParseException, IOException {
         AttendanceRecord newRecord = getNewRecordFromUI();
-//        System.out.println(newRecord);
-        addRecordController.saveNewRecord(newRecord);
-        addRecordController.closeModal();
+        try {
+            addRecordController.saveNewRecord(newRecord);
+        } catch (RuntimeException e) {
+            System.out.println("From view " + e.getMessage());
+            setErrorLabel(e.getMessage());
+        }
     }
 
     private AttendanceRecord getNewRecordFromUI() throws ParseException {
         String newTimestamp = timeTextField.getText();
         int newTimekeeperId = Integer.parseInt(timeKeeperIdTextField.getText());
         Timestamp updatedTimestamp = getTimestamp(newTimestamp);
-
-//        System.out.println("Chuỗi ban đầu: " + newTimestamp);
-//        System.out.println("Timestamp sau cập nhật: " + updatedTimestamp);
-//        System.out.println("New Timekeeper Id: " + newTimekeeperId);
         return new AttendanceRecord(currentRecord.getEmployeeId(), updatedTimestamp, newTimekeeperId, currentRecord.getType());
-
     }
 
     private Timestamp getTimestamp(String newTimestamp) throws ParseException {
@@ -92,10 +92,15 @@ public class AddRecordViewManager implements Initializable {
 
     private void setInitialData(AttendanceRecord attendanceRecord) {
         String employeeId = attendanceRecord.getEmployeeId() + "";
-        String timeKeeperId = attendanceRecord.getTimeKeeperId() + "";
-
         employeeIdLabel.setText(employeeId);
         attendanceDateLabel.setText(attendanceRecord.getFormattedDate());
+        timeTextField.setPromptText("hh:mm:ss");
+        timeKeeperIdTextField.setFocusTraversable(false);
+        timeTextField.setFocusTraversable(false);
+    }
+
+    private void setErrorLabel(String errorMessage) {
+        this.errorLabel.setText(errorMessage);
     }
 
 }

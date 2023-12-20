@@ -11,6 +11,19 @@ public class OfficerAttendanceData {
     private double hoursLate;
     private double hoursEarlyLeave;
 
+    @Override
+    public String toString() {
+        return "OfficerAttendanceData{" +
+                "id=" + id +
+                ", employeeId=" + employeeId +
+                ", date=" + date +
+                ", morningSession=" + morningSession +
+                ", afternoonSession=" + afternoonSession +
+                ", hoursLate=" + hoursLate +
+                ", hoursEarlyLeave=" + hoursEarlyLeave +
+                '}';
+    }
+
     public OfficerAttendanceData(int id, int employeeId, Date date, boolean morningSession, boolean afternoonSession, double hoursLate, double hoursEarlyLeave) {
         this.id = id;
         this.employeeId = employeeId;
@@ -19,6 +32,10 @@ public class OfficerAttendanceData {
         this.afternoonSession = afternoonSession;
         this.hoursLate = hoursLate;
         this.hoursEarlyLeave = hoursEarlyLeave;
+    }
+
+    public OfficerAttendanceData() {
+
     }
 
     public int getId() {

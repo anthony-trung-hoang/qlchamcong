@@ -1,6 +1,5 @@
 package com.example.qlchamcong.dangnhap;
 
-import com.example.qlchamcong.service.ServiceInitializer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,7 +31,7 @@ public class DangNhapViewManager implements Initializable {
 
         String role = tenDangNhap.getText();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongqlns/dieu-huong-qlns.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/hrnavbar/hr-navbar.fxml"));
         if (Objects.equals(role, "1")) {
             System.out.println(role);
 

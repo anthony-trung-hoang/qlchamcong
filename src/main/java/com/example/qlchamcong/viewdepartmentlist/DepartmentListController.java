@@ -2,13 +2,10 @@ package com.example.qlchamcong.viewdepartmentlist;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
-import com.example.qlchamcong.entity.AttendanceRecord;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.service.IReportAttendanceService;
-import com.example.qlchamcong.service.ReportAttendanceService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
-import java.util.Date;
 import java.util.List;
 
 public class DepartmentListController {

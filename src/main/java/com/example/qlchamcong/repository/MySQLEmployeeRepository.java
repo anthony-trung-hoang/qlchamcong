@@ -3,6 +3,9 @@ package com.example.qlchamcong.repository;
 import com.example.qlchamcong.entity.Employee;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class MySQLEmployeeRepository implements IEmployeeRepository {
@@ -45,5 +48,26 @@ public class MySQLEmployeeRepository implements IEmployeeRepository {
     @Override
     public Employee timKiemTheoTenDangNhap(String username) {
         return null;
+    }
+
+    @Override
+    public String getRoleById(int employeeId) {
+        String role = null;
+        String query = "SELECT role FROM Employee WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, employeeId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    role = resultSet.getString("role");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return role;
     }
 }
