@@ -4,10 +4,15 @@ import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.Tuple2;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
+import com.example.qlchamcong.exception.InvalidFileFormatException;
 import com.example.qlchamcong.service.ServiceInitializer;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -16,6 +21,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ImportDLCCViewManager implements Initializable {
@@ -99,7 +105,7 @@ public class ImportDLCCViewManager implements Initializable {
         tableSpace.getChildren().clear();
         resultTitle.setVisible(true);
         resultTitle.setText("Processing data ...");
-        showRecordTable(getTableRecordData());
+            showRecordTable(getTableRecordData());
         resultTitle.setText("Records Result");
         transformRecordBtn.setVisible(true);
         transformRecordBtn.setDisable(false);
@@ -110,11 +116,23 @@ public class ImportDLCCViewManager implements Initializable {
     private void showRecordTable(List<AttendanceRecord> records) {
         tableRecord.getColumns().clear();
         tableRecord.getItems().clear();
-        TableColumn employeeID = new TableColumn("EmployeeID");
-        TableColumn timestamp = new TableColumn("Timestamp");
+        TableColumn<AttendanceRecord, String> employeeIDColumn = new TableColumn<>("EmployeeID");
+        TableColumn<AttendanceRecord, Long> timestampColumn = new TableColumn<>("Timestamp");
 
-        tableRecord.getColumns().addAll(employeeID, timestamp);
+        // Đặt giá trị cho cột EmployeeID từ thuộc tính manhanvien của AttendanceRecord
+        employeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeCode"));
 
+        // Đặt giá trị cho cột Timestamp từ thuộc tính timestamp của AttendanceRecord
+        timestampColumn.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
+
+        // Thêm cột vào bảng
+        tableRecord.getColumns().addAll(employeeIDColumn, timestampColumn);
+
+        // Chuyển danh sách records thành ObservableList để hiển thị trong TableView
+        ObservableList<AttendanceRecord> observableRecords = FXCollections.observableArrayList(records);
+        tableRecord.setItems(observableRecords);
+
+        // Thêm bảng vào giao diện hoặc container tương ứng
         tableSpace.getChildren().addAll(tableRecord);
     }
 
@@ -160,14 +178,32 @@ public class ImportDLCCViewManager implements Initializable {
         return dataMock;
     }
 
-    private List<AttendanceRecord> getTableRecordData() {
+    private List<AttendanceRecord> getTableRecordData()  {
         // call controller -> service -> take data back
-        attendanceRecordList = importDLCCController.getAttendanceRecord(attedanceRecordFile);
+        try {
+            attendanceRecordList = importDLCCController.getAttendanceRecord(attedanceRecordFile);
 
-        return null;
+        } catch (InvalidFileFormatException e) {
+            showErrorAlert("Invalid", e.getMessage());
+        }
+        return attendanceRecordList;
     }
 
     private List<String> getAttendingMachineIDs() {
-        return List.of("AM01", "AM02", "AM03");
+        return importDLCCController.getAllTimekeeperCode();
+    }
+
+    private void showErrorAlert(String title, String content) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(content);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        });
     }
 }

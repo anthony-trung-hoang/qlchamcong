@@ -2,7 +2,7 @@ package com.example.qlchamcong.HRSystem;
 
 
 import com.example.qlchamcong.HRSystem.entity.Department;
-import com.example.qlchamcong.HRSystem.entity.Employee;
+import com.example.qlchamcong.entity.Employee;
 
 import java.util.List;
 
