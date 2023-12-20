@@ -18,8 +18,8 @@ public class ImportDLCCController {
         this.importDLCCService = importDLCCService;
     }
 
-    public List<AttendanceRecord> getAttendanceRecord(File attedanceRecordFile) throws InvalidFileFormatException {
-        return importDLCCService.getAttendanceRecord(attedanceRecordFile);
+    public List<AttendanceRecord> getAttendanceRecord(File attedanceRecordCheckInFile, File attedanceRecordCheckOutFile) throws InvalidFileFormatException {
+        return importDLCCService.getAttendanceRecord(attedanceRecordCheckInFile, attedanceRecordCheckOutFile);
     }
 
     public Tuple2<OfficerAttendanceData, WorkerAttendanceData> getTransformedData(List<AttendanceRecord> attendanceRecordList) {
@@ -28,5 +28,13 @@ public class ImportDLCCController {
 
     public List<String> getAllTimekeeperCode() {
         return importDLCCService.getAllTimekeeperCode();
+    }
+
+    public List<String> getAllTimekeeperCheckInCode() {
+        return importDLCCService.getAllTimekeeperCheckInCode();
+    }
+
+    public List<String> getAllTimekeeperCheckOutCode() {
+        return importDLCCService.getAllTimekeeperCheckOutCode();
     }
 }

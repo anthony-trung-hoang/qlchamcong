@@ -35,11 +35,22 @@ public class ImportDLCCService implements IImportDLCCService {
     }
 
     @Override
-    public List<AttendanceRecord> getAttendanceRecord(File attedanceRecordFile) throws InvalidFileFormatException {
-        List<AttendanceRecord> attendanceRecords = readAttendanceRecords(readFileData(attedanceRecordFile));
+    public List<AttendanceRecord> getAttendanceRecord(File attedanceRecordCheckInFile, File attedanceRecordCheckOutFile) throws InvalidFileFormatException {
+        List<AttendanceRecord> checkInRecords = readAttendanceRecords(readFileData(attedanceRecordCheckInFile));
+        List<AttendanceRecord> checkOutRecords = readAttendanceRecords(readFileData(attedanceRecordCheckOutFile));
+
+        checkInRecords.forEach(record -> record.setType("checkin"));
+        checkOutRecords.forEach(record -> record.setType("checkout"));
+
+        List<AttendanceRecord> combinedRecords = new ArrayList<>();
+        combinedRecords.addAll(checkInRecords);
+        combinedRecords.addAll(checkOutRecords);
+
         List<Employee> employeeList = hrSystemAPIService.getEmployeeList();
-        validateEmployeeCodes(attendanceRecords, employeeList);
-        return attendanceRecords;
+
+        validateEmployeeCodes(combinedRecords, employeeList);
+
+        return combinedRecords;
     }
 
     @Override
@@ -57,6 +68,28 @@ public class ImportDLCCService implements IImportDLCCService {
             timekeeperCodes.add(timekeeper.getTimekeeperCode());
         }
 
+        return timekeeperCodes;
+    }
+
+    @Override
+    public List<String> getAllTimekeeperCheckInCode() {
+        List<Timekeeper> timekeeperList = timekeeperRepository.getTimekeepersByType("checkin");
+        List<String> timekeeperCodes = new ArrayList<>();
+
+        for (Timekeeper timekeeper : timekeeperList) {
+            timekeeperCodes.add(timekeeper.getTimekeeperCode());
+        }
+        return timekeeperCodes;
+    }
+
+    @Override
+    public List<String> getAllTimekeeperCheckOutCode() {
+        List<Timekeeper> timekeeperList = timekeeperRepository.getTimekeepersByType("checkout");
+        List<String> timekeeperCodes = new ArrayList<>();
+
+        for (Timekeeper timekeeper : timekeeperList) {
+            timekeeperCodes.add(timekeeper.getTimekeeperCode());
+        }
         return timekeeperCodes;
     }
 
@@ -91,7 +124,6 @@ public class ImportDLCCService implements IImportDLCCService {
                 while (cellIterator.hasNext()) {
                     Cell cell = cellIterator.next();
 
-                    // Sử dụng DataFormatter để định dạng lại giá trị từ ô
                     String formattedCellValue = dataFormatter.formatCellValue(cell);
 
                     rowData.add(formattedCellValue);
@@ -151,7 +183,6 @@ public class ImportDLCCService implements IImportDLCCService {
         for (AttendanceRecord record : attendanceRecords) {
             String employeeCodeToCheck = record.getEmployeeCode();
 
-            // Kiểm tra xem employeeCode có tồn tại trong employeeList không
             boolean employeeCodeExists = employeeList.stream()
                     .anyMatch(employee -> employee.getEmployeeToString().equals(employeeCodeToCheck));
 

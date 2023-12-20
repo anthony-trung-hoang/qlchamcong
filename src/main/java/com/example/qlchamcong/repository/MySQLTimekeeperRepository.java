@@ -16,19 +16,16 @@ public class MySQLTimekeeperRepository implements ITimekeeperRepository {
      public List<Timekeeper> getAllTimekeeper() {
         List<Timekeeper> timekeepers = new ArrayList<>();
 
-        // Tạo câu truy vấn SQL
         String sql = "SELECT id, type, timekeeperCode FROM timekeeper";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
 
-            // Lặp qua các hàng kết quả và thêm chúng vào danh sách
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String type = resultSet.getString("type");
                 String timeKeeperCode = resultSet.getString("timekeeperCode");
 
-                // Tạo đối tượng Timekeeper và thêm vào danh sách
                 Timekeeper timekeeper = new Timekeeper(id, timeKeeperCode, type);
                 timekeepers.add(timekeeper);
             }
@@ -41,7 +38,6 @@ public class MySQLTimekeeperRepository implements ITimekeeperRepository {
 
     public Timekeeper getTimekeeperByCode(String timeKeeperCode) {
         try {
-            // Tạo câu truy vấn SQL với điều kiện WHERE để lấy máy chấm công cụ thể
             String sql = "SELECT id, type, timekeeperCode FROM timekeeper WHERE timekeeperCode = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -61,7 +57,7 @@ public class MySQLTimekeeperRepository implements ITimekeeperRepository {
             e.printStackTrace();
         }
 
-        return null; // Trả về null nếu không tìm thấy
+        return null;
     }
 
     @Override
@@ -82,5 +78,30 @@ public class MySQLTimekeeperRepository implements ITimekeeperRepository {
         }
 
         return false;
+    }
+
+    public List<Timekeeper> getTimekeepersByType(String type) {
+        List<Timekeeper> timekeepers = new ArrayList<>();
+
+        String sql = "SELECT id, type, timekeeperCode FROM timekeeper WHERE type = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, type);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("id");
+                    String timeKeeperType = resultSet.getString("type");
+                    String timeKeeperCode = resultSet.getString("timekeeperCode");
+
+                    Timekeeper timekeeper = new Timekeeper(id, timeKeeperCode, timeKeeperType);
+                    timekeepers.add(timekeeper);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return timekeepers;
     }
 }
