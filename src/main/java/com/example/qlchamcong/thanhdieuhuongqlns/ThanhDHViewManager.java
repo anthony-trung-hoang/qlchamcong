@@ -23,6 +23,8 @@ public class ThanhDHViewManager implements Initializable {
     @FXML
     public Button dangXuat;
 
+    @FXML
+    public Button departmentList;
     private ThanhDHController thanhDHController;
 
     @Override
@@ -49,6 +51,11 @@ public class ThanhDHViewManager implements Initializable {
     @FXML
     public void handleHomeButtonAction() throws IOException {
         thanhDHController.toHomeScreen();
+    }
+    @FXML
+    public void handleDepartmentListButtonAction() throws IOException {
+        System.out.print(0);
+        thanhDHController.toDepartmentListScreen();
     }
 
 }

@@ -14,6 +14,7 @@
                     <children>
                         <Button fx:id="homePage" mnemonicParsing="false" onAction="#handleHomeButtonAction" text="Home Page" />
                         <Button fx:id="importDLCC" mnemonicParsing="false" onAction="#handleImportDLCCButtonAction" text="Import DLCC" />
+                        <Button fx:id="departmentList" mnemonicParsing="false" onAction="#handleDepartmentListButtonAction" text="Danh sách bộ phận" />
                         <Button fx:id="dangXuat" mnemonicParsing="false" text="Đăng xuất" />
                     </children>
                 </VBox>

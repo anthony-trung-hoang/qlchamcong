@@ -24,4 +24,8 @@ public class ThanhDHController {
     public void setHomeScreen() throws IOException {
         navUtil.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
     }
+    public void toDepartmentListScreen() throws IOException {
+        System.out.print(1);
+        navUtil.changeGUI("/com/example/qlchamcong/viewdepartmentlist/view.fxml");
+    }
 }
