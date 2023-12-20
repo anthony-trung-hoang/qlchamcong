@@ -4,16 +4,18 @@ import com.example.qlchamcong.entity.WorkerAttendanceData;
 import com.example.qlchamcong.repository.IWorkerAttendanceDataRepository;
 import com.example.qlchamcong.repository.RepositoryInitializer;
 
+import java.sql.Date;
 import java.util.List;
 
-public class AttendanceDataService implements  IAttendanceDataService{
-    private IWorkerAttendanceDataRepository workerAttendanceDataRepository;
+public class HomeScreenService implements IHomeScreenService {
+    private final IWorkerAttendanceDataRepository workerAttendanceDataRepository;
 
-    public AttendanceDataService() {
+    public HomeScreenService() {
         this.workerAttendanceDataRepository = RepositoryInitializer.getWorkerAttendanceDataRepository();
     }
     @Override
     public List<WorkerAttendanceData> getWorkerAttendanceData() {
-        return workerAttendanceDataRepository.getAllAttendanceData();
+        Date date = Date.valueOf("2023-01-01");
+        return workerAttendanceDataRepository.getAllWorkerAttendanceDataByDate(date);
     }
 }

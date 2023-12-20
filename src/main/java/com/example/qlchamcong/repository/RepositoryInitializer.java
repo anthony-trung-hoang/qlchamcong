@@ -12,8 +12,8 @@ public class RepositoryInitializer {
         switch (databaseType) {
             case MYSQL:
                 nguoiDungRepository = new MySQLNguoiDungRepository(connection);
-                workerAttendanceDataRepository = new MySQLWorkerAttendanceDataRepository();
-                attendanceRecordRepository = new MySQLAttendanceRecordRepository();
+                workerAttendanceDataRepository = new MySQLWorkerAttendanceDataRepository(connection);
+                attendanceRecordRepository = new MySQLAttendanceRecordRepository(connection);
 
         }
     }

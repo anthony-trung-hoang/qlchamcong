@@ -10,14 +10,20 @@ public class WorkerAttendanceData {
     private double hoursShift2;
     private double hoursShift3;
 
+    @Override
+    public String toString() {
+        return "WorkerAttendanceData{" +
+                "id=" + id +
+                ", employeeId=" + employeeId +
+                ", date=" + date +
+                ", hoursShift1=" + hoursShift1 +
+                ", hoursShift2=" + hoursShift2 +
+                ", hoursShift3=" + hoursShift3 +
+                '}';
+    }
 
-    public WorkerAttendanceData(int id, int employeeId, Date date, double hoursShift1, double hoursShift2, double hoursShift3) {
-        this.id = id;
-        this.employeeId = employeeId;
-        this.date = date;
-        this.hoursShift1 = hoursShift1;
-        this.hoursShift2 = hoursShift2;
-        this.hoursShift3 = hoursShift3;
+    public WorkerAttendanceData() {
+
     }
 
     public int getId() {
@@ -67,6 +73,4 @@ public class WorkerAttendanceData {
     public void setHoursShift3(double hoursShift3) {
         this.hoursShift3 = hoursShift3;
     }
-
-
 }

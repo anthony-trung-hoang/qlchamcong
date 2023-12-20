@@ -1,6 +1,6 @@
 package com.example.qlchamcong.dangnhap;
 
-import com.example.qlchamcong.entity.VaiTro;
+import com.example.qlchamcong.entity.Role;
 import com.example.qlchamcong.service.IDangNhapService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
@@ -12,7 +12,7 @@ public class DangNhapController implements IDangNhapController {
     }
 
     @Override
-    public VaiTro dangNhap(String username, String password) {
+    public Role dangNhap(String username, String password) {
         return null;
     }
 }

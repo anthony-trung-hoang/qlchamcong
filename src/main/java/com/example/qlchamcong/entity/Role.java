@@ -1,6 +1,6 @@
 package com.example.qlchamcong.entity;
 
-public enum VaiTro {
+public enum Role {
     NHAN_VIEN,
     CONG_NHAN,
     TRUONG_DON_VI,

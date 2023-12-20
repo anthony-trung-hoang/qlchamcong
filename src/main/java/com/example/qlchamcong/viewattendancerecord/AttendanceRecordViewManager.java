@@ -1,7 +1,11 @@
 package com.example.qlchamcong.viewattendancerecord;
 
-import com.example.qlchamcong.changeGUIUtility.*;
+import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
+import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
+import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
+import com.example.qlchamcong.entity.WorkerAttendanceData;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -23,11 +27,7 @@ public class AttendanceRecordViewManager implements Initializable {
     @FXML
     public TableView<AttendanceRecord> attendanceRecordTableView;
     @FXML
-
     public TableColumn<AttendanceRecord, Integer> idColumn;
-
-    @FXML
-    public TableColumn<AttendanceRecord, String> timeColumn;
     @FXML
     public TableColumn<AttendanceRecord, Timestamp> timeStampColumn;
     @FXML
@@ -35,31 +35,43 @@ public class AttendanceRecordViewManager implements Initializable {
     @FXML
     public TableColumn<AttendanceRecord, Integer> timeKeeperIdColumn;
     @FXML
-    public TableColumn<AttendanceRecord, Void> viewDetailsColumn;
+    public TableColumn<AttendanceRecord, Void> recordVoidTableColumn;
+    @FXML
+    public Label employeeIdLabel;
+    @FXML
+    public Label dateLabel;
     private AttendanceRecordController attendanceRecordController;
     @FXML
     public Label pageTitle;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Attendance record view: reload");
         IActionChangeGUI navUtil = new NavigationUtil();
         IPassArgument argumentUtil = new PassArgumentUtil();
         attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
 
-        int shareData = attendanceRecordController.getEmployeeId();
-        this.pageTitle.setText(shareData +"");
-
-        fetchAndDisplayTableData();
+        WorkerAttendanceData shareData = getInitialData();
+        setInitialUI(shareData);
+        fetchAndDisplayTableData(shareData.getEmployeeId(), shareData.getDate());
     }
 
-    public void fetchAndDisplayTableData() {
+    public WorkerAttendanceData getInitialData() {
+        return (WorkerAttendanceData) attendanceRecordController.getInitialData();
+    }
+
+    public void setInitialUI(WorkerAttendanceData initialData) {
+        employeeIdLabel.setText(initialData.getEmployeeId() + "");
+        dateLabel.setText(initialData.getDate().toString());
+    }
+
+    public void fetchAndDisplayTableData(int employeeId, Date date) {
         idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        timeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTime()));
         timeStampColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTimestamp()));
         timeKeeperIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTimeKeeperId()).asObject());
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
 
-        viewDetailsColumn.setCellFactory(param -> new TableCell<>() {
+        recordVoidTableColumn.setCellFactory(param -> new TableCell<>() {
             private final HBox buttonsContainer = new HBox();
             private final Button updateButton = new Button("Update");
             private final Button deleteButton = new Button("Delete");
@@ -68,9 +80,16 @@ public class AttendanceRecordViewManager implements Initializable {
                 buttonsContainer.getChildren().addAll(updateButton, deleteButton);
 
                 updateButton.setOnAction(event -> {
-                    System.out.println(getTableView().getItems().get(getIndex()));
                     try {
-                        showUpdateModal();
+                        showUpdateModal(getTableView().getItems().get(getIndex()));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+                deleteButton.setOnAction(event -> {
+                    try {
+                        showDeleteModal(getTableView().getItems().get(getIndex()));
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -90,13 +109,23 @@ public class AttendanceRecordViewManager implements Initializable {
         });
 
 
-        List<AttendanceRecord> attendanceRecordList = attendanceRecordController.fetchListOfRecords(1, new Date());
-        System.out.println(attendanceRecordList.size());
+        List<AttendanceRecord> attendanceRecordList = attendanceRecordController.fetchListOfRecords(employeeId, date);
+        passToNewRecordModal = attendanceRecordList.get(0);
         ObservableList<AttendanceRecord> observableList = FXCollections.observableArrayList(attendanceRecordList);
         attendanceRecordTableView.setItems(observableList);
     }
 
-    public void showUpdateModal() throws IOException {
-        attendanceRecordController.showUpdateModal();
+    private void showDeleteModal(AttendanceRecord attendanceRecord) throws IOException {
+        attendanceRecordController.showDeleteModal(attendanceRecord);
+    }
+
+    private AttendanceRecord passToNewRecordModal;
+
+    public void showUpdateModal(AttendanceRecord attendanceRecord) throws IOException {
+        attendanceRecordController.showUpdateModal(attendanceRecord);
+    }
+
+    public void showAddNewRecordModal() throws IOException {
+        attendanceRecordController.showAddNewRecordModal(this.passToNewRecordModal);
     }
 }
