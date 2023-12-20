@@ -12,7 +12,6 @@ import java.util.List;
 
 public class MySQLWorkerAttendanceDataRepository implements IWorkerAttendanceDataRepository {
 
-    List<WorkerAttendanceData> workerAttendanceDataList = new ArrayList<>();
     private final Connection connection;
 
     public MySQLWorkerAttendanceDataRepository(Connection connection) {
@@ -45,6 +44,50 @@ public class MySQLWorkerAttendanceDataRepository implements IWorkerAttendanceDat
         }
 
         return dataList;
+    }
+
+    @Override
+    public WorkerAttendanceData getWorkerAttendanceDataByEmployeeAndDate(int employeeId, Date date) {
+        String query = "SELECT * FROM WorkerAttendanceData WHERE employeeId = ? AND date = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, employeeId);
+            preparedStatement.setDate(2, new java.sql.Date(date.getTime()));
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    WorkerAttendanceData workerAttendanceData = new WorkerAttendanceData();
+                    workerAttendanceData.setId(resultSet.getInt("id"));
+                    workerAttendanceData.setEmployeeId(resultSet.getInt("employeeId"));
+                    workerAttendanceData.setDate(resultSet.getDate("date"));
+                    workerAttendanceData.setHoursShift1(resultSet.getDouble("hoursShift1"));
+                    workerAttendanceData.setHoursShift2(resultSet.getDouble("hoursShift2"));
+                    workerAttendanceData.setHoursShift3(resultSet.getDouble("hoursShift3"));
+                    return workerAttendanceData;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public void updateWorkerAttendanceData(int id, double hoursShift1, double hoursShift2, double hoursShift3) {
+        System.out.println(hoursShift1 + " " + hoursShift2 + hoursShift3);
+        String query = "UPDATE WorkerAttendanceData SET hoursShift1 = ?, hoursShift2 = ?, hoursShift3 = ? WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setDouble(1, hoursShift1);
+            preparedStatement.setDouble(2, hoursShift2);
+            preparedStatement.setDouble(3, hoursShift3);
+            preparedStatement.setInt(4, id);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

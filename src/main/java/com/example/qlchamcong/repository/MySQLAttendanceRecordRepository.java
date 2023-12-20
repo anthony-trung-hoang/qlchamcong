@@ -99,5 +99,26 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
         }
     }
 
+    @Override
+    public int getNumberOfRecordsInADayByDateAndEmployee(int employeeId, Date date) {
+        int count = 0;
+        String query = "SELECT COUNT(*) FROM AttendanceRecord WHERE employeeId = ? AND DATE(timestamp) = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, employeeId);
+            preparedStatement.setDate(2, date);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    count = resultSet.getInt(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
 
 }
