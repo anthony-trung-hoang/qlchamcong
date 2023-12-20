@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface IWorkerAttendanceDataRepository {
     List<WorkerAttendanceData> getAllWorkerAttendanceDataByDate(Date date);
+
+    WorkerAttendanceData getWorkerAttendanceDataByEmployeeAndDate(int employeeId, Date date);
+
+    void updateWorkerAttendanceData(int id, double hoursShift1, double hoursShift2, double hoursShift3);
 }

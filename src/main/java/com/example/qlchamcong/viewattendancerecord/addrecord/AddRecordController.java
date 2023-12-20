@@ -29,7 +29,10 @@ public class AddRecordController {
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 
-    public void saveNewRecord(AttendanceRecord newRecord) {
-        viewAttendanceRecordsService.createANewRecord(newRecord);
+    public void saveNewRecord(AttendanceRecord newRecord) throws IOException {
+            viewAttendanceRecordsService.createANewRecord(newRecord);
+            navUtil.closeModal();
+            navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
+
     }
 }

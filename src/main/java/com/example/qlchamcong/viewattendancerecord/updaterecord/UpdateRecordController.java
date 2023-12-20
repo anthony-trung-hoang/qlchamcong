@@ -31,7 +31,8 @@ public class UpdateRecordController {
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 
-    public void saveNewRecord(AttendanceRecord newRecord) {
+    public void saveNewRecord(AttendanceRecord newRecord) throws IOException {
         viewAttendanceRecordsService.updateRecord(newRecord);
+        closeModal();
     }
 }

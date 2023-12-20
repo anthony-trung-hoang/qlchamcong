@@ -1,8 +1,9 @@
 package com.example.qlchamcong.entity;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class AttendanceRecord {
     private int id;
@@ -104,13 +105,12 @@ public class AttendanceRecord {
     }
 
     public String getFormattedTime() {
-        LocalDateTime localDateTime = timestamp.toLocalDateTime();
-
-        int hour = localDateTime.getHour();
-        int minute = localDateTime.getMinute();
-        int second = localDateTime.getSecond();
-
-        return hour + ":" + minute + ":" + second;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        return sdf.format(this.timestamp);
     }
 
+    public Date getDateFromTimestamp() {
+        Date date = new Date(timestamp.getTime());
+        return date;
+    }
 }

@@ -13,4 +13,6 @@ public interface IAttendanceRecordRepository {
     void createANewRecord(AttendanceRecord newRecord);
 
     void updateRecordById(AttendanceRecord newRecord);
+
+    int getNumberOfRecordsInADayByDateAndEmployee(int employeeId, Date date);
 }
