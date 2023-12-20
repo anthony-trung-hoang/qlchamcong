@@ -33,7 +33,9 @@ public class DangNhapViewManager implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongqlns/dieu-huong-qlns.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
+
         stage.setScene(scene);
+        stage.centerOnScreen();
         System.out.println("Dang nhap thanh cong");
     }
 
