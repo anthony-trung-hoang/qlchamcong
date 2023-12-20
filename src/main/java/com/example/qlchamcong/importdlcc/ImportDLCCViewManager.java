@@ -1,13 +1,10 @@
 package com.example.qlchamcong.importdlcc;
 
-import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
-import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
-import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.Tuple2;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
+import com.example.qlchamcong.service.ServiceInitializer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -40,25 +37,20 @@ public class ImportDLCCViewManager implements Initializable {
 
     private ImportDLCCController importDLCCController;
     private File attedanceRecordFile;
+    private List<AttendanceRecord> attendanceRecordList;
     private TableView tableRecord = new TableView();
     private TableView tableWorker = new TableView();
     private TableView tableOfficer = new TableView();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        IActionChangeGUI navUtil = new NavigationUtil();
-        IPassArgument argumentUtil = new PassArgumentUtil();
-        importDLCCController = new ImportDLCCController(navUtil, argumentUtil);
+        importDLCCController = new ImportDLCCController(ServiceInitializer.getImportDLCCService());
 
         filePath.setDisable(true);
         attendingMachineIds.getItems().addAll(getAttendingMachineIDs());
         resultTitle.setVisible(false);
         saveAttendanceDataBtn.setVisible(false);
         transformRecordBtn.setVisible(false);
-    }
-
-    private List<String> getAttendingMachineIDs() {
-        return List.of("AM01", "AM02", "AM03");
     }
 
     @FXML
@@ -161,14 +153,21 @@ public class ImportDLCCViewManager implements Initializable {
         List<WorkerAttendanceData> workerAttendanceDataList = List.of(new WorkerAttendanceData(1, 1, new Date(), 1.0, 1.0, 1.0));
         List<OfficerAttendanceData> officerAttendanceDataList = List.of(new OfficerAttendanceData(1, 1, new Date(), true, true, 1.0, 1.0));
 
-        Tuple2<OfficerAttendanceData, WorkerAttendanceData> data = new Tuple2<>(officerAttendanceDataList, workerAttendanceDataList);
+        Tuple2<OfficerAttendanceData, WorkerAttendanceData> dataMock = new Tuple2<>(officerAttendanceDataList, workerAttendanceDataList);
 
-        return data;
+        Tuple2<OfficerAttendanceData, WorkerAttendanceData> data = importDLCCController.getTransformedData(attendanceRecordList);
+
+        return dataMock;
     }
 
     private List<AttendanceRecord> getTableRecordData() {
         // call controller -> service -> take data back
+        attendanceRecordList = importDLCCController.getAttendanceRecord(attedanceRecordFile);
 
         return null;
+    }
+
+    private List<String> getAttendingMachineIDs() {
+        return List.of("AM01", "AM02", "AM03");
     }
 }

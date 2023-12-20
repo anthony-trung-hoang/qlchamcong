@@ -17,6 +17,8 @@ module com.example.qlchamcong {
     opens com.example.qlchamcong.repository to javafx.fxml;
     opens com.example.qlchamcong.viewattendancerecord.addrecord to javafx.fxml;
     opens com.example.qlchamcong.viewattendancerecord.deleterecord to javafx.fxml;
+    opens com.example.qlchamcong.thanhdieuhuongtdv to javafx.fxml;
+    opens com.example.qlchamcong.truongdonvihome to javafx.fxml;
 
     exports com.example.qlchamcong.viewattendancerecord;
     exports com.example.qlchamcong;
@@ -31,4 +33,6 @@ module com.example.qlchamcong {
     exports com.example.qlchamcong.viewattendancerecord.updaterecord;
     exports com.example.qlchamcong.viewattendancerecord.addrecord;
     exports com.example.qlchamcong.viewattendancerecord.deleterecord;
+    exports com.example.qlchamcong.thanhdieuhuongtdv;
+    exports com.example.qlchamcong.truongdonvihome;
 }

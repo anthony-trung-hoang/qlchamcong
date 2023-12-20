@@ -11,7 +11,7 @@ public class ServiceInitializer {
 
     public ServiceInitializer() {
         dangNhapService = new DangNhapService(RepositoryInitializer.getNguoiDungRepository());
-        importDLCCService = new ImportDLCCService();
+        importDLCCService = new ImportDLCCService(RepositoryInitializer.getTimekeeperRepository(), RepositoryInitializer.getWorkerAttendanceDataRepository(), RepositoryInitializer.getOfficerAttendanceDataRepository());
         qlnsHomeService = new QLNSHomeService();
         homeScreenService = new HomeScreenService();
         viewAttendanceRecordsService = new ViewAttendanceRecordsService();
