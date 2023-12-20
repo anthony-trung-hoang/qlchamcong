@@ -2,7 +2,7 @@ package com.example.qlchamcong.service;
 
 import com.example.qlchamcong.repository.INguoiDungRepository;
 import com.example.qlchamcong.entity.NguoiDung;
-import com.example.qlchamcong.entity.VaiTro;
+import com.example.qlchamcong.entity.Role;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,7 +14,7 @@ public class DangNhapService implements IDangNhapService {
         this.nguoiDungRepository = nguoiDungRepository;
     }
 
-    public VaiTro dangNhap(String username, String password) {
+    public Role dangNhap(String username, String password) {
         NguoiDung nguoiDung = nguoiDungRepository.timKiemTheoTenDangNhap(username);
         if (nguoiDung != null && xacThucMatKhau(password, nguoiDung.getSalt(), nguoiDung.getMatKhau())) {
             return nguoiDung.getVaiTro();

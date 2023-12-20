@@ -12,10 +12,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -47,10 +51,6 @@ public class HRHomeViewManager implements Initializable {
     private TableColumn<WorkerAttendanceData, Void> viewDetailsColumn;
 
 
-    @FXML
-    private Label homePageText;
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         IActionChangeGUI navUtil = new NavigationUtil();
@@ -63,7 +63,7 @@ public class HRHomeViewManager implements Initializable {
     public void fetchAndDisplayTableData() {
         idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         employeeIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEmployeeId()).asObject());
-        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFormattedDate()));
+        dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
         hoursShift1Column.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getHoursShift1()).asObject());
         hoursShift2Column.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getHoursShift2()).asObject());
         hoursShift3Column.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getHoursShift3()).asObject());
@@ -91,6 +91,7 @@ public class HRHomeViewManager implements Initializable {
         });
 
         List<WorkerAttendanceData> workerAttendanceDataList = qlnsHomeController.fetchTableData();
+        System.out.println(Arrays.toString(workerAttendanceDataList.toArray()));
         ObservableList<WorkerAttendanceData> observableList = FXCollections.observableArrayList(workerAttendanceDataList);
         attendanceTableView.setItems(observableList);
     }

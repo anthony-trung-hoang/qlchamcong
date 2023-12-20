@@ -13,7 +13,7 @@ public class AttendanceRecord {
 
     private Timestamp timestamp;
 
-    private String type;
+    private String type; // checkin or checkout
 
     public AttendanceRecord(int id, int employeeId, int timeKeeperId, Timestamp timestamp, String type) {
         this.id = id;
@@ -21,6 +21,37 @@ public class AttendanceRecord {
         this.timeKeeperId = timeKeeperId;
         this.timestamp = timestamp;
         this.type = type;
+    }
+
+    public AttendanceRecord() {
+
+    }
+
+    public AttendanceRecord(int employeeId, Timestamp timestamp, int timeKeeperId, String type) {
+        this.employeeId = employeeId;
+        this.timestamp = timestamp;
+        this.timeKeeperId = timeKeeperId;
+        this.type = type;
+        this.id = 0; // new record without id queried from the db
+    }
+
+    public AttendanceRecord(int id, int employeeId, Timestamp timestamp, int timeKeeperId, String type) {
+        this.employeeId = employeeId;
+        this.timestamp = timestamp;
+        this.timeKeeperId = timeKeeperId;
+        this.type = type;
+        this.id = id; // new record without id queried from the db
+    }
+
+    @Override
+    public String toString() {
+        return "AttendanceRecord{" +
+                "id=" + id +
+                ", employeeId=" + employeeId +
+                ", timeKeeperId=" + timeKeeperId +
+                ", timestamp=" + timestamp +
+                ", type='" + type + '\'' +
+                '}';
     }
 
     public int getId() {

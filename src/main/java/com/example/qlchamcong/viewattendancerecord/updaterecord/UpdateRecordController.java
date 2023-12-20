@@ -2,6 +2,7 @@ package com.example.qlchamcong.viewattendancerecord.updaterecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.service.IViewAttendanceRecordsService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
@@ -28,5 +29,9 @@ public class UpdateRecordController {
     public void closeModal() throws IOException {
         navUtil.closeModal();
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
+    }
+
+    public void saveNewRecord(AttendanceRecord newRecord) {
+        viewAttendanceRecordsService.updateRecord(newRecord);
     }
 }

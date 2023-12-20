@@ -16,6 +16,21 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
 
     @Override
     public List<AttendanceRecord> getRecordsOfAnEmployeeInADay(int employeeId, Date date) {
-        return attendanceRecordRepository.getAllAttendanceRecord();
+        return attendanceRecordRepository.getAttendanceRecordsByEmployeeAndDate(employeeId, (java.sql.Date) date);
+    }
+
+    @Override
+    public void deleteRecord(AttendanceRecord currentRecord) {
+        attendanceRecordRepository.deleteRecordById(currentRecord.getId());
+    }
+
+    @Override
+    public void createANewRecord(AttendanceRecord newRecord) {
+        attendanceRecordRepository.createANewRecord(newRecord);
+    }
+
+    @Override
+    public void updateRecord(AttendanceRecord newRecord) {
+        attendanceRecordRepository.updateRecordById(newRecord);
     }
 }

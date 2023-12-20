@@ -4,6 +4,7 @@ import com.example.qlchamcong.entity.WorkerAttendanceData;
 import com.example.qlchamcong.repository.IWorkerAttendanceDataRepository;
 import com.example.qlchamcong.repository.RepositoryInitializer;
 
+import java.sql.Date;
 import java.util.List;
 
 public class HomeScreenService implements IHomeScreenService {
@@ -14,6 +15,7 @@ public class HomeScreenService implements IHomeScreenService {
     }
     @Override
     public List<WorkerAttendanceData> getWorkerAttendanceData() {
-        return workerAttendanceDataRepository.getAllAttendanceData();
+        Date date = Date.valueOf("2023-01-01");
+        return workerAttendanceDataRepository.getAllWorkerAttendanceDataByDate(date);
     }
 }

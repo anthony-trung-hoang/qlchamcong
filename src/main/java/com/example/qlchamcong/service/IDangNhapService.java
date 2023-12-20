@@ -1,7 +1,7 @@
 package com.example.qlchamcong.service;
 
-import com.example.qlchamcong.entity.VaiTro;
+import com.example.qlchamcong.entity.Role;
 
 public interface IDangNhapService {
-    VaiTro dangNhap(String username, String password);
+    Role dangNhap(String username, String password);
 }
