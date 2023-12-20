@@ -8,6 +8,7 @@ public class ServiceInitializer {
     private static IQLNSHomeService qlnsHomeService;
     private static IViewAttendanceRecordsService viewAttendanceRecordsService;
     private static IHomeScreenService homeScreenService;
+    private static IReportAttendanceService reportAttendanceService;
 
     public ServiceInitializer() {
         dangNhapService = new DangNhapService(RepositoryInitializer.getNguoiDungRepository());
@@ -15,6 +16,7 @@ public class ServiceInitializer {
         qlnsHomeService = new QLNSHomeService();
         homeScreenService = new HomeScreenService();
         viewAttendanceRecordsService = new ViewAttendanceRecordsService();
+        reportAttendanceService=new ReportAttendanceService();
     }
 
     public static IDangNhapService getDangNhapService() {
@@ -34,4 +36,5 @@ public class ServiceInitializer {
     }
 
     public static IViewAttendanceRecordsService getViewAttendanceRecordsService() {return viewAttendanceRecordsService;}
+    public static IReportAttendanceService getReportAttendanceService() {return reportAttendanceService;}
 }
