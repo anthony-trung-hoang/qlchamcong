@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class DangNhapViewManager implements Initializable {
@@ -29,11 +30,22 @@ public class DangNhapViewManager implements Initializable {
     protected void onDangNhapButtonClick() throws IOException {
 //        String result = controller.xulylogicnheae
 
-        Stage stage = (Stage) dangNhap.getScene().getWindow();
+        String role = tenDangNhap.getText();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongqlns/dieu-huong-qlns.fxml"));
+        if (Objects.equals(role, "1")) {
+            System.out.println(role);
+
+            loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongtdv/thanh-dieu-huong-tdv.fxml"));
+        }
+
+        Stage stage = (Stage) dangNhap.getScene().getWindow();
+
         Parent root = loader.load();
         Scene scene = new Scene(root);
+
         stage.setScene(scene);
+        stage.centerOnScreen();
         System.out.println("Dang nhap thanh cong");
     }
 

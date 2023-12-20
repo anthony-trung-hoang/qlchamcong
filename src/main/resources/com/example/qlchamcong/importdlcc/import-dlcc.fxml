@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.importdlcc.ImportDLCCViewManager">
-    <children>
-        <AnchorPane prefHeight="400.0" prefWidth="600.0">
-            <children>
-                <Label layoutX="251.0" layoutY="192.0" text="Import DLCC Page" />
-            <Button fx:id="returnHomePage" layoutX="235.0" layoutY="158.0" mnemonicParsing="false" onAction="#onReturnHomeButtonAction" text="set home page demo" />
-            </children>
-        </AnchorPane>
-    </children>
-</Pane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.importdlcc.ImportDLCCViewManager">
+   <children>
+      <Label layoutX="33.0" layoutY="28.0" text="Import Attendance Record">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="filePath" layoutX="33.0" layoutY="91.0" prefHeight="26.0" prefWidth="426.0" promptText="Choose File ..." />
+      <Button fx:id="chooseFileBtn" layoutX="478.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleChooseFileBtnAction" prefHeight="26.0" prefWidth="159.0" text="Choose File" />
+      <ComboBox fx:id="attendingMachineIds" layoutX="652.0" layoutY="91.0" onAction="#handleChooseAttdendingMachineAction" prefWidth="150.0" promptText="Chọn mã máy" />
+      <Button fx:id="transformRecordBtn" layoutX="673.0" layoutY="646.0" mnemonicParsing="false" onAction="#handleTransformDataBtnAction" prefHeight="26.0" prefWidth="129.0" text="Transform record" />
+      <Button fx:id="saveAttendanceDataBtn" layoutX="524.0" layoutY="646.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="129.0" text="Save attendance data" />
+      <Label fx:id="resultTitle" layoutX="34.0" layoutY="146.0" prefHeight="20.0" prefWidth="178.0" text="Label">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+      <VBox fx:id="tableSpace" layoutX="33.0" layoutY="179.0" prefHeight="446.0" prefWidth="770.0" spacing="10.0" />
+   </children>
+</AnchorPane>
