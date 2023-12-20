@@ -1,9 +1,9 @@
 package com.example.qlchamcong.viewattendancerecord.addrecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
-import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
+import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

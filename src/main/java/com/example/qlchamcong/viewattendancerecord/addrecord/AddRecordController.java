@@ -1,7 +1,7 @@
 package com.example.qlchamcong.viewattendancerecord.addrecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.service.IViewAttendanceRecordsService;
 import com.example.qlchamcong.service.ServiceInitializer;

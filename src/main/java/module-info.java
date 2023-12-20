@@ -37,4 +37,6 @@ module com.example.qlchamcong {
     exports com.example.qlchamcong.viewattendancerecord.deleterecord;
     exports com.example.qlchamcong.thanhdieuhuongtdv;
     exports com.example.qlchamcong.truongdonvihome;
+    exports com.example.qlchamcong.passaargumentutility;
+    opens com.example.qlchamcong.passaargumentutility to javafx.fxml;
 }
