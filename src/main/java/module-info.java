@@ -4,7 +4,7 @@ module com.example.qlchamcong {
 
     requires org.controlsfx.controls;
     requires java.sql;
-
+    requires  com.google.gson;
     opens com.example.qlchamcong to javafx.fxml;
     opens com.example.qlchamcong.dangnhap to javafx.fxml;
     opens com.example.qlchamcong.thanhdieuhuongqlns to javafx.fxml;
@@ -20,6 +20,9 @@ module com.example.qlchamcong {
     opens com.example.qlchamcong.thanhdieuhuongtdv to javafx.fxml;
     opens com.example.qlchamcong.truongdonvihome to javafx.fxml;
 
+    opens com.example.qlchamcong.viewdepartmentlist to javafx.fxml;
+
+    exports com.example.qlchamcong.viewdepartmentlist;
     exports com.example.qlchamcong.viewattendancerecord;
     exports com.example.qlchamcong;
     exports com.example.qlchamcong.dangnhap;

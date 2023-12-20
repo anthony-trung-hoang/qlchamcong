@@ -12,9 +12,10 @@
             <children>
                 <VBox alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="670.0" prefWidth="131.0" spacing="20.0">
                     <children>
-                        <Button fx:id="homePage" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #216869;" text="Home Page" textFill="WHITE" />
-                        <Button fx:id="importDLCC" mnemonicParsing="false" onAction="#handleImportDLCCButtonAction" style="-fx-background-color: #216869;" text="Import DLCC" textFill="WHITE" />
-                        <Button fx:id="dangXuat" mnemonicParsing="false" onAction="#handleLogoutBtnAction" prefHeight="26.0" prefWidth="84.0" style="-fx-background-color: #216869;" text="Đăng xuất" textFill="WHITE" />
+                        <Button fx:id="homePage" mnemonicParsing="false" onAction="#handleHomeButtonAction" text="Home Page" />
+                        <Button fx:id="importDLCC" mnemonicParsing="false" onAction="#handleImportDLCCButtonAction" text="Import DLCC" />
+                        <Button fx:id="departmentList" mnemonicParsing="false" onAction="#handleDepartmentListButtonAction" text="Danh sách bộ phận" />
+                        <Button fx:id="dangXuat" mnemonicParsing="false" text="Đăng xuất" />
                     </children>
                 </VBox>
             </children>

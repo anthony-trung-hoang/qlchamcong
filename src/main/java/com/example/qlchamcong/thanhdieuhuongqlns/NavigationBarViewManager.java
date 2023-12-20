@@ -26,6 +26,8 @@ public class NavigationBarViewManager implements Initializable {
     public Button importDLCC;
     @FXML
     public Button dangXuat;
+    @FXML
+    public Button departmentList;
 
     private NavigationBarController thanhDHController;
 
@@ -53,6 +55,10 @@ public class NavigationBarViewManager implements Initializable {
     @FXML
     public void handleHomeButtonAction() throws IOException {
         thanhDHController.toHomeScreen();
+    }
+    @FXML
+    public void handleDepartmentListButtonAction() throws IOException {
+        thanhDHController.toDepartmentListScreen();
     }
 
     @FXML
