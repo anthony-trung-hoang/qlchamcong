@@ -13,14 +13,14 @@
         <font>
             <Font name="System Bold" size="23.0" />
         </font></Label>
-    <TableView fx:id="reportAttendanceTableView" layoutX="12.0" layoutY="117.0" prefHeight="530.0" prefWidth="816.0" AnchorPane.bottomAnchor="52.60000000000002" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="116.80000000000007">
+    <TableView fx:id="reportAttendanceTableView" layoutX="12.0" layoutY="116.8" prefHeight="530.0" prefWidth="817.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="117.0">
         <columns>
-            <TableColumn fx:id="employeeId" prefWidth="33.5999755859375" text="ID" />
-            <TableColumn fx:id="employeeName" prefWidth="110.40003204345703" text="Name" />
-            <TableColumn fx:id="departmentName" prefWidth="154.39996337890625" text="Department" />
-            <TableColumn fx:id="month" prefWidth="172.0" text="Month" />
-            <TableColumn fx:id="totalWork" prefWidth="167.99996948242188" text="Total Work 1st/2nd shift(h)" />
-            <TableColumn fx:id="totalOvertime" prefWidth="176.79998779296875" text="Total Overtime" />
+            <TableColumn fx:id="employeeId" prefWidth="33.5999755859375" style="-fx-alignment: CENTER;" text="ID" />
+            <TableColumn fx:id="employeeName" prefWidth="110.40003204345703" style="-fx-alignment: CENTER;" text="Name" />
+            <TableColumn fx:id="departmentName" prefWidth="154.39996337890625" style="-fx-alignment: CENTER;" text="Department" />
+            <TableColumn fx:id="month" prefWidth="172.0" style="-fx-alignment: CENTER;" text="Month" />
+            <TableColumn fx:id="totalWork" prefWidth="167.99996948242188" style="-fx-alignment: CENTER;" text="Total Work 1st/2nd shift(h)" />
+            <TableColumn fx:id="totalOvertime" prefWidth="174.4000244140625" style="-fx-alignment: CENTER;" text="Total Overtime" />
         </columns>
     </TableView>
     <HBox layoutX="578.0" layoutY="69.0" prefHeight="28.0" prefWidth="242.0">

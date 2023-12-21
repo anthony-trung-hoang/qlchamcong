@@ -2,6 +2,8 @@ package com.example.qlchamcong.service;
 
 import com.example.qlchamcong.HRSystem.HRSystemInitializer;
 import com.example.qlchamcong.repository.RepositoryInitializer;
+import com.example.qlchamcong.service.reportattendanceservice.IReportAttendanceService;
+import com.example.qlchamcong.service.reportattendanceservice.ReportAttendanceService;
 
 public class ServiceInitializer {
     private static IDangNhapService dangNhapService;

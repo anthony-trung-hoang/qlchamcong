@@ -20,8 +20,8 @@
             <TableColumn fx:id="departmentName" prefWidth="124.0" style="-fx-alignment: CENTER;" text="Department" />
             <TableColumn fx:id="month" prefWidth="128.0" style="-fx-alignment: CENTER;" text="Month" />
             <TableColumn fx:id="totalWorkSession" prefWidth="135.99990844726562" style="-fx-alignment: CENTER;" text="Work time(sessions)" />
-            <TableColumn fx:id="totalHoursLate" prefWidth="89.59991455078125" style="-fx-alignment: CENTER;" text="Late(h)" />
-            <TableColumn fx:id="totalHoursLeavingEarly" prefWidth="108.0001220703125" style="-fx-alignment: CENTER;" text="Leaving early(h)" />
+            <TableColumn fx:id="totalHoursLate" prefWidth="84.00006103515625" style="-fx-alignment: CENTER;" text="Late(h)" />
+            <TableColumn fx:id="totalHoursLeavingEarly" prefWidth="114.39990234375" style="-fx-alignment: CENTER;" text="Leaving early(h)" />
         </columns>
     </TableView>
    <HBox layoutX="578.0" layoutY="69.0" prefHeight="28.0" prefWidth="242.0">

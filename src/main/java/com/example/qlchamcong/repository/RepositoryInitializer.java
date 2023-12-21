@@ -1,6 +1,10 @@
 package com.example.qlchamcong.repository;
 
 import com.example.qlchamcong.database.DatabaseType;
+import com.example.qlchamcong.repository.reportattendancerepositorry.IOfficerReportAttendanceRepository;
+import com.example.qlchamcong.repository.reportattendancerepositorry.MySQLOfficerReportAttendanceRepository;
+import com.example.qlchamcong.repository.workerreportattendancereporitory.IWorkerReportAttendanceRepository;
+import com.example.qlchamcong.repository.workerreportattendancereporitory.MySQLWorkerReportAttendanceRepository;
 
 import java.sql.Connection;
 

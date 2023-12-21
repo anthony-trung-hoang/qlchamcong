@@ -4,11 +4,9 @@ import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.entity.OfficerReportAttendance;
 import com.example.qlchamcong.passaargumentutility.IPassArgument;
-import com.example.qlchamcong.service.IReportAttendanceService;
+import com.example.qlchamcong.service.reportattendanceservice.IReportAttendanceService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
-import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 public class ReportOfficeAttendanceController {
@@ -22,8 +20,6 @@ public class ReportOfficeAttendanceController {
 //        List<OfficerReportAttendanceRow> officerReportAttendanceRows= fetchListOfOfficerReportAttendance();
     }
     public List<OfficerReportAttendance> fetchListOfOfficerReportAttendance(int id, String month,String year)  {
-        System.out.println(month);
-        System.out.println(year);
         return reportAttendanceService.getOfficerReportAttendanceList(id,month,year);
     }
     public Department getInitialData() {

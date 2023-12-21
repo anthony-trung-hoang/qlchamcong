@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class DepartmentListViewManager implements Initializable {
     @FXML
     public TableColumn<Department, String> departmentName;
     @FXML
-    public TableColumn<Department, Date> founding;
+    public TableColumn<Department, String> founding;
     @FXML
     public TableColumn<Department, String> numberStaff;
     @FXML
@@ -55,17 +56,20 @@ public class DepartmentListViewManager implements Initializable {
     public void fetchAndDisplayTableData() {
         departmentId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         departmentName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        founding.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getFounding()));
+        founding.setCellValueFactory(cellData -> {
+            Date foundingDate = cellData.getValue().getFounding();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String formattedDate = dateFormat.format(foundingDate);
+            return new SimpleStringProperty(formattedDate);
+        });
         numberStaff.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTotalEmployee()).asObject().asString());
         leader.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
 
         viewReportColumn.setCellFactory(param -> new TableCell<>() {
             private final Button viewDetailsButton = new Button("View Report");
-
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-
                 if (empty) {
                     setGraphic(null);
                 } else {
@@ -82,7 +86,6 @@ public class DepartmentListViewManager implements Initializable {
         });
 
         List<Department> departmentList = departmentListController.fetchListOfDepartment();
-        System.out.println(Arrays.toString(departmentList.toArray()));
         ObservableList<Department> observableList = FXCollections.observableArrayList(departmentList);
         departmentListTableView.setItems(observableList);
     }

@@ -1,5 +1,4 @@
 package com.example.qlchamcong.HRSystem;
-
 public class HRSystemInitializer {
     private static IHRSystemAPIService ihrSystemAPIService;
 

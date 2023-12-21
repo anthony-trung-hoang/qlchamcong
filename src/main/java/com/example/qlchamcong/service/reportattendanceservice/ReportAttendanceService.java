@@ -1,12 +1,11 @@
-package com.example.qlchamcong.service;
+package com.example.qlchamcong.service.reportattendanceservice;
 
-import com.example.qlchamcong.HRSystem.HRSystemAPIService;
 import com.example.qlchamcong.HRSystem.HRSystemInitializer;
 import com.example.qlchamcong.HRSystem.IHRSystemAPIService;
 import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.entity.*;
-import com.example.qlchamcong.repository.IOfficerReportAttendanceRepository;
-import com.example.qlchamcong.repository.IWorkerReportAttendanceRepository;
+import com.example.qlchamcong.repository.reportattendancerepositorry.IOfficerReportAttendanceRepository;
+import com.example.qlchamcong.repository.workerreportattendancereporitory.IWorkerReportAttendanceRepository;
 import com.example.qlchamcong.repository.RepositoryInitializer;
 
 import java.text.ParseException;
@@ -81,7 +80,7 @@ public class ReportAttendanceService implements IReportAttendanceService {
         return sdf.format(calendar.getTime());
     }
     private List<OfficerReportAttendance> getOfficerReportAttendance(List<Employee> employeeList, List<OfficerAttendanceData> attendanceData,String month,String year)  {
-        String monthA=year+"-"+month;
+        String monthA=month+"/"+year;
         List<OfficerReportAttendance> reportAttendanceList = new ArrayList<OfficerReportAttendance>();
         for (Employee employee:employeeList){
             int employeeId= employee.getEmployeeId();
@@ -103,8 +102,8 @@ public class ReportAttendanceService implements IReportAttendanceService {
         }
         return reportAttendanceList;
     }
-    private List<WorkerReportAttendance> getWorkerReportAttendance(List<Employee> employeeList, List<WorkerAttendanceData> attendanceData, String month, String year)  {
-        String monthA=year+"-"+month;
+    public List<WorkerReportAttendance> getWorkerReportAttendance(List<Employee> employeeList, List<WorkerAttendanceData> attendanceData, String month, String year)  {
+        String monthA=month+"/"+year;
         List<WorkerReportAttendance> reportAttendanceList = new ArrayList<WorkerReportAttendance>();
         for (Employee employee:employeeList){
             int employeeId= employee.getEmployeeId();

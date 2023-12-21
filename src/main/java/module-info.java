@@ -39,6 +39,8 @@ module com.example.qlchamcong {
     exports com.example.qlchamcong.importdlcc;
     exports com.example.qlchamcong.qlnshome;
     exports com.example.qlchamcong.service;
+    exports com.example.qlchamcong.HRSystem.entity;
+    exports com.example.qlchamcong.HRSystem;
     exports com.example.qlchamcong.entity;
     exports com.example.qlchamcong.repository;
     exports com.example.qlchamcong.changeGUIUtility;
@@ -49,4 +51,10 @@ module com.example.qlchamcong {
     exports com.example.qlchamcong.truongdonvihome;
     exports com.example.qlchamcong.passaargumentutility;
     opens com.example.qlchamcong.passaargumentutility to javafx.fxml;
+    exports com.example.qlchamcong.service.reportattendanceservice;
+    opens com.example.qlchamcong.service.reportattendanceservice to javafx.fxml;
+    exports com.example.qlchamcong.repository.reportattendancerepositorry;
+    opens com.example.qlchamcong.repository.reportattendancerepositorry to javafx.fxml;
+    exports com.example.qlchamcong.repository.workerreportattendancereporitory;
+    opens com.example.qlchamcong.repository.workerreportattendancereporitory to javafx.fxml;
 }

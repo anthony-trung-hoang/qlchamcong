@@ -56,7 +56,6 @@ public class ReportOfficeAttendanceViewManager implements Initializable {
         totalWorkSession.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTotalWorkSession()).asObject());
         totalHoursLeavingEarly.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTotalHoursLeavingEarly()).asObject());
         List<OfficerReportAttendance> officerReportAttendanceList = reportOfficeAttendanceController.fetchListOfOfficerReportAttendance(id,monthReport.getValue(), String.valueOf(yearReport.getValue()));
-
         ObservableList<OfficerReportAttendance> observableList = FXCollections.observableArrayList(officerReportAttendanceList);
         reportAttendanceTableView.setItems(observableList);
     }

@@ -4,7 +4,7 @@ import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.HRSystem.entity.RoleDepartment;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.passaargumentutility.IPassArgument;
-import com.example.qlchamcong.service.IReportAttendanceService;
+import com.example.qlchamcong.service.reportattendanceservice.IReportAttendanceService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
 import java.io.IOException;

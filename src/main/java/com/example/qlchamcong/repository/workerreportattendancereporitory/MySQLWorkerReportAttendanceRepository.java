@@ -1,6 +1,8 @@
-package com.example.qlchamcong.repository;
+package com.example.qlchamcong.repository.workerreportattendancereporitory;
 
-import com.example.qlchamcong.entity.OfficerAttendanceData;
+import com.example.qlchamcong.entity.WorkerAttendanceData;
+import com.example.qlchamcong.repository.workerreportattendancereporitory.IWorkerReportAttendanceRepository;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,18 +11,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MySQLOfficerReportAttendanceRepository implements IOfficerReportAttendanceRepository{
+public class MySQLWorkerReportAttendanceRepository implements IWorkerReportAttendanceRepository {
     private final Connection connection;
 
-    public MySQLOfficerReportAttendanceRepository(Connection connection) {
+    public MySQLWorkerReportAttendanceRepository(Connection connection) {
         this.connection = connection;
     }
 
+
     @Override
-    public List<OfficerAttendanceData> getOfficerReportAttendance(String startDate, String endDate, List<Integer> employeeIdList) {
-        List<OfficerAttendanceData> dataList= new ArrayList<>();
+    public List<WorkerAttendanceData> getWorkerReportAttendance(String startDate, String endDate, List<Integer> employeeIdList) {
+        List<WorkerAttendanceData> dataList= new ArrayList<>();
         for (Integer id:employeeIdList){
-            String query = "SELECT * FROM OfficerAttendanceData WHERE date BETWEEN ? AND ? AND employeeId = ?";
+            String query = "SELECT * FROM WorkerAttendanceData WHERE date BETWEEN ? AND ? AND employeeId = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 preparedStatement.setString(1, startDate);
                 preparedStatement.setString(2, endDate);
@@ -30,11 +33,10 @@ public class MySQLOfficerReportAttendanceRepository implements IOfficerReportAtt
                         int aId=resultSet.getInt("id");
                         int employeeId=resultSet.getInt("employeeId");
                         Date date= resultSet.getDate("date");
-                        boolean morningSession= resultSet.getBoolean("morningSession");
-                        boolean afternoonSession=resultSet.getBoolean("afternoonSession");
-                        double hoursLate=resultSet.getDouble("hoursLate");
-                        double hoursEarlyLeave=resultSet.getDouble("hoursEarlyLeave");
-                        OfficerAttendanceData data = new OfficerAttendanceData(aId,employeeId,date,morningSession,afternoonSession,hoursLate,hoursEarlyLeave);
+                        double hoursShift1= resultSet.getDouble("hoursShift1");
+                        double hoursShift2=resultSet.getDouble("hoursShift2");
+                        double hoursShift3=resultSet.getDouble("hoursShift3");
+                        WorkerAttendanceData data = new WorkerAttendanceData(aId,employeeId,date,hoursShift1,hoursShift2,hoursShift3);
                         dataList.add(data);
                         System.out.println(data.getEmployeeId());
                     }
@@ -47,4 +49,5 @@ public class MySQLOfficerReportAttendanceRepository implements IOfficerReportAtt
 
         return dataList;
     }
+
 }
