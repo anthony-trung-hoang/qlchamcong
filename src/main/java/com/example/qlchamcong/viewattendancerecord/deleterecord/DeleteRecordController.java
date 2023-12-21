@@ -23,7 +23,7 @@ public class DeleteRecordController {
     }
 
     public void deleteAndCloseModal(AttendanceRecord currentRecord) throws IOException {
-        viewAttendanceRecordsService.deleteRecord(currentRecord);
+        viewAttendanceRecordsService.deleteRecordAndUpdateAttendanceDataAccordingly(currentRecord);
         navUtil.closeModal();
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }

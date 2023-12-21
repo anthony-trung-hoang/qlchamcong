@@ -30,7 +30,7 @@ public class AddRecordController {
     }
 
     public void saveNewRecord(AttendanceRecord newRecord) throws IOException {
-            viewAttendanceRecordsService.createANewRecord(newRecord);
+            viewAttendanceRecordsService.createRecordAndUpdateAttendanceDataAccordingly(newRecord);
             navUtil.closeModal();
             navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
 

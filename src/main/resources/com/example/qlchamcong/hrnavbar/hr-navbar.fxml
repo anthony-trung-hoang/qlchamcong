@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.hrnavbar.NavigationBarViewManager">
     <children>
-        <AnchorPane prefHeight="700.0" prefWidth="165.0" style="-fx-background-color: #acbdaa;">
+        <AnchorPane prefHeight="674.0" prefWidth="158.0" style="-fx-background-color: #6A6B6D;">
             <children>
-                <VBox alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="670.0" prefWidth="131.0" spacing="20.0">
-                    <children>
-                        <Button fx:id="homePage" mnemonicParsing="false" onAction="#handleHomeButtonAction" style="-fx-background-color: #4e8efc;" text="Home Page" />
-                        <Button fx:id="importDLCC" mnemonicParsing="false" onAction="#handleImportDLCCButtonAction" style="-fx-background-color: #4e8efc;" text="Import DLCC" />
-                        <Button fx:id="departmentList" mnemonicParsing="false" onAction="#handleDepartmentListButtonAction" style="-fx-background-color: #4e8efc;" text="Danh sách bộ phận" />
-                        <Button fx:id="dangXuat" mnemonicParsing="false" style="-fx-background-color: #4e8efc;" text="Đăng xuất" />
-                    </children>
-                </VBox>
+                  <Button fx:id="homePage" layoutY="173.0" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="54.0" prefWidth="183.0" style="-fx-background-color: #4e8efc;" text="Homepage">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+                  <Button fx:id="departmentList" layoutY="240.0" mnemonicParsing="false" onAction="#handleDepartmentListButtonAction" prefHeight="54.0" prefWidth="183.0" style="-fx-background-color: #4e8efc;" text="List of departments">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+                  <Button fx:id="importDLCC" layoutY="306.0" mnemonicParsing="false" onAction="#handleImportDLCCButtonAction" prefHeight="54.0" prefWidth="183.0" style="-fx-background-color: #4e8efc;" text="Import attendance data">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+                  <Button fx:id="dangXuat" layoutX="25.0" layoutY="635.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="130.0" style="-fx-background-color: #f94040; -fx-text-fill: #fff;" text="Đăng xuất" />
+            <ImageView fx:id="logoImage" fitHeight="127.0" fitWidth="118.0" layoutX="31.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@hr.png" />
+               </image></ImageView>
+            <ImageView fx:id="hrImage" fitHeight="83.0" fitWidth="123.0" layoutX="40.0" layoutY="542.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@hr.png" />
+               </image></ImageView>
             </children>
         </AnchorPane>
         <Pane fx:id="contentPane" prefHeight="699.0" prefWidth="835.0">

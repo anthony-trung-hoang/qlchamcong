@@ -13,4 +13,16 @@ public interface IViewAttendanceRecordsService {
     void createANewRecord(AttendanceRecord newRecord);
 
     void updateRecord(AttendanceRecord newRecord);
+
+    void deleteRecordAndUpdateAttendanceDataAccordingly(AttendanceRecord record);
+
+    void createRecordAndUpdateAttendanceDataAccordingly(AttendanceRecord record);
+
+    void updateRecordAndUpdateAttendanceDataAccordingly(AttendanceRecord newRecord);
+
+    void updateOfficerAttendanceData(AttendanceRecord newRecord);
+
+    void updateWorkerAttendanceData(AttendanceRecord newRecord);
+
+    void updateAttendanceData(AttendanceRecord record);
 }
