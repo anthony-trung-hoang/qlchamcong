@@ -86,7 +86,6 @@ public class AttendanceRecord {
         return "AttendanceRecord{" +
                 "id=" + id +
                 ", employeeId=" + employeeId +
-                ", employeeCode='" + employeeCode + '\'' +
                 ", timeKeeperId=" + timeKeeperId +
                 ", timeKeeperCode='" + timeKeeperCode + '\'' +
                 ", timestamp=" + timestamp +

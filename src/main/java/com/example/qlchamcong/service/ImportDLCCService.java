@@ -255,6 +255,13 @@ public class ImportDLCCService implements IImportDLCCService {
             Iterator<Row> rowIterator = sheet.iterator();
             while (rowIterator.hasNext()) {
                 Row row = rowIterator.next();
+
+                // Kiểm tra xem hàng có chứa dữ liệu không
+                if (!hasDataInRow(row)) {
+                    // Nếu không có dữ liệu, bỏ qua và chuyển sang hàng tiếp theo
+                    break;
+                }
+
                 List<String> rowData = new ArrayList<>();
 
                 Iterator<Cell> cellIterator = row.cellIterator();
@@ -276,6 +283,17 @@ public class ImportDLCCService implements IImportDLCCService {
         return data;
     }
 
+    private static boolean hasDataInRow(Row row) {
+        Iterator<Cell> cellIterator = row.cellIterator();
+        while (cellIterator.hasNext()) {
+            Cell cell = cellIterator.next();
+            if (cell.getCellType() != CellType.BLANK) {
+                return true; // Nếu có ít nhất một ô có dữ liệu, trả về true
+            }
+        }
+        return false; // Nếu tất cả các ô đều trống, trả về false
+    }
+
     private List<AttendanceRecord> readAttendanceRecords(List<String[]> data, String timekeeperCodesValue) throws InvalidFileFormatException {
         if (data == null || data.size() < 2 || data.get(0).length < 2) {
             throw new InvalidFileFormatException("File không đủ 2 trường dữ liệu.");
@@ -287,10 +305,10 @@ public class ImportDLCCService implements IImportDLCCService {
         try {
             for (int i = 1; i < data.size(); i++) {
                 String[] row = data.get(i);
-                if (row.length == 1) {
-                    throw new InvalidFileFormatException("Thiếu dữ liệu ở cột " + (i + 1));
+                // Kiểm tra xem dòng dữ liệu có đúng số lượng cột không
+                if (row.length != 2) {
+                    throw new InvalidFileFormatException("Dòng " + (i + 1) + " không đúng định dạng. Cần có đúng 2 cột.");
                 }
-                if (row.length < 2) break;
 
 //                System.out.println(row[0].trim());
 //                System.out.println(row[1].trim());
