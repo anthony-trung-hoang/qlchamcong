@@ -25,50 +25,54 @@ public class OfficerWorkHoursCalculator {
         double totalLateTime = 0.0;
         double totalEarlyLeaveTime = 0.0;
 
-        for (int i = 0; i < attendanceRecords.size() - 1; i++) {
-            AttendanceRecord record = attendanceRecords.get(i);
-            Timestamp timestamp = record.getTimestamp();
-            String type = record.getType();
+        if (attendanceRecords.size() >= 1) {
 
-            if ("checkin".equals(type)) {
-                AttendanceRecord checkoutRecord = attendanceRecords.get(i + 1);
-                if ("checkout".equals(checkoutRecord.getType())) {
-                    Timestamp checkoutTime = checkoutRecord.getTimestamp();
 
-                    if (isWithinShift(timestamp, 8, 30, 12, 30) && isWithinShift(checkoutTime, 8, 30, 12, 30)) {
-                        result[0] += calculateWorkHours(timestamp, checkoutTime);
-                        isInMorningShift = true;
-                    } else if (isWithinShift(timestamp, 13, 0, 17, 30) && isWithinShift(checkoutTime, 13, 0, 17, 30)) {
-                        result[1] += calculateWorkHours(timestamp, checkoutTime);
-                        isInAfternoonShift = true;
-                    } else {
-                        throw new UnknownShiftException("Cannot define shift for " + timestamp + " and " + checkoutTime.toString());
+            for (int i = 0; i < attendanceRecords.size() - 1; i++) {
+                AttendanceRecord record = attendanceRecords.get(i);
+                Timestamp timestamp = record.getTimestamp();
+                String type = record.getType();
+
+                if ("checkin".equals(type)) {
+                    AttendanceRecord checkoutRecord = attendanceRecords.get(i + 1);
+                    if ("checkout".equals(checkoutRecord.getType())) {
+                        Timestamp checkoutTime = checkoutRecord.getTimestamp();
+
+                        if (isWithinShift(timestamp, 8, 30, 12, 30) && isWithinShift(checkoutTime, 8, 30, 12, 30)) {
+                            result[0] += calculateWorkHours(timestamp, checkoutTime);
+                            isInMorningShift = true;
+                        } else if (isWithinShift(timestamp, 13, 0, 17, 30) && isWithinShift(checkoutTime, 13, 0, 17, 30)) {
+                            result[1] += calculateWorkHours(timestamp, checkoutTime);
+                            isInAfternoonShift = true;
+                        } else {
+                            throw new UnknownShiftException("Cannot define shift for " + timestamp + " and " + checkoutTime.toString());
+                        }
+
+                        if (isInMorningShift) {
+                            double lateTime = calculateLateTime(timestamp, 8, 30);
+                            totalLateTime += lateTime;
+                            double earlyLeave = calculateEarlyLeaveTime(checkoutTime, 12, 0);
+                            totalEarlyLeaveTime += earlyLeave;
+                        } else {
+                            double lateTime = calculateLateTime(timestamp, 13, 0);
+                            totalLateTime += lateTime;
+                            double earlyLeave = calculateEarlyLeaveTime(checkoutTime, 17, 30);
+                            totalEarlyLeaveTime += earlyLeave;
+                        }
+
+                        isInMorningShift = false;
+                        isInAfternoonShift = false;
                     }
-
-                    if (isInMorningShift) {
-                        double lateTime = calculateLateTime(timestamp, 8, 30);
-                        totalLateTime += lateTime;
-                        double earlyLeave = calculateEarlyLeaveTime(checkoutTime, 12, 0);
-                        totalEarlyLeaveTime += earlyLeave;
-                    } else {
-                        double lateTime = calculateLateTime(timestamp, 13, 0);
-                        totalLateTime += lateTime;
-                        double earlyLeave = calculateEarlyLeaveTime(checkoutTime, 17, 30);
-                        totalEarlyLeaveTime += earlyLeave;
-                    }
-
-                    isInMorningShift = false;
-                    isInAfternoonShift = false;
                 }
             }
+
+            result[0] = (result[0] > 0) ? 1.0 : 0.0;
+            result[1] = (result[1] > 0) ? 1.0 : 0.0;
+
+            result[2] = totalLateTime;
+            result[3] = totalEarlyLeaveTime;
+
         }
-
-        result[0] = (result[0] > 0) ? 1.0 : 0.0;
-        result[1] = (result[1] > 0) ? 1.0 : 0.0;
-
-        result[2] = totalLateTime;
-        result[3] = totalEarlyLeaveTime;
-
         return result;
     }
     public static double calculateWorkHours(Timestamp checkinTime, Timestamp checkoutTime) {

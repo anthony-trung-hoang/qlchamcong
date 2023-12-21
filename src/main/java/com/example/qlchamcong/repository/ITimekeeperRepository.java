@@ -11,6 +11,9 @@ public interface ITimekeeperRepository {
 
     boolean checkTimeKeeperIdExists(int timeKeeperId);
 
+    boolean checkTimeKeeperCodeExists(String timeKeeperCode);
+
     List<Timekeeper> getTimekeepersByType(String type);
 
+    int getTimekeepersByCode(String code);
 }

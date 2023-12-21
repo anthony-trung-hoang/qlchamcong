@@ -1,11 +1,12 @@
 package com.example.qlchamcong.viewattendancerecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
-import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
+import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -33,7 +34,7 @@ public class AttendanceRecordViewManager implements Initializable {
     @FXML
     public TableColumn<AttendanceRecord, String> typeColumn;
     @FXML
-    public TableColumn<AttendanceRecord, Integer> timeKeeperIdColumn;
+    public TableColumn<AttendanceRecord, String> timeKeeperCodeColumn;
     @FXML
     public TableColumn<AttendanceRecord, Void> recordVoidTableColumn;
     @FXML
@@ -51,16 +52,27 @@ public class AttendanceRecordViewManager implements Initializable {
         IPassArgument argumentUtil = new PassArgumentUtil();
         attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
 
-        WorkerAttendanceData shareData = getInitialData();
-        setInitialUI(shareData);
-        fetchAndDisplayTableData(shareData.getEmployeeId(), shareData.getDate());
+        Object shareData = getInitialData();
+        if (shareData instanceof WorkerAttendanceData workerAttendanceData) {
+            setInitialUI(workerAttendanceData);
+            fetchAndDisplayTableData(workerAttendanceData.getEmployeeId(), workerAttendanceData.getDate());
+        } else {
+            assert shareData instanceof OfficerAttendanceData;
+            OfficerAttendanceData officerAttendanceData = (OfficerAttendanceData) shareData;
+            setInitialUI(officerAttendanceData);
+            fetchAndDisplayTableData(officerAttendanceData.getEmployeeId(), officerAttendanceData.getDate());
+        }
     }
 
-    public WorkerAttendanceData getInitialData() {
-        return (WorkerAttendanceData) attendanceRecordController.getInitialData();
+    public Object getInitialData() {
+        return attendanceRecordController.getInitialData();
     }
 
     public void setInitialUI(WorkerAttendanceData initialData) {
+        employeeIdLabel.setText(initialData.getEmployeeId() + "");
+        dateLabel.setText(initialData.getDate().toString());
+    }
+    public void setInitialUI(OfficerAttendanceData initialData) {
         employeeIdLabel.setText(initialData.getEmployeeId() + "");
         dateLabel.setText(initialData.getDate().toString());
     }
@@ -68,7 +80,7 @@ public class AttendanceRecordViewManager implements Initializable {
     public void fetchAndDisplayTableData(int employeeId, Date date) {
         idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         timeStampColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTimestamp()));
-        timeKeeperIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTimeKeeperId()).asObject());
+        timeKeeperCodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTimeKeeperCode()));
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
 
         recordVoidTableColumn.setCellFactory(param -> new TableCell<>() {
@@ -127,5 +139,9 @@ public class AttendanceRecordViewManager implements Initializable {
 
     public void showAddNewRecordModal() throws IOException {
         attendanceRecordController.showAddNewRecordModal(this.passToNewRecordModal);
+    }
+
+    public void onBackButtonAction() throws IOException {
+        attendanceRecordController.backToHome();
     }
 }

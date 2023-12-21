@@ -33,7 +33,7 @@ public class UpdateRecordViewManager implements Initializable {
     public TextField timeTextField;
 
     @FXML
-    public TextField timeKeeperIdTextField;
+    public TextField timeKeeperCodeTextField;
     private AttendanceRecord currentRecord;
 
     public void saveButtonAction() throws ParseException, IOException {
@@ -42,6 +42,7 @@ public class UpdateRecordViewManager implements Initializable {
         try {
             updateRecordController.saveNewRecord(newRecord);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
             setErrorLabel(e.getMessage());
         }
@@ -49,9 +50,9 @@ public class UpdateRecordViewManager implements Initializable {
 
     private AttendanceRecord getNewRecordFromUI() throws ParseException {
         String newTimestamp = timeTextField.getText();
-        int newTimekeeperId = Integer.parseInt(timeKeeperIdTextField.getText());
+        String newTimeKeeperCode = timeKeeperCodeTextField.getText();
         Timestamp updatedTimestamp = getTimestamp(newTimestamp);
-        return new AttendanceRecord(currentRecord.getId(), currentRecord.getEmployeeId(), updatedTimestamp, newTimekeeperId, currentRecord.getType());
+        return new AttendanceRecord(currentRecord.getId(), currentRecord.getEmployeeId(), updatedTimestamp, newTimeKeeperCode, currentRecord.getType());
 
     }
 
@@ -94,14 +95,12 @@ public class UpdateRecordViewManager implements Initializable {
 
     private void setInitialData(AttendanceRecord attendanceRecord) {
         String employeeId = attendanceRecord.getEmployeeId() + "";
-        String timeKeeperId = attendanceRecord.getTimeKeeperId() + "";
-
         employeeIdLabel.setText(employeeId);
         attendanceDateLabel.setText(attendanceRecord.getFormattedDate());
         timeTextField.setPromptText(attendanceRecord.getFormattedTime());
-        timeKeeperIdTextField.setFocusTraversable(false);
+        timeKeeperCodeTextField.setFocusTraversable(false);
         timeTextField.setFocusTraversable(false);
-        timeKeeperIdTextField.setPromptText(timeKeeperId);
+        timeKeeperCodeTextField.setPromptText(attendanceRecord.getTimeKeeperCode());
     }
 
     private void setErrorLabel(String errorMessage) {

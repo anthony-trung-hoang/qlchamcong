@@ -32,7 +32,7 @@ public class AddRecordViewManager implements Initializable {
     public TextField timeTextField;
 
     @FXML
-    public TextField timeKeeperIdTextField;
+    public TextField timeKeeperCodeTextField;
 
     private AttendanceRecord currentRecord;
 
@@ -48,9 +48,10 @@ public class AddRecordViewManager implements Initializable {
 
     private AttendanceRecord getNewRecordFromUI() throws ParseException {
         String newTimestamp = timeTextField.getText();
-        int newTimekeeperId = Integer.parseInt(timeKeeperIdTextField.getText());
+//        int newTimekeeperId = Integer.parseInt(timeKeeperIdTextField.getText());
+        String newTimekeeperCode = timeKeeperCodeTextField.getText();
         Timestamp updatedTimestamp = getTimestamp(newTimestamp);
-        return new AttendanceRecord(currentRecord.getEmployeeId(), updatedTimestamp, newTimekeeperId, currentRecord.getType());
+        return new AttendanceRecord(currentRecord.getEmployeeId(), updatedTimestamp, newTimekeeperCode, currentRecord.getType());
     }
 
     private Timestamp getTimestamp(String newTimestamp) throws ParseException {
@@ -95,7 +96,7 @@ public class AddRecordViewManager implements Initializable {
         employeeIdLabel.setText(employeeId);
         attendanceDateLabel.setText(attendanceRecord.getFormattedDate());
         timeTextField.setPromptText("hh:mm:ss");
-        timeKeeperIdTextField.setFocusTraversable(false);
+        timeKeeperCodeTextField.setFocusTraversable(false);
         timeTextField.setFocusTraversable(false);
     }
 

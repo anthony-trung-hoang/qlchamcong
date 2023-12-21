@@ -16,11 +16,8 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
     private final IAttendanceRecordRepository attendanceRecordRepository;
     private final ITimekeeperRepository timekeeperRepository;
     private final IEmployeeRepository employeeRepository;
-
     private final IWorkerAttendanceDataRepository workerAttendanceDataRepository;
-
     private final IOfficerAttendanceDataRepository officerAttendanceDataRepository;
-
 
     public ViewAttendanceRecordsService() {
         this.attendanceRecordRepository = RepositoryInitializer.getAttendanceRecordRepository();
@@ -36,44 +33,76 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
     }
 
     @Override
+    public void deleteRecordAndUpdateAttendanceDataAccordingly(AttendanceRecord record) {
+        deleteRecord(record);
+        updateAttendanceData(record);
+    }
+
+    @Override
+    public void createRecordAndUpdateAttendanceDataAccordingly(AttendanceRecord record) {
+
+        createANewRecord(record);
+        updateAttendanceData(record);
+    }
+
+    public int getTimeKeeperIdByCode(String code) {
+        return timekeeperRepository.getTimekeepersByCode(code);
+    }
+
+    @Override
+    public void updateRecordAndUpdateAttendanceDataAccordingly(AttendanceRecord record) {
+        updateRecord(record);
+        updateAttendanceData(record);
+    }
+
+    @Override
     public void deleteRecord(AttendanceRecord currentRecord) {
         attendanceRecordRepository.deleteRecordById(currentRecord.getId());
     }
 
     @Override
-    public void createANewRecord(AttendanceRecord newRecord) {
-        boolean checkTimekeeperIdExists = timekeeperRepository.checkTimeKeeperIdExists(newRecord.getTimeKeeperId());
-        if (checkTimekeeperIdExists) {
-            String employeeRole = employeeRepository.getRoleById(newRecord.getEmployeeId());
-            System.out.println("role" + employeeRole);
-            if (employeeRole.equals("worker")) {
-                int maxRecordAllowed = 6;
-                int numberOfRecordsInDay = attendanceRecordRepository.getNumberOfRecordsInADayByDateAndEmployee(newRecord.getEmployeeId(), newRecord.getDateFromTimestamp());
-                if (numberOfRecordsInDay >= maxRecordAllowed) {
-                    throw new MaxRecordsExceededException(employeeRole, maxRecordAllowed);
-                } else {
-                    attendanceRecordRepository.createANewRecord(newRecord);
-                    // update changes in attendance data of that worker
-                    updateWorkerAttendanceData(newRecord);
-                }
-            } else if (employeeRole.equals("officer")) {
-                int maxRecordAllowed = 4;
-                int numberOfRecordsInDay = attendanceRecordRepository.getNumberOfRecordsInADayByDateAndEmployee(newRecord.getEmployeeId(), newRecord.getDateFromTimestamp());
-                if (numberOfRecordsInDay >= maxRecordAllowed) {
-                    throw new MaxRecordsExceededException(employeeRole, maxRecordAllowed);
-                } else {
-                    attendanceRecordRepository.createANewRecord(newRecord);
-                    // update changes in attendance data of that officer
-                    updateOfficerAttendanceData(newRecord);
-                }
-            }
-
+    public void updateRecord(AttendanceRecord newRecord) {
+        boolean checkTimeKeeperCodeExists = timekeeperRepository.checkTimeKeeperCodeExists(newRecord.getTimeKeeperCode());
+        if (checkTimeKeeperCodeExists) {
+            int timeKeeperId = getTimeKeeperIdByCode(newRecord.getTimeKeeperCode());
+            System.out.println("Code: " + newRecord.getTimeKeeperCode() + ":" + timeKeeperId);
+            newRecord.setTimeKeeperId(timeKeeperId);
+            attendanceRecordRepository.updateRecordById(newRecord);
         } else {
-            throw new TimeKeeperNotFoundException("TimeKeeper with id " + newRecord.getTimeKeeperId() + " not found.");
+            throw new TimeKeeperNotFoundException("TimeKeeper with code " + newRecord.getTimeKeeperCode() + " not found.");
         }
     }
 
-    private void updateOfficerAttendanceData(AttendanceRecord newRecord) {
+    @Override
+    public void createANewRecord(AttendanceRecord newRecord) {
+        boolean checkTimeKeeperCodeExists = timekeeperRepository.checkTimeKeeperCodeExists(newRecord.getTimeKeeperCode());
+        if (checkTimeKeeperCodeExists) {
+            String employeeRole = employeeRepository.getRoleById(newRecord.getEmployeeId());
+            System.out.println("role" + employeeRole);
+            int maxRecordAllowed = 0;
+            if (employeeRole.equals("worker")) {
+                 maxRecordAllowed = 6;
+
+            } else if (employeeRole.equals("officer")) {
+                 maxRecordAllowed = 4;
+            }
+            int numberOfRecordsInDay = attendanceRecordRepository.getNumberOfRecordsInADayByDateAndEmployee(newRecord.getEmployeeId(), newRecord.getDateFromTimestamp());
+            if (numberOfRecordsInDay >= maxRecordAllowed) {
+                throw new MaxRecordsExceededException(employeeRole, maxRecordAllowed);
+            } else {
+                int timeKeeperId = getTimeKeeperIdByCode(newRecord.getTimeKeeperCode());
+                System.out.println("Code: " + newRecord.getTimeKeeperCode() + ":" + timeKeeperId);
+                newRecord.setTimeKeeperId(timeKeeperId);
+                attendanceRecordRepository.createANewRecord(newRecord);
+            }
+
+        } else {
+            throw new TimeKeeperNotFoundException("TimeKeeper with code " + newRecord.getTimeKeeperCode() + " not found.");
+        }
+    }
+
+    @Override
+    public void updateOfficerAttendanceData(AttendanceRecord newRecord) {
         int employeeId = 3;
         Date date = newRecord.getDateFromTimestamp();
         OfficerAttendanceData officerAttendanceData = officerAttendanceDataRepository.getOfficerAttendanceDataByEmployeeAndDate(employeeId, date);
@@ -91,7 +120,8 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
 
     }
 
-    private void updateWorkerAttendanceData(AttendanceRecord newRecord) {
+    @Override
+    public void updateWorkerAttendanceData(AttendanceRecord newRecord) {
         int employeeId = newRecord.getEmployeeId();
         Date date = newRecord.getDateFromTimestamp();
         WorkerAttendanceData workerAttendanceData = workerAttendanceDataRepository.getWorkerAttendanceDataByEmployeeAndDate(employeeId, date);
@@ -100,17 +130,14 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
         List<Double> calculatedResult = WorkerWorkHoursCalculator.calculateWorkerWorkHours(attendanceRecordList);
         workerAttendanceDataRepository.updateWorkerAttendanceData(workerAttendanceData.getId(), calculatedResult.get(0), calculatedResult.get(1), calculatedResult.get(2));
     }
-
     @Override
-    public void updateRecord(AttendanceRecord newRecord) {
-        boolean checkTimekeeperIdExists = timekeeperRepository.checkTimeKeeperIdExists(newRecord.getTimeKeeperId());
-        if (checkTimekeeperIdExists) {
-            attendanceRecordRepository.updateRecordById(newRecord);
-            updateWorkerAttendanceData(newRecord);
-        } else {
-            throw new TimeKeeperNotFoundException("TimeKeeper with id " + newRecord.getTimeKeeperId() + " not found.");
+    public void updateAttendanceData(AttendanceRecord record) {
+        String employeeRole = employeeRepository.getRoleById(record.getEmployeeId());
+        if (employeeRole.equals("worker")) {
+            updateWorkerAttendanceData(record);
+        } else if (employeeRole.equals("officer")) {
+            updateOfficerAttendanceData(record);
         }
-        attendanceRecordRepository.updateRecordById(newRecord);
     }
 
     public static class TimeKeeperNotFoundException extends RuntimeException {
