@@ -83,7 +83,7 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
             if (employeeRole.equals("worker")) {
                  maxRecordAllowed = 6;
 
-            } else if (employeeRole.equals("officer")) {
+            } else {
                  maxRecordAllowed = 4;
             }
             int numberOfRecordsInDay = attendanceRecordRepository.getNumberOfRecordsInADayByDateAndEmployee(newRecord.getEmployeeId(), newRecord.getDateFromTimestamp());
