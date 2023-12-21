@@ -1,6 +1,7 @@
 package com.example.qlchamcong.qlnshome;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
+import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
 import com.example.qlchamcong.service.*;
@@ -20,7 +21,7 @@ public class HRHomeController {
         this.homeScreenService = ServiceInitializer.getHomeScreenService();
     }
 
-    public List<WorkerAttendanceData> fetchTableData() {
+    public List<WorkerAttendanceData> fetchTableWorkerData() {
         return homeScreenService.getWorkerAttendanceData();
     }
 
@@ -29,4 +30,10 @@ public class HRHomeController {
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 
+    public void showDetails(OfficerAttendanceData officerAttendanceData) {
+    }
+
+    public List<OfficerAttendanceData> fetchTableOfficerData() {
+        return homeScreenService.getOfficerAttendanceData();
+    }
 }

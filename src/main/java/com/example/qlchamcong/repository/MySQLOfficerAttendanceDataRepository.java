@@ -6,7 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MySQLOfficerAttendanceDataRepository implements IOfficerAttendanceDataRepository {
     private final Connection connection;
@@ -58,4 +60,34 @@ public class MySQLOfficerAttendanceDataRepository implements IOfficerAttendanceD
         }
     }
 
+    @Override
+    public List<OfficerAttendanceData> getAllOfficerAttendanceDataByDate(java.sql.Date date) {
+
+
+        List<OfficerAttendanceData> dataList = new ArrayList<>();
+        String query = "SELECT * FROM OfficerAttendanceData WHERE DATE(date) = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setDate(1, (java.sql.Date) date);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    OfficerAttendanceData data = new OfficerAttendanceData();
+                    data.setId(resultSet.getInt("id"));
+                    data.setEmployeeId(resultSet.getInt("employeeId"));
+                    data.setDate(resultSet.getDate("date"));
+                    data.setAfternoonSession(resultSet.getBoolean("afternoonSession"));
+                    data.setMorningSession(resultSet.getBoolean("morningSession"));
+                    data.setHoursEarlyLeave(resultSet.getDouble("hoursEarlyLeave"));
+                    data.setHoursLate(resultSet.getDouble("hoursLate"));
+                    dataList.add(data);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return dataList;
+    }
 }

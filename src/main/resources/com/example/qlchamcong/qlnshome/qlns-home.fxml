@@ -1,20 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="700" prefWidth="835.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.qlchamcong.qlnshome.HRHomeViewManager">
+
+<AnchorPane prefHeight="700" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.qlnshome.HRHomeViewManager">
    <children>
-      <Label fx:id="homePageText" layoutX="95.0" layoutY="14.0" prefHeight="28.0" prefWidth="76.0" text="Home Page" />
-      <TableView fx:id="attendanceTableView" prefWidth="600">
+      <Label layoutX="95.0" layoutY="14.0" prefHeight="28.0" prefWidth="402.0" text="THÔNG TIN TỔNG HỢP TOÀN DOANH NGHIỆP" />
+      <TableView fx:id="attendanceTableView" layoutX="98.0" layoutY="98.0" prefHeight="251.0" prefWidth="654.0">
          <columns>
-            <TableColumn text="ID" fx:id="idColumn"/>
-            <TableColumn text="ID Nhân viên" fx:id="employeeIdColumn"/>
-            <TableColumn text="Ngày" fx:id="dateColumn"/>
-            <TableColumn text="Số giờ ca 1" fx:id="hoursShift1Column"/>
-            <TableColumn text="Số giờ ca 2" fx:id="hoursShift2Column"/>
-            <TableColumn text="Số giờ ca 3" fx:id="hoursShift3Column"/>
-            <TableColumn text="Xem Chi Tiết" fx:id="viewDetailsColumn"/>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="employeeIdColumn" text="ID Nhân viên" />
+            <TableColumn fx:id="dateColumn" text="Ngày" />
+            <TableColumn fx:id="hoursShift1Column" text="Số giờ ca 1" />
+            <TableColumn fx:id="hoursShift2Column" text="Số giờ ca 2" />
+            <TableColumn fx:id="hoursShift3Column" text="Số giờ ca 3" />
+            <TableColumn fx:id="viewDetailsColumn" text="Xem Chi Tiết" />
+         </columns>
+      </TableView>
+      <Separator layoutX="78.0" layoutY="374.0" prefHeight="0.0" prefWidth="694.0" />
+      <TableView fx:id="officerAttendanceTableView" layoutX="98.0" layoutY="401.0" prefHeight="251.0" prefWidth="654.0">
+         <columns>
+            <TableColumn fx:id="oIdColumn" text="ID" />
+            <TableColumn fx:id="officerIdColumn" text="ID Nhân viên" />
+            <TableColumn fx:id="officerDateColumn" text="Ngày" />
+            <TableColumn fx:id="morningSessionColumn" text="Ca sáng" />
+            <TableColumn fx:id="afternoonSessionColumn" text="Ca chiều" />
+            <TableColumn fx:id="hoursLateColumn" text="Late (h)" />
+            <TableColumn fx:id="earlyLeaveColumn" text="Early leave (h)" />
+            <TableColumn fx:id="viewOfficerDetailsColumn" text="Xem Chi Tiết" />
          </columns>
       </TableView>
    </children>
