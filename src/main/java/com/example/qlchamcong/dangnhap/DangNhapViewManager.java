@@ -32,11 +32,9 @@ public class DangNhapViewManager implements Initializable {
         String role = tenDangNhap.getText();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/hrnavbar/hr-navbar.fxml"));
-        if (Objects.equals(role, "1")) {
-            System.out.println(role);
+        System.out.println(role);
 
-            loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongtdv/thanh-dieu-huong-tdv.fxml"));
-        }
+        loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongtdv/thanh-dieu-huong-tdv.fxml"));
 
         Stage stage = (Stage) dangNhap.getScene().getWindow();
 

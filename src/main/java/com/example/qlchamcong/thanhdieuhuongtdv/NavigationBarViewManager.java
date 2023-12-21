@@ -56,6 +56,11 @@ public class NavigationBarViewManager implements Initializable {
     }
 
     @FXML
+    public void handleTrackingDetailButtonAction() throws IOException {
+        thanhDHController.toAttendanceTrackingViewScreen();
+    }
+
+    @FXML
     public void handleLogoutBtnAction() throws IOException {
         Stage stage = (Stage) dangXuat.getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/dangnhap/dang-nhap.fxml"));

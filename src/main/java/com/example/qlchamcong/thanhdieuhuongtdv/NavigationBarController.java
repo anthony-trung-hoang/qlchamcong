@@ -20,6 +20,10 @@ public class NavigationBarController {
         navUtil.changeGUI("/com/example/qlchamcong/importdlcc/import-dlcc.fxml");
     }
 
+    public void toAttendanceTrackingViewScreen() throws IOException {
+        navUtil.changeGUI("/com/example/qlchamcong/trackingdetail/tracking-detail-page.fxml");
+    }
+
 
     public void setHomeScreen() throws IOException {
         navUtil.changeGUI("/com/example/qlchamcong/truongdonvihome/tdv-home.fxml");
