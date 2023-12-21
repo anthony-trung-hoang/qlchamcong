@@ -46,4 +46,8 @@ public class AttendanceRecordController {
         argumentUtil.setSharedData("fromAttendanceRecordToDeleteRecord", attendanceRecord);
         navUtil.showModal("/com/example/qlchamcong/viewattendancerecord/modals/confirm-delete.fxml", "Confirm deletion");
     }
+
+    public void backToHome() throws IOException {
+        navUtil.changeGUI("/com/example/qlchamcong/qlnshome/qlns-home.fxml");
+    }
 }

@@ -12,36 +12,40 @@ public class WorkerWorkHoursCalculator {
         double hoursShift2 = 0.0;
         double hoursShift3 = 0.0;
 
-        for (int i = 0; i < attendanceRecords.size() - 1; i++) {
-            AttendanceRecord record = attendanceRecords.get(i);
-            Timestamp timestamp = record.getTimestamp();
-            String type = record.getType();
+        if (attendanceRecords.size() >= 1) {
 
-            if ("checkin".equals(type)) {
-                AttendanceRecord checkoutRecord = attendanceRecords.get(i + 1);
-                if ("checkout".equals(checkoutRecord.getType())) {
-                    Timestamp checkoutTime = checkoutRecord.getTimestamp();
+            for (int i = 0; i < attendanceRecords.size() - 1; i++) {
+                AttendanceRecord record = attendanceRecords.get(i);
+                Timestamp timestamp = record.getTimestamp();
+                String type = record.getType();
 
-                    System.out.println(isWithinShift(timestamp, 8, 12));
+                if ("checkin".equals(type)) {
+                    AttendanceRecord checkoutRecord = attendanceRecords.get(i + 1);
+                    if ("checkout".equals(checkoutRecord.getType())) {
+                        Timestamp checkoutTime = checkoutRecord.getTimestamp();
 
-                    if (isWithinShift(timestamp, 8, 12) && isWithinShift(checkoutTime, 8, 12)) {
-                        hoursShift1 += calculateWorkerWorkHours(timestamp, checkoutTime);
-                    } else if (isWithinShift(timestamp, 13, 17) && isWithinShift(checkoutTime, 13, 17)) {
-                        hoursShift2 += calculateWorkerWorkHours(timestamp, checkoutTime);
-                    } else if (isWithinShift(timestamp, 18, 22) && isWithinShift(checkoutTime, 18, 22)) {
-                        hoursShift3 += calculateWorkerWorkHours(timestamp, checkoutTime);
-                    } else {
-                        throw new UnknownShiftException("Cannot define shift for " + timestamp.toString() + " and " + checkoutTime.toString());
+                        System.out.println(isWithinShift(timestamp, 8, 12));
+
+                        if (isWithinShift(timestamp, 8, 12) && isWithinShift(checkoutTime, 8, 12)) {
+                            hoursShift1 += calculateWorkerWorkHours(timestamp, checkoutTime);
+                        } else if (isWithinShift(timestamp, 13, 17) && isWithinShift(checkoutTime, 13, 17)) {
+                            hoursShift2 += calculateWorkerWorkHours(timestamp, checkoutTime);
+                        } else if (isWithinShift(timestamp, 18, 22) && isWithinShift(checkoutTime, 18, 22)) {
+                            hoursShift3 += calculateWorkerWorkHours(timestamp, checkoutTime);
+                        } else {
+                            throw new UnknownShiftException("Cannot define shift for " + timestamp.toString() + " and " + checkoutTime.toString());
+                        }
                     }
-                }
 
+                }
             }
         }
-
         List<Double> result = new ArrayList<>();
         result.add(hoursShift1);
         result.add(hoursShift2);
         result.add(hoursShift3);
+
+
         return result;
     }
 

@@ -38,6 +38,12 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
     @Override
     public void deleteRecord(AttendanceRecord currentRecord) {
         attendanceRecordRepository.deleteRecordById(currentRecord.getId());
+        String employeeRole = employeeRepository.getRoleById(currentRecord.getEmployeeId());
+        if (employeeRole.equals("worker")) {
+            updateWorkerAttendanceData(currentRecord);
+        } else if (employeeRole.equals("officer")) {
+            updateOfficerAttendanceData(currentRecord);
+        }
     }
 
     @Override
@@ -105,12 +111,23 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
     public void updateRecord(AttendanceRecord newRecord) {
         boolean checkTimekeeperIdExists = timekeeperRepository.checkTimeKeeperIdExists(newRecord.getTimeKeeperId());
         if (checkTimekeeperIdExists) {
-            attendanceRecordRepository.updateRecordById(newRecord);
-            updateWorkerAttendanceData(newRecord);
+            String employeeRole = employeeRepository.getRoleById(newRecord.getEmployeeId());
+            System.out.println("role" + employeeRole);
+            if (employeeRole.equals("worker")) {
+
+                attendanceRecordRepository.updateRecordById(newRecord);
+                // update changes in attendance data of that worker
+                updateWorkerAttendanceData(newRecord);
+            } else if (employeeRole.equals("officer")) {
+                attendanceRecordRepository.updateRecordById(newRecord);
+                // update changes in attendance data of that officer
+                updateOfficerAttendanceData(newRecord);
+            }
+
+
         } else {
             throw new TimeKeeperNotFoundException("TimeKeeper with id " + newRecord.getTimeKeeperId() + " not found.");
         }
-        attendanceRecordRepository.updateRecordById(newRecord);
     }
 
     public static class TimeKeeperNotFoundException extends RuntimeException {

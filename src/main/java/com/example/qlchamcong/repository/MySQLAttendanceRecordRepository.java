@@ -92,7 +92,6 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
             preparedStatement.setTimestamp(1, updatedRecord.getTimestamp());
             preparedStatement.setInt(2, updatedRecord.getTimeKeeperId());
             preparedStatement.setInt(3, updatedRecord.getId());
-
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

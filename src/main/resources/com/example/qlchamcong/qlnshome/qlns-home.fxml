@@ -1,21 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="700" prefWidth="835.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.qlchamcong.qlnshome.HRHomeViewManager">
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.qlnshome.HRHomeViewManager">
    <children>
-      <Label fx:id="homePageText" layoutX="95.0" layoutY="14.0" prefHeight="28.0" prefWidth="76.0" text="Home Page" />
-      <TableView fx:id="attendanceTableView" prefWidth="600">
+      <Label layoutX="176.0" layoutY="22.0" prefHeight="34.0" prefWidth="498.0" text="ENTERPRISE-WIDE ATTENDANCE INFORMATION">
+         <font>
+            <Font size="23.0" />
+         </font></Label>
+      <TableView fx:id="attendanceTableView" layoutX="41.0" layoutY="98.0" prefHeight="251.0" prefWidth="768.0">
          <columns>
-            <TableColumn text="ID" fx:id="idColumn"/>
-            <TableColumn text="ID Nhân viên" fx:id="employeeIdColumn"/>
-            <TableColumn text="Ngày" fx:id="dateColumn"/>
-            <TableColumn text="Số giờ ca 1" fx:id="hoursShift1Column"/>
-            <TableColumn text="Số giờ ca 2" fx:id="hoursShift2Column"/>
-            <TableColumn text="Số giờ ca 3" fx:id="hoursShift3Column"/>
-            <TableColumn text="Xem Chi Tiết" fx:id="viewDetailsColumn"/>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="employeeIdColumn" text="Worker ID" />
+            <TableColumn fx:id="dateColumn" text="Date" />
+            <TableColumn fx:id="hoursShift1Column" text="Shift 1 (h)" />
+            <TableColumn fx:id="hoursShift2Column" text="Shift 2 (h)" />
+            <TableColumn fx:id="hoursShift3Column" text="Shift 3 (h)" />
+            <TableColumn fx:id="viewDetailsColumn" text="View details" />
          </columns>
       </TableView>
+      <Separator layoutX="78.0" layoutY="371.0" prefHeight="0.0" prefWidth="694.0" />
+      <TableView fx:id="officerAttendanceTableView" layoutX="41.0" layoutY="414.0" prefHeight="251.0" prefWidth="768.0">
+         <columns>
+            <TableColumn fx:id="oIdColumn" text="ID" />
+            <TableColumn fx:id="officerIdColumn" text="Officer ID" />
+            <TableColumn fx:id="officerDateColumn" text="Date" />
+            <TableColumn fx:id="morningSessionColumn" text="Morning" />
+            <TableColumn fx:id="afternoonSessionColumn" text="Afternoon" />
+            <TableColumn fx:id="hoursLateColumn" text="Late (h)" />
+            <TableColumn fx:id="earlyLeaveColumn" text="Early leave (h)" />
+            <TableColumn fx:id="viewOfficerDetailsColumn" text="View Details" />
+         </columns>
+      </TableView>
+      <Label layoutX="41.0" layoutY="72.0" text="Worker Attendance Data">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="388.0" text="Officer Attendance Data">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="datePicker" layoutX="633.0" layoutY="59.0" />
    </children>
 </AnchorPane>
