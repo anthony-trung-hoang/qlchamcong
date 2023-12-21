@@ -20,9 +20,12 @@ module com.example.qlchamcong {
     opens com.example.qlchamcong.thanhdieuhuongtdv to javafx.fxml;
     opens com.example.qlchamcong.truongdonvihome to javafx.fxml;
 
+    opens com.example.qlchamcong.viewreportofficeattendance to javafx.fxml;
     opens com.example.qlchamcong.viewdepartmentlist to javafx.fxml;
 
+    exports com.example.qlchamcong.viewreportofficeattendance;
     exports com.example.qlchamcong.viewdepartmentlist;
+
     exports com.example.qlchamcong.viewattendancerecord;
     exports com.example.qlchamcong;
     exports com.example.qlchamcong.dangnhap;

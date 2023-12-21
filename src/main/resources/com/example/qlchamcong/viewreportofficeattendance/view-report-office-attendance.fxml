@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewreportofficeattendance.ReportOfficeAttendanceViewManager">
+    <Label layoutX="130.0" layoutY="29.0" prefHeight="28.0" prefWidth="215.0" text="Danh sách bộ phận" />
+    <TableView fx:id="reportAttendanceTableView" layoutX="45.0" layoutY="117.0" prefHeight="168.0" prefWidth="522.0">
+        <columns>
+            <TableColumn fx:id="employeeId" prefWidth="75.0" text="ID" />
+            <TableColumn fx:id="employeeName" prefWidth="75.0" text="Name" />
+            <TableColumn fx:id="departmentName" prefWidth="75.0" text="Department" />
+            <TableColumn fx:id="month" prefWidth="75.0" text="Month" />
+            <TableColumn fx:id="totalWorkSession" prefWidth="75.0" text="Work time(sessions)" />
+            <TableColumn fx:id="totalHoursLate" prefWidth="75.0" text="Late(h)" />
+            <TableColumn fx:id="totalHoursLeavingEarly" prefWidth="75.0" text="Leaving early(h)" />
+        </columns>
+    </TableView>
+</AnchorPane>

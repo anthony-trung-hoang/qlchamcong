@@ -10,6 +10,7 @@ public class RepositoryInitializer {
     private static IAttendanceRecordRepository attendanceRecordRepository;
     private static ITimekeeperRepository timekeeperRepository;
     private static IOfficerAttendanceDataRepository officerAttendanceDataRepository;
+    private static IOfficerReportAttendanceRepository officerReportAttendanceRepository;
     public RepositoryInitializer(Connection connection, DatabaseType databaseType) {
         switch (databaseType) {
             case MYSQL:
@@ -18,6 +19,7 @@ public class RepositoryInitializer {
                 attendanceRecordRepository = new MySQLAttendanceRecordRepository(connection);
                 timekeeperRepository = new MySQLTimekeeperRepository(connection);
                 officerAttendanceDataRepository = new MySQLOfficerAttendanceDataRepository(connection);
+                officerReportAttendanceRepository=new MySQLOfficerReportAttendanceRepository(connection);
         }
     }
 
@@ -42,5 +44,9 @@ public class RepositoryInitializer {
 
     public static IAttendanceRecordRepository getAttendanceRecordRepository() {
         return attendanceRecordRepository;
+    }
+
+    public static IOfficerReportAttendanceRepository getOfficerReportAttendanceRepository() {
+        return officerReportAttendanceRepository;
     }
 }

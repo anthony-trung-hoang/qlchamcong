@@ -28,7 +28,8 @@ public class HRSystemAPIService implements IHRSystemAPIService {
         for (Department department : departmentList) {
             for (int i = 0; i < department.getTotalEmployee(); i++) { // Tạo 40 nhân viên cho mỗi phòng ban
                 String employeeName = "Employee "+department.getName() + employeeIdCounter++;
-                Employee employee = new Employee(employeeIdCounter, employeeName, RoleEmployee.CONG_NHAN, department,new Date("12/01/2022"));
+                RoleEmployee role = department.getType()==RoleDepartment.VAN_PHONG?RoleEmployee.NHAN_VIEN:RoleEmployee.CONG_NHAN;
+                Employee employee = new Employee(employeeIdCounter, employeeName, role, department,new Date("01/01/2022"));
                 employeeList.add(employee);
             }
         }
@@ -42,6 +43,17 @@ public class HRSystemAPIService implements IHRSystemAPIService {
     @Override
     public List<Employee> getEmployeeList() {
         return employeeList;
+    }
+
+    @Override
+    public List<Employee> getEmployeeList(int id, Date date) {
+        List<Employee> employees = new ArrayList<>();
+       for (Employee employee :employeeList){
+           if(employee.getDepartment().getId()==id && employee.getDateStartWork().compareTo(date)<0) {
+             employees.add(employee);
+           }
+       }
+       return  employees;
     }
 
 }

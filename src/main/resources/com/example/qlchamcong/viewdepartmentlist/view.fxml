@@ -14,7 +14,7 @@
           <TableColumn fx:id="founding" prefWidth="75.0" text="Founding" />
           <TableColumn fx:id="numberStaff" prefWidth="75.0" text="Total staff" />
           <TableColumn fx:id="leader" prefWidth="75.0" text="Leader" />
-          <TableColumn fx:id="action" prefWidth="75.0" text="Operation" />
+          <TableColumn fx:id="viewReportColumn" prefWidth="75.0" text="Operation" />
       </columns>
     </TableView>
 </AnchorPane>

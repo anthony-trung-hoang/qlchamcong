@@ -21,6 +21,8 @@ public class OfficerAttendanceData {
         this.hoursEarlyLeave = hoursEarlyLeave;
     }
 
+
+
     public int getId() {
         return id;
     }
