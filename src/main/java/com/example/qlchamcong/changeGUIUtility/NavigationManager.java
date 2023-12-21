@@ -8,23 +8,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class NavigationManager {
     private static NavigationManager instance;
     private Pane contentPane;
-
-    private Map<String, Object> sharedDataMap;
-
-    public void setCurrentScene(Scene currentScene) {
-        this.currentScene = currentScene;
-    }
-
     private Scene currentScene;
 
     private NavigationManager() {
-        sharedDataMap = new HashMap<>();
     }
 
     public static NavigationManager getInstance() {
@@ -34,16 +24,12 @@ public class NavigationManager {
         return instance;
     }
 
+    public void setCurrentScene(Scene currentScene) {
+        this.currentScene = currentScene;
+    }
+
     public void setContentPane(Pane contentPane) {
         this.contentPane = contentPane;
-    }
-
-    public void setSharedData(String key, Object sharedData) {
-        sharedDataMap.put(key, sharedData);
-    }
-
-    public Object getSharedData(String key) {
-        return sharedDataMap.get(key);
     }
 
     public void changeGUI(String viewResource) throws IOException {

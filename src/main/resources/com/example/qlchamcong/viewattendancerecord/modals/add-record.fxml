@@ -88,6 +88,11 @@
             </TextField>
         </children>
     </GridPane>
+   <HBox alignment="CENTER" prefHeight="27.0" prefWidth="600.0">
+      <children>
+         <Label fx:id="errorLabel" contentDisplay="CENTER" />
+      </children>
+   </HBox>
     <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
         <children>
             <Button mnemonicParsing="false" onAction="#saveButtonAction" text="Save" />

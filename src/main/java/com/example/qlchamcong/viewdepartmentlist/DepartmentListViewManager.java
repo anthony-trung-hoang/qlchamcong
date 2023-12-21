@@ -2,7 +2,7 @@ package com.example.qlchamcong.viewdepartmentlist;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
 import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
@@ -16,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package com.example.qlchamcong.thanhdieuhuongqlns;
+package com.example.qlchamcong.hrnavbar;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 

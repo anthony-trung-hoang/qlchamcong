@@ -12,4 +12,5 @@ public interface IEmployeeRepository {
     List<Employee> layTatCaEmployee();
     Employee timKiemTheoTen(String name);
     Employee timKiemTheoTenDangNhap(String username);
+    String getRoleById(int employeeId);
 }

@@ -1,9 +1,9 @@
 package com.example.qlchamcong.viewattendancerecord.updaterecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
-import com.example.qlchamcong.changeGUIUtility.PassArgumentUtil;
+import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class UpdateRecordViewManager implements Initializable {
 
+    @FXML
+    public Label errorLabel;
     UpdateRecordController updateRecordController;
     @FXML
     public Label employeeIdLabel;
@@ -37,18 +39,18 @@ public class UpdateRecordViewManager implements Initializable {
     public void saveButtonAction() throws ParseException, IOException {
         AttendanceRecord newRecord = getNewRecordFromUI();
         System.out.println(newRecord);
-        updateRecordController.saveNewRecord(newRecord);
-        updateRecordController.closeModal();
+        try {
+            updateRecordController.saveNewRecord(newRecord);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            setErrorLabel(e.getMessage());
+        }
     }
 
     private AttendanceRecord getNewRecordFromUI() throws ParseException {
         String newTimestamp = timeTextField.getText();
         int newTimekeeperId = Integer.parseInt(timeKeeperIdTextField.getText());
         Timestamp updatedTimestamp = getTimestamp(newTimestamp);
-
-//        System.out.println("Chuỗi ban đầu: " + newTimestamp);
-//        System.out.println("Timestamp sau cập nhật: " + updatedTimestamp);
-//        System.out.println("New Timekeeper Id: " + newTimekeeperId);
         return new AttendanceRecord(currentRecord.getId(), currentRecord.getEmployeeId(), updatedTimestamp, newTimekeeperId, currentRecord.getType());
 
     }
@@ -100,6 +102,10 @@ public class UpdateRecordViewManager implements Initializable {
         timeKeeperIdTextField.setFocusTraversable(false);
         timeTextField.setFocusTraversable(false);
         timeKeeperIdTextField.setPromptText(timeKeeperId);
+    }
+
+    private void setErrorLabel(String errorMessage) {
+        this.errorLabel.setText(errorMessage);
     }
 
 
