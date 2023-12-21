@@ -1,5 +1,6 @@
 package com.example.qlchamcong;
 
+import com.example.qlchamcong.HRSystem.HRSystemInitializer;
 import com.example.qlchamcong.dangnhap.DangNhapViewManager;
 import com.example.qlchamcong.database.DatabaseType;
 import com.example.qlchamcong.database.MySQLConnector;
@@ -22,8 +23,10 @@ public class HelloApplication extends Application {
             connection = (new MySQLConnector()).getConnection();
         }
 
+        new HRSystemInitializer();
         new RepositoryInitializer(connection, Config.DATABASE_TYPE);
         new ServiceInitializer();
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/qlchamcong/dangnhap/dang-nhap.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Phan mem quan ly cham cong");

@@ -1,8 +1,7 @@
 package com.example.qlchamcong.entity;
 
-public enum Role {
+
+public enum RoleEmployee {
     NHAN_VIEN,
     CONG_NHAN,
-    TRUONG_DON_VI,
-    QUAN_LY_NHAN_SU
 }

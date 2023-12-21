@@ -4,6 +4,11 @@ module com.example.qlchamcong {
 
     requires org.controlsfx.controls;
     requires java.sql;
+    requires com.google.gson;
+    requires com.opencsv;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+
     opens com.example.qlchamcong to javafx.fxml;
     opens com.example.qlchamcong.dangnhap to javafx.fxml;
     opens com.example.qlchamcong.hrnavbar to javafx.fxml;

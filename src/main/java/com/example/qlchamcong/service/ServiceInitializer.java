@@ -1,5 +1,6 @@
 package com.example.qlchamcong.service;
 
+import com.example.qlchamcong.HRSystem.HRSystemInitializer;
 import com.example.qlchamcong.repository.RepositoryInitializer;
 
 public class ServiceInitializer {
@@ -12,7 +13,7 @@ public class ServiceInitializer {
 
     public ServiceInitializer() {
         dangNhapService = new DangNhapService(RepositoryInitializer.getNguoiDungRepository());
-        importDLCCService = new ImportDLCCService(RepositoryInitializer.getTimekeeperRepository(), RepositoryInitializer.getWorkerAttendanceDataRepository(), RepositoryInitializer.getOfficerAttendanceDataRepository());
+        importDLCCService = new ImportDLCCService(RepositoryInitializer.getTimekeeperRepository(), RepositoryInitializer.getWorkerAttendanceDataRepository(), RepositoryInitializer.getOfficerAttendanceDataRepository(), HRSystemInitializer.getIhrSystemAPIService());
         qlnsHomeService = new QLNSHomeService();
         homeScreenService = new HomeScreenService();
         viewAttendanceRecordsService = new ViewAttendanceRecordsService();

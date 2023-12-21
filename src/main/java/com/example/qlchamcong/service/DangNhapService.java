@@ -1,8 +1,8 @@
 package com.example.qlchamcong.service;
 
 import com.example.qlchamcong.entity.Employee;
+import com.example.qlchamcong.entity.RoleEmployee;
 import com.example.qlchamcong.repository.IEmployeeRepository;
-import com.example.qlchamcong.entity.Role;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -14,7 +14,7 @@ public class DangNhapService implements IDangNhapService {
         this.nguoiDungRepository = nguoiDungRepository;
     }
 
-    public Role dangNhap(String username, String password) {
+    public RoleEmployee dangNhap(String username, String password) {
         Employee nguoiDung = nguoiDungRepository.timKiemTheoTenDangNhap(username);
 //        if (nguoiDung != null && xacThucMatKhau(password, nguoiDung.getSalt(), nguoiDung.getMatKhau())) {
 //            return nguoiDung.getVaiTro();

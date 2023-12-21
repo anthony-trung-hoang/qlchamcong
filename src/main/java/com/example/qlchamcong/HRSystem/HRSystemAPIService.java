@@ -1,9 +1,9 @@
 package com.example.qlchamcong.HRSystem;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
-import com.example.qlchamcong.HRSystem.entity.Employee;
 import com.example.qlchamcong.HRSystem.entity.RoleDepartment;
-import com.example.qlchamcong.HRSystem.entity.RoleEmployee;
+import com.example.qlchamcong.entity.Employee;
+import com.example.qlchamcong.entity.RoleEmployee;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,7 +19,7 @@ public class HRSystemAPIService implements IHRSystemAPIService {
         departmentList.add(new Department(3, "Finance", 20, new Date("10/01/2022"), RoleDepartment.VAN_PHONG));
         departmentList.add(new Department(4, "Factory", 80, new Date("10/01/2022"), RoleDepartment.NHA_MAY));
         departmentList.add(new Department(5, "Design", 30, new Date("10/01/2022"), RoleDepartment.VAN_PHONG));
-        generateEmployees();
+        generateEmployeeHung();
     }
 
     private void generateEmployees() {
@@ -34,6 +34,13 @@ public class HRSystemAPIService implements IHRSystemAPIService {
         }
     }
 
+    private void generateEmployeeHung() {
+        for (int i = 0; i < 15; i++) {
+            Employee employee = new Employee(20172020 + i, RoleEmployee.CONG_NHAN);
+            employeeList.add(employee);
+        }
+    }
+
     @Override
     public List<Department> getDeparmentList() {
         return departmentList;
@@ -43,5 +50,4 @@ public class HRSystemAPIService implements IHRSystemAPIService {
     public List<Employee> getEmployeeList() {
         return employeeList;
     }
-
 }
