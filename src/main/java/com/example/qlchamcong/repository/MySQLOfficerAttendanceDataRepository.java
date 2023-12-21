@@ -46,7 +46,7 @@ public class MySQLOfficerAttendanceDataRepository implements IOfficerAttendanceD
 
     @Override
     public void updateOfficerAttendanceData(int id, boolean morningSession, boolean afternoonSession, double lateHours, double earlyLeaveHours) {
-        String query = "UPDATE OfficerAttendanceData SET morning_session = ?, afternoon_session = ?, late_hours = ?, early_leave_hours = ? WHERE id = ?";
+        String query = "UPDATE OfficerAttendanceData SET morningSession = ?, afternoonSession = ?, hoursLate = ?, hoursEarlyLeave = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setBoolean(1, morningSession);

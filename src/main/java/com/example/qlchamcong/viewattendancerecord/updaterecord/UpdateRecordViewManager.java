@@ -42,6 +42,7 @@ public class UpdateRecordViewManager implements Initializable {
         try {
             updateRecordController.saveNewRecord(newRecord);
         } catch (RuntimeException e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
             setErrorLabel(e.getMessage());
         }

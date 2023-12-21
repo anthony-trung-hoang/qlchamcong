@@ -30,7 +30,9 @@ public class HRHomeController {
         navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 
-    public void showDetails(OfficerAttendanceData officerAttendanceData) {
+    public void showDetails(OfficerAttendanceData officerAttendanceData) throws IOException {
+        argumentUtil.setSharedData("fromHomeToAttendanceRecord", officerAttendanceData);
+        navUtil.changeGUI("/com/example/qlchamcong/viewattendancerecord/view-attendance-record.fxml");
     }
 
     public List<OfficerAttendanceData> fetchTableOfficerData() {

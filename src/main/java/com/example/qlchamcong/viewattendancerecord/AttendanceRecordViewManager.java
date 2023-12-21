@@ -1,11 +1,12 @@
 package com.example.qlchamcong.viewattendancerecord;
 
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
-import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
 import com.example.qlchamcong.entity.AttendanceRecord;
+import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
+import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -51,16 +52,31 @@ public class AttendanceRecordViewManager implements Initializable {
         IPassArgument argumentUtil = new PassArgumentUtil();
         attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
 
-        WorkerAttendanceData shareData = getInitialData();
-        setInitialUI(shareData);
-        fetchAndDisplayTableData(shareData.getEmployeeId(), shareData.getDate());
+
+        Object shareData = getInitialData();
+        System.out.println(shareData instanceof WorkerAttendanceData);
+        System.out.println(shareData instanceof OfficerAttendanceData);
+        if (shareData instanceof WorkerAttendanceData workerAttendanceData) {
+            setInitialUI(workerAttendanceData);
+            fetchAndDisplayTableData(workerAttendanceData.getEmployeeId(), workerAttendanceData.getDate());
+
+        } else {
+            assert shareData instanceof OfficerAttendanceData;
+            OfficerAttendanceData officerAttendanceData = (OfficerAttendanceData) shareData;
+            setInitialUI(officerAttendanceData);
+            fetchAndDisplayTableData(officerAttendanceData.getEmployeeId(), officerAttendanceData.getDate());
+        }
     }
 
-    public WorkerAttendanceData getInitialData() {
-        return (WorkerAttendanceData) attendanceRecordController.getInitialData();
+    public Object getInitialData() {
+        return attendanceRecordController.getInitialData();
     }
 
     public void setInitialUI(WorkerAttendanceData initialData) {
+        employeeIdLabel.setText(initialData.getEmployeeId() + "");
+        dateLabel.setText(initialData.getDate().toString());
+    }
+    public void setInitialUI(OfficerAttendanceData initialData) {
         employeeIdLabel.setText(initialData.getEmployeeId() + "");
         dateLabel.setText(initialData.getDate().toString());
     }
