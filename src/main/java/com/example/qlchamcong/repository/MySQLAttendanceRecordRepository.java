@@ -32,7 +32,7 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
                     record.setEmployeeId(resultSet.getInt("employeeId"));
                     record.setTimeKeeperId(resultSet.getInt("timeKeeperId"));
                     record.setTimestamp(resultSet.getTimestamp("timestamp"));
-                    record.setType(resultSet.getString("type"));  // Thêm trường type
+                    record.setType(resultSet.getString("type"));
                     records.add(record);
                 }
             }
@@ -120,4 +120,52 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
         return count;
     }
 
+    public void saveAttendanceRecords(List<AttendanceRecord> attendanceRecords) {
+        String query = "INSERT INTO attendancerecord (employeeId, timeKeeperId, timestamp) VALUES (?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            for (AttendanceRecord record : attendanceRecords) {
+                preparedStatement.setInt(1, record.getEmployeeId());
+                preparedStatement.setInt(2, record.getTimeKeeperId());
+                preparedStatement.setTimestamp(3, new java.sql.Timestamp(record.getTimestamp().getTime()));
+                preparedStatement.addBatch();
+            }
+
+            // Execute batch update
+            preparedStatement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public AttendanceRecord getLatestAttendanceRecordByTimeKeeperId(int timeKeeperId) {
+        String query = "SELECT ar.id, ar.employeeId, ar.timeKeeperId, ar.timestamp, tk.type " +
+                "FROM AttendanceRecord ar " +
+                "INNER JOIN Timekeeper tk ON ar.timeKeeperId = tk.id " +
+                "WHERE ar.timeKeeperId = ? " +
+                "ORDER BY ar.timestamp DESC " +
+                "LIMIT 1";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, timeKeeperId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    AttendanceRecord record = new AttendanceRecord();
+                    record.setId(resultSet.getInt("id"));
+                    record.setEmployeeId(resultSet.getInt("employeeId"));
+                    record.setTimeKeeperId(resultSet.getInt("timeKeeperId"));
+                    record.setTimestamp(resultSet.getTimestamp("timestamp"));
+                    record.setType(resultSet.getString("type"));
+                    return record;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

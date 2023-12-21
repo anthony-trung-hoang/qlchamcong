@@ -41,7 +41,7 @@ public class AddRecordViewManager implements Initializable {
         try {
             addRecordController.saveNewRecord(newRecord);
         } catch (RuntimeException e) {
-            System.out.println("From view " + e.getMessage());
+//            System.out.println("From view " + e.getMessage());
             setErrorLabel(e.getMessage());
         }
     }
@@ -73,7 +73,7 @@ public class AddRecordViewManager implements Initializable {
     }
 
     public void cancelButtonAction() throws IOException {
-        System.out.println("Cancel button clicked");
+//        System.out.println("Cancel button clicked");
         addRecordController.closeModal();
     }
 

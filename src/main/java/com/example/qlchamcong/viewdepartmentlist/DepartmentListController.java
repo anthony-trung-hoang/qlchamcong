@@ -19,7 +19,7 @@ public class DepartmentListController {
         this.navUtil = navUtil;
         this.reportAttendanceService= ServiceInitializer.getReportAttendanceService();
        List<Department> data= fetchListOfDepartment();
-       System.out.println(data.get(0).getName());
+//       System.out.println(data.get(0).getName());
     }
     public List<Department> fetchListOfDepartment() {
         return reportAttendanceService.getDepartmentList();

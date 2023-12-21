@@ -11,4 +11,6 @@ public interface IOfficerAttendanceDataRepository {
     void updateOfficerAttendanceData(int id, boolean morningSession, boolean afternoonSession, double lateHours, double earlyLeaveHours);
 
     List<OfficerAttendanceData> getAllOfficerAttendanceDataByDate(java.sql.Date date);
+
+    void saveOfficerAttendanceDataList(List<OfficerAttendanceData> officerAttendanceDataList);
 }

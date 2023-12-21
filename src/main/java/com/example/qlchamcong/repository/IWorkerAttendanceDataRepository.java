@@ -11,4 +11,6 @@ public interface IWorkerAttendanceDataRepository {
     WorkerAttendanceData getWorkerAttendanceDataByEmployeeAndDate(int employeeId, Date date);
 
     void updateWorkerAttendanceData(int id, double hoursShift1, double hoursShift2, double hoursShift3);
+
+    void saveWorkerAttendanceDataList(List<WorkerAttendanceData> workerAttendanceDataList);
 }

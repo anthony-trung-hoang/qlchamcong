@@ -39,7 +39,7 @@ public class NavigationManager {
 
             contentPane.getChildren().setAll(root);
         } else {
-            System.out.println("Error: contentPane is null. Set contentPane first.");
+//            System.out.println("Error: contentPane is null. Set contentPane first.");
         }
     }
 
@@ -68,7 +68,7 @@ public class NavigationManager {
             modalStage.initModality(Modality.WINDOW_MODAL);
             modalStage.showAndWait();
         } else {
-            System.out.println("Error: contentPane is null. Set contentPane first.");
+//            System.out.println("Error: contentPane is null. Set contentPane first.");
         }
     }
 

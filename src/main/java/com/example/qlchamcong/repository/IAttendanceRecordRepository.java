@@ -15,4 +15,8 @@ public interface IAttendanceRecordRepository {
     void updateRecordById(AttendanceRecord newRecord);
 
     int getNumberOfRecordsInADayByDateAndEmployee(int employeeId, Date date);
+
+    void saveAttendanceRecords(List<AttendanceRecord> attendanceRecords);
+
+    AttendanceRecord getLatestAttendanceRecordByTimeKeeperId(int timeKeeperId);
 }

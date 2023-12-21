@@ -33,7 +33,7 @@ public class DangNhapViewManager implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/hrnavbar/hr-navbar.fxml"));
         if (Objects.equals(role, "1")) {
-            System.out.println(role);
+//            System.out.println(role);
 
             loader = new FXMLLoader(getClass().getResource("/com/example/qlchamcong/thanhdieuhuongtdv/thanh-dieu-huong-tdv.fxml"));
         }
@@ -45,7 +45,7 @@ public class DangNhapViewManager implements Initializable {
 
         stage.setScene(scene);
         stage.centerOnScreen();
-        System.out.println("Dang nhap thanh cong");
+//        System.out.println("Dang nhap thanh cong");
     }
 
     @Override

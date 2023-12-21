@@ -63,7 +63,6 @@ public class MySQLOfficerAttendanceDataRepository implements IOfficerAttendanceD
     @Override
     public List<OfficerAttendanceData> getAllOfficerAttendanceDataByDate(java.sql.Date date) {
 
-
         List<OfficerAttendanceData> dataList = new ArrayList<>();
         String query = "SELECT * FROM OfficerAttendanceData WHERE DATE(date) = ?";
 
@@ -85,9 +84,31 @@ public class MySQLOfficerAttendanceDataRepository implements IOfficerAttendanceD
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
 
         return dataList;
+    }
+
+    @Override
+    public void saveOfficerAttendanceDataList(List<OfficerAttendanceData> officerAttendanceDataList) {
+        String query = "INSERT INTO officerattendancedata (employeeId, date, hoursLate, hoursEarlyLeave, morningSession, afternoonSession) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            for (OfficerAttendanceData officerAttendanceData : officerAttendanceDataList) {
+                preparedStatement.setInt(1, officerAttendanceData.getEmployeeId());
+                preparedStatement.setDate(2, new java.sql.Date(officerAttendanceData.getDate().getTime()));
+                preparedStatement.setDouble(3, officerAttendanceData.getHoursLate());
+                preparedStatement.setDouble(4, officerAttendanceData.getHoursEarlyLeave());
+                preparedStatement.setBoolean(5, officerAttendanceData.isMorningSession());
+                preparedStatement.setBoolean(6, officerAttendanceData.isAfternoonSession());
+                preparedStatement.addBatch();
+            }
+
+            // Execute batch update
+            preparedStatement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

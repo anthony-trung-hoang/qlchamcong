@@ -40,7 +40,7 @@ public class MySQLWorkerAttendanceDataRepository implements IWorkerAttendanceDat
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
         }
 
         return dataList;
@@ -75,7 +75,7 @@ public class MySQLWorkerAttendanceDataRepository implements IWorkerAttendanceDat
 
     @Override
     public void updateWorkerAttendanceData(int id, double hoursShift1, double hoursShift2, double hoursShift3) {
-        System.out.println(hoursShift1 + " " + hoursShift2 + hoursShift3);
+//        System.out.println(hoursShift1 + " " + hoursShift2 + hoursShift3);
         String query = "UPDATE WorkerAttendanceData SET hoursShift1 = ?, hoursShift2 = ?, hoursShift3 = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -90,6 +90,26 @@ public class MySQLWorkerAttendanceDataRepository implements IWorkerAttendanceDat
         }
     }
 
+    @Override
+    public void saveWorkerAttendanceDataList(List<WorkerAttendanceData> workerAttendanceDataList) {
+        String query = "INSERT INTO workerattendancedata (employeeId, date, hoursShift1, hoursShift2, hoursShift3) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            for (WorkerAttendanceData workerAttendanceData : workerAttendanceDataList) {
+                preparedStatement.setInt(1, workerAttendanceData.getEmployeeId());
+                preparedStatement.setDate(2, new java.sql.Date(workerAttendanceData.getDate().getTime()));
+                preparedStatement.setDouble(3, workerAttendanceData.getHoursShift1());
+                preparedStatement.setDouble(4, workerAttendanceData.getHoursShift2());
+                preparedStatement.setDouble(5, workerAttendanceData.getHoursShift3());
+                preparedStatement.addBatch();
+            }
+
+            // Execute batch update
+            preparedStatement.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

@@ -11,7 +11,7 @@ public class MySQLConnector implements DatabaseConnector {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(DatabaseConfig.URL, DatabaseConfig.USERNAME, DatabaseConfig.PASSWORD);
-            System.out.println("Found database connection");
+//            System.out.println("Found database connection");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }

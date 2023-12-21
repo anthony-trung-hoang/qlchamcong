@@ -1,5 +1,7 @@
 package com.example.qlchamcong.entity;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class WorkerAttendanceData {
@@ -17,6 +19,10 @@ public class WorkerAttendanceData {
         this.hoursShift1 = hoursShift1;
         this.hoursShift2 = hoursShift2;
         this.hoursShift3 = hoursShift3;
+    }
+
+    public WorkerAttendanceData(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     @Override
@@ -81,5 +87,16 @@ public class WorkerAttendanceData {
 
     public void setHoursShift3(double hoursShift3) {
         this.hoursShift3 = hoursShift3;
+    }
+
+    public String getFormattedDate() {
+        Timestamp timestamp = new Timestamp(date.getTime());
+        LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
+        int year = localDate.getYear();
+        int month = localDate.getMonthValue();
+        int day = localDate.getDayOfMonth();
+        System.out.println(day + "/" + month + "/" + year);
+
+        return day + "/" + month + "/" + year;
     }
 }

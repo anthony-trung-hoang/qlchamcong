@@ -105,7 +105,7 @@ public class HRHomeViewManager implements Initializable {
 
     private void handleDatePickerAction() {
         LocalDate selectedDate = datePicker.getValue();
-        System.out.println("Selected Date: " + selectedDate);
+//        System.out.println("Selected Date: " + selectedDate);
 
         Date passDate = java.sql.Date.valueOf(selectedDate);
         fetchAndDisplayWorkerTableData(passDate);
@@ -144,7 +144,7 @@ public class HRHomeViewManager implements Initializable {
         });
 
         List<WorkerAttendanceData> workerAttendanceDataList = qlnsHomeController.fetchTableWorkerData(date);
-        System.out.println(Arrays.toString(workerAttendanceDataList.toArray()));
+//        System.out.println(Arrays.toString(workerAttendanceDataList.toArray()));
         ObservableList<WorkerAttendanceData> observableList = FXCollections.observableArrayList(workerAttendanceDataList);
         attendanceTableView.setItems(observableList);
     }
@@ -182,7 +182,7 @@ public class HRHomeViewManager implements Initializable {
             });
 
             List<OfficerAttendanceData> officerAttendanceData = qlnsHomeController.fetchTableOfficerData(date);
-            System.out.println(Arrays.toString(officerAttendanceData.toArray()));
+//            System.out.println(Arrays.toString(officerAttendanceData.toArray()));
             ObservableList<OfficerAttendanceData> observableList = FXCollections.observableArrayList(officerAttendanceData);
             officerAttendanceTableView.setItems(observableList);
         } catch (Exception e) {

@@ -51,7 +51,7 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
         boolean checkTimekeeperIdExists = timekeeperRepository.checkTimeKeeperIdExists(newRecord.getTimeKeeperId());
         if (checkTimekeeperIdExists) {
             String employeeRole = employeeRepository.getRoleById(newRecord.getEmployeeId());
-            System.out.println("role" + employeeRole);
+//            System.out.println("role" + employeeRole);
             if (employeeRole.equals("worker")) {
                 int maxRecordAllowed = 6;
                 int numberOfRecordsInDay = attendanceRecordRepository.getNumberOfRecordsInADayByDateAndEmployee(newRecord.getEmployeeId(), newRecord.getDateFromTimestamp());
@@ -83,11 +83,11 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
         int employeeId = 3;
         Date date = newRecord.getDateFromTimestamp();
         OfficerAttendanceData officerAttendanceData = officerAttendanceDataRepository.getOfficerAttendanceDataByEmployeeAndDate(employeeId, date);
-        System.out.println(officerAttendanceData);
+//        System.out.println(officerAttendanceData);
         List<AttendanceRecord> attendanceRecordList = getRecordsOfAnEmployeeInADay(employeeId, date);
         attendanceRecordList.sort(Comparator.comparing(AttendanceRecord::getTimestamp));
         List<Double> calculatedResult = List.of(OfficerWorkHoursCalculator.calculateOfficeWorkHours(attendanceRecordList));
-        System.out.println(Arrays.toString(calculatedResult.toArray()));
+//        System.out.println(Arrays.toString(calculatedResult.toArray()));
         boolean morningSession = calculatedResult.get(0) == 1;
         boolean afternoonSession = calculatedResult.get(1) == 1;
         double lateHours = calculatedResult.get(2);
@@ -112,7 +112,7 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
         boolean checkTimekeeperIdExists = timekeeperRepository.checkTimeKeeperIdExists(newRecord.getTimeKeeperId());
         if (checkTimekeeperIdExists) {
             String employeeRole = employeeRepository.getRoleById(newRecord.getEmployeeId());
-            System.out.println("role" + employeeRole);
+//            System.out.println("role" + employeeRole);
             if (employeeRole.equals("worker")) {
 
                 attendanceRecordRepository.updateRecordById(newRecord);

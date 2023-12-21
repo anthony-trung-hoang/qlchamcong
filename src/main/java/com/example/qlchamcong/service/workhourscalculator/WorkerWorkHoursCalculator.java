@@ -1,6 +1,7 @@
 package com.example.qlchamcong.service.workhourscalculator;
 
 import com.example.qlchamcong.entity.AttendanceRecord;
+import com.example.qlchamcong.exception.UnknownShiftException;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class WorkerWorkHoursCalculator {
                     if ("checkout".equals(checkoutRecord.getType())) {
                         Timestamp checkoutTime = checkoutRecord.getTimestamp();
 
-                        System.out.println(isWithinShift(timestamp, 8, 12));
+//                        System.out.println(isWithinShift(timestamp, 8, 12));
 
                         if (isWithinShift(timestamp, 8, 12) && isWithinShift(checkoutTime, 8, 12)) {
                             hoursShift1 += calculateWorkerWorkHours(timestamp, checkoutTime);
@@ -57,11 +58,5 @@ public class WorkerWorkHoursCalculator {
     private static boolean isWithinShift(Timestamp timestamp, int startHour, int endHour) {
         int hour = timestamp.toLocalDateTime().getHour();
         return hour >= startHour && hour <= endHour;
-    }
-
-    public static class UnknownShiftException extends RuntimeException {
-        public UnknownShiftException(String message) {
-            super(message);
-        }
     }
 }

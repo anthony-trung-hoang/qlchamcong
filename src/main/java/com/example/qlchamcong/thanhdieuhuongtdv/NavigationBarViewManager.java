@@ -64,6 +64,6 @@ public class NavigationBarViewManager implements Initializable {
 
         stage.setScene(scene);
         stage.centerOnScreen();
-        System.out.println("Dang xuat thanh cong");
+//        System.out.println("Dang xuat thanh cong");
     }
 }

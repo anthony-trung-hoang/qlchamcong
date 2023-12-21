@@ -1,16 +1,12 @@
 package com.example.qlchamcong.service.workhourscalculator;
 
 import com.example.qlchamcong.entity.AttendanceRecord;
+import com.example.qlchamcong.exception.UnknownShiftException;
 
 import java.sql.Timestamp;
 import java.util.List;
 
 public class OfficerWorkHoursCalculator {
-    public static class UnknownShiftException extends RuntimeException {
-        public UnknownShiftException(String message) {
-            super(message);
-        }
-    }
 
     public static Double[] calculateOfficeWorkHours(List<AttendanceRecord> attendanceRecords) {
         Double[] result = new Double[4];
@@ -83,12 +79,13 @@ public class OfficerWorkHoursCalculator {
     private static boolean isWithinShift(Timestamp timestamp, int startHour, int startMinute, int endHour, int endMinute) {
         int hour = timestamp.toLocalDateTime().getHour();
         int minute = timestamp.toLocalDateTime().getMinute();
-
+//        System.out.println("hour " + hour);
+//        System.out.println("minute " + minute);
         if (hour > startHour && hour < endHour) {
             return true;
         } else if (hour == startHour && minute >= startMinute) {
             return true;
-        } else return hour == endHour && minute < endMinute;
+        } else return hour == endHour && minute <= endMinute;
     }
 
 
@@ -108,9 +105,9 @@ public class OfficerWorkHoursCalculator {
 
     private static double calculateEarlyLeaveTime(Timestamp checkoutTime, int endHour, int endMinute) {
         int hour = checkoutTime.toLocalDateTime().getHour();
-        System.out.println("Checkout hour: " + hour);
+//        System.out.println("Checkout hour: " + hour);
         int minute = checkoutTime.toLocalDateTime().getMinute();
-        System.out.println("Checkout minute: " + minute);
+//        System.out.println("Checkout minute: " + minute);
 
 
         if (hour == endHour && minute < endMinute) {

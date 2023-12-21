@@ -10,8 +10,6 @@ public class AttendanceRecord {
 
     private int employeeId;
 
-    private String employeeCode;
-
     private int timeKeeperId;
 
     private Timestamp timestamp;
@@ -46,17 +44,16 @@ public class AttendanceRecord {
         this.id = id; // new record without id queried from the db
     }
 
-    public AttendanceRecord(String employeeCode, Timestamp timestamp) {
-        this.employeeCode = employeeCode;
+    public AttendanceRecord(int employeeId, Timestamp timestamp) {
+        this.employeeId = employeeId;
         this.timestamp = timestamp;
     }
 
-    public String getEmployeeCode() {
-        return employeeCode;
-    }
-
-    public void setEmployeeCode(String employeeCode) {
-        this.employeeCode = employeeCode;
+    public AttendanceRecord(int employeeId, int timeKeeperId, Timestamp timestamp, String type) {
+        this.employeeId = employeeId;
+        this.timeKeeperId = timeKeeperId;
+        this.timestamp = timestamp;
+        this.type = type;
     }
 
     @Override
@@ -127,5 +124,13 @@ public class AttendanceRecord {
     public Date getDateFromTimestamp() {
         Date date = new Date(timestamp.getTime());
         return date;
+    }
+
+    public Long getTimestampInLong() {
+        return timestamp.getTime();
+    }
+
+    public String getEmployeeIdInString() {
+        return String.valueOf(employeeId);
     }
 }

@@ -34,6 +34,10 @@ public class OfficerAttendanceData {
         this.hoursEarlyLeave = hoursEarlyLeave;
     }
 
+    public OfficerAttendanceData(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
     public OfficerAttendanceData() {
 
     }

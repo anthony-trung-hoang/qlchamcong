@@ -47,15 +47,15 @@ public class AttendanceRecordViewManager implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Attendance record view: reload");
+//        System.out.println("Attendance record view: reload");
         IActionChangeGUI navUtil = new NavigationUtil();
         IPassArgument argumentUtil = new PassArgumentUtil();
         attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
 
 
         Object shareData = getInitialData();
-        System.out.println(shareData instanceof WorkerAttendanceData);
-        System.out.println(shareData instanceof OfficerAttendanceData);
+//        System.out.println(shareData instanceof WorkerAttendanceData);
+//        System.out.println(shareData instanceof OfficerAttendanceData);
         if (shareData instanceof WorkerAttendanceData workerAttendanceData) {
             setInitialUI(workerAttendanceData);
             fetchAndDisplayTableData(workerAttendanceData.getEmployeeId(), workerAttendanceData.getDate());

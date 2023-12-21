@@ -38,12 +38,12 @@ public class UpdateRecordViewManager implements Initializable {
 
     public void saveButtonAction() throws ParseException, IOException {
         AttendanceRecord newRecord = getNewRecordFromUI();
-        System.out.println(newRecord);
+//        System.out.println(newRecord);
         try {
             updateRecordController.saveNewRecord(newRecord);
         } catch (RuntimeException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
+//            System.out.println(e.getMessage());
             setErrorLabel(e.getMessage());
         }
     }
@@ -76,7 +76,7 @@ public class UpdateRecordViewManager implements Initializable {
     }
 
     public void cancelButtonAction() throws IOException {
-        System.out.println("Cancel button clicked");
+//        System.out.println("Cancel button clicked");
         updateRecordController.closeModal();
     }
 
