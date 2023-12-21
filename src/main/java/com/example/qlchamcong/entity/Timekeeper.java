@@ -13,6 +13,11 @@ public class Timekeeper {
         this.type = type;
     }
 
+    public Timekeeper(int id, String type) {
+        this.id = id;
+        this.type = type;
+    }
+
     public int getId() {
         return id;
     }

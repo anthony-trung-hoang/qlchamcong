@@ -24,6 +24,12 @@ public class Employee {
         this.role = role;
     }
 
+    public Employee(int employeeId, String name, RoleEmployee role) {
+        this.employeeId = employeeId;
+        this.name = name;
+        this.role = role;
+    }
+
     public int getEmployeeId() {
         return employeeId;
     }
