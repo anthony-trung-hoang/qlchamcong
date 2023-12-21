@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.thanhdieuhuongtdv.NavigationBarViewManager">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.thanhdieuhuongtdv.NavigationBarViewManager">
     <children>
         <AnchorPane prefHeight="700.0" prefWidth="165.0" style="-fx-background-color: #acbdaa;">
             <children>
@@ -14,6 +14,7 @@
                     <children>
                         <Button fx:id="homePage" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #216869;" text="Home Page" textFill="WHITE" />
                         <Button fx:id="importDLCC" mnemonicParsing="false" onAction="#handleImportDLCCButtonAction" style="-fx-background-color: #216869;" text="Import DLCC" textFill="WHITE" />
+                  <Button id="get_tracking" fx:id="get_tracking" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="26.0" prefWidth="107.0" style="-fx-background-color: #216869;" text="Xem chấm công" textFill="WHITE" />
                         <Button fx:id="dangXuat" mnemonicParsing="false" onAction="#handleLogoutBtnAction" prefHeight="26.0" prefWidth="84.0" style="-fx-background-color: #216869;" text="Đăng xuất" textFill="WHITE" />
                     </children>
                 </VBox>
