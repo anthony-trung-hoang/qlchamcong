@@ -144,4 +144,8 @@ public class AttendanceRecordViewManager implements Initializable {
     public void showAddNewRecordModal() throws IOException {
         attendanceRecordController.showAddNewRecordModal(this.passToNewRecordModal);
     }
+
+    public void onBackButtonAction() throws IOException {
+        attendanceRecordController.backToHome();
+    }
 }

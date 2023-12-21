@@ -38,6 +38,12 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
     @Override
     public void deleteRecord(AttendanceRecord currentRecord) {
         attendanceRecordRepository.deleteRecordById(currentRecord.getId());
+        String employeeRole = employeeRepository.getRoleById(currentRecord.getEmployeeId());
+        if (employeeRole.equals("worker")) {
+            updateWorkerAttendanceData(currentRecord);
+        } else if (employeeRole.equals("officer")) {
+            updateOfficerAttendanceData(currentRecord);
+        }
     }
 
     @Override

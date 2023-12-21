@@ -13,21 +13,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class HRHomeViewManager implements Initializable {
-
     private HRHomeController qlnsHomeController;
-    
+    @FXML
+    public DatePicker datePicker;
+
     //    worker table
     @FXML
     private TableView<WorkerAttendanceData> attendanceTableView;
@@ -87,11 +87,33 @@ public class HRHomeViewManager implements Initializable {
         IPassArgument argumentUtil = new PassArgumentUtil();
         qlnsHomeController = new HRHomeController(navUtil, argumentUtil);
 
-        fetchAndDisplayWorkerTableData();
-        fetchAndDisplayOfficerTableData();
+        Date currentDate = java.sql.Date.valueOf(LocalDate.now());
+
+        // current date
+//        fetchAndDisplayWorkerTableData(currentDate);
+//        fetchAndDisplayOfficerTableData(currentDate);
+
+        // nhưng sẽ fix cứng là 1-1-2023 trước
+        LocalDate localDate = LocalDate.of(2023, 1, 1);
+
+        Date sqlDate = Date.valueOf(localDate);
+        fetchAndDisplayOfficerTableData(sqlDate);
+        fetchAndDisplayWorkerTableData(sqlDate);
+        datePicker.setValue(LocalDate.now());
+        datePicker.setOnAction(event -> handleDatePickerAction());
     }
 
-    public void fetchAndDisplayWorkerTableData() {
+    private void handleDatePickerAction() {
+        LocalDate selectedDate = datePicker.getValue();
+        System.out.println("Selected Date: " + selectedDate);
+
+        Date passDate = java.sql.Date.valueOf(selectedDate);
+        fetchAndDisplayWorkerTableData(passDate);
+        fetchAndDisplayOfficerTableData(passDate);
+        datePicker.setFocusTraversable(false);
+    }
+
+    public void fetchAndDisplayWorkerTableData(Date date) {
         idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         employeeIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEmployeeId()).asObject());
         dateColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
@@ -121,13 +143,13 @@ public class HRHomeViewManager implements Initializable {
             }
         });
 
-        List<WorkerAttendanceData> workerAttendanceDataList = qlnsHomeController.fetchTableWorkerData();
+        List<WorkerAttendanceData> workerAttendanceDataList = qlnsHomeController.fetchTableWorkerData(date);
         System.out.println(Arrays.toString(workerAttendanceDataList.toArray()));
         ObservableList<WorkerAttendanceData> observableList = FXCollections.observableArrayList(workerAttendanceDataList);
         attendanceTableView.setItems(observableList);
     }
 
-    public void fetchAndDisplayOfficerTableData() {
+    public void fetchAndDisplayOfficerTableData(Date date) {
         try {
             oIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
             officerIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEmployeeId()).asObject());
@@ -159,7 +181,7 @@ public class HRHomeViewManager implements Initializable {
                 }
             });
 
-            List<OfficerAttendanceData> officerAttendanceData = qlnsHomeController.fetchTableOfficerData();
+            List<OfficerAttendanceData> officerAttendanceData = qlnsHomeController.fetchTableOfficerData(date);
             System.out.println(Arrays.toString(officerAttendanceData.toArray()));
             ObservableList<OfficerAttendanceData> observableList = FXCollections.observableArrayList(officerAttendanceData);
             officerAttendanceTableView.setItems(observableList);
@@ -175,4 +197,5 @@ public class HRHomeViewManager implements Initializable {
     private void handleViewOfficerDetailsAction(OfficerAttendanceData officerAttendanceData) throws IOException {
         qlnsHomeController.showDetails(officerAttendanceData);
     }
+
 }

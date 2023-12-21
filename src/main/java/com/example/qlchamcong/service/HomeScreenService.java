@@ -19,14 +19,12 @@ public class HomeScreenService implements IHomeScreenService {
         this.workerAttendanceDataRepository = RepositoryInitializer.getWorkerAttendanceDataRepository();
     }
     @Override
-    public List<WorkerAttendanceData> getWorkerAttendanceData() {
-        Date date = Date.valueOf("2023-01-01");
+    public List<WorkerAttendanceData> getWorkerAttendanceData(Date date) {
         return workerAttendanceDataRepository.getAllWorkerAttendanceDataByDate(date);
     }
 
     @Override
-    public List<OfficerAttendanceData> getOfficerAttendanceData() {
-        Date date = Date.valueOf("2023-01-01");
+    public List<OfficerAttendanceData> getOfficerAttendanceData(Date date) {
         return officerAttendanceDataRepository.getAllOfficerAttendanceDataByDate(date);
     }
 }
