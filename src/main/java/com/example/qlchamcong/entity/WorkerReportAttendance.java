@@ -1,6 +1,6 @@
 package com.example.qlchamcong.entity;
 
-public class WorkerReportAttendanceRow {
+public class WorkerReportAttendance {
     private int employeeId;
     private  String employeeName;
     private  String departmentName;
@@ -9,7 +9,7 @@ public class WorkerReportAttendanceRow {
     private  double totalOvertime;
 
 
-    public WorkerReportAttendanceRow(int employeeId, String employeeName, String departmentName, String month, double totalWork, double totalOvertime) {
+    public WorkerReportAttendance(int employeeId, String employeeName, String departmentName, String month, double totalWork, double totalOvertime) {
         this.employeeId=employeeId;
         this.employeeName=employeeName;
         this.departmentName=departmentName;

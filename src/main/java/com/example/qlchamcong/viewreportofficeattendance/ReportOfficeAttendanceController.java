@@ -2,11 +2,12 @@ package com.example.qlchamcong.viewreportofficeattendance;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
-import com.example.qlchamcong.changeGUIUtility.IPassArgument;
-import com.example.qlchamcong.entity.OfficerReportAttendanceRow;
+import com.example.qlchamcong.entity.OfficerReportAttendance;
+import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.service.IReportAttendanceService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ReportOfficeAttendanceController {
         this.reportAttendanceService= ServiceInitializer.getReportAttendanceService();
 //        List<OfficerReportAttendanceRow> officerReportAttendanceRows= fetchListOfOfficerReportAttendance();
     }
-    public List<OfficerReportAttendanceRow> fetchListOfOfficerReportAttendance(int id, Date date) {
+    public List<OfficerReportAttendance> fetchListOfOfficerReportAttendance(int id, Date date)  {
         System.out.println(321);
         return reportAttendanceService.getOfficerReportAttendanceList(id,date);
     }

@@ -1,18 +1,16 @@
 package com.example.qlchamcong.entity;
 
-import java.util.Date;
-
-public class OfficerReportAttendanceRow {
+public class OfficerReportAttendance {
     private int employeeId;
     private  String employeeName;
     private  String departmentName;
     private String month ;
-    private  double totalWorkSession;
+    private  int totalWorkSession;
     private  double totalHoursLate;
     private  double totalHoursLeavingEarly;
 
 
-    public OfficerReportAttendanceRow(int employeeId, String employeeName, String departmentName, String month, double totalWorkSession, double totalHoursLate, double totalHoursLeavingEarly) {
+    public OfficerReportAttendance(int employeeId, String employeeName, String departmentName, String month, int totalWorkSession, double totalHoursLate, double totalHoursLeavingEarly) {
     this.employeeId=employeeId;
     this.employeeName=employeeName;
     this.departmentName=departmentName;
@@ -38,7 +36,7 @@ public class OfficerReportAttendanceRow {
         return month;
     }
 
-    public double getTotalWorkSession() {
+    public int getTotalWorkSession() {
         return totalWorkSession;
     }
 

@@ -29,7 +29,7 @@ public class HRSystemAPIService implements IHRSystemAPIService {
             for (int i = 0; i < department.getTotalEmployee(); i++) { // Tạo 40 nhân viên cho mỗi phòng ban
                 String employeeName = "Employee "+department.getName() + employeeIdCounter++;
                 RoleEmployee role = department.getType()==RoleDepartment.VAN_PHONG?RoleEmployee.NHAN_VIEN:RoleEmployee.CONG_NHAN;
-                Employee employee = new Employee(employeeIdCounter, employeeName, role, department,new Date("01/01/2022"));
+                Employee employee = new Employee(employeeIdCounter-2, employeeName, role, department,new Date("01/01/2022"));
                 employeeList.add(employee);
             }
         }

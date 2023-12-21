@@ -17,12 +17,14 @@ public class MySQLOfficerReportAttendanceRepository implements IOfficerReportAtt
     }
 
     @Override
-    public List<OfficerAttendanceData> getOfficerReportAttendance(Date startDate, Date endDate, List<Integer> employeeIdList) {
+    public List<OfficerAttendanceData> getOfficerReportAttendance(String startDate, String endDate, List<Integer> employeeIdList) {
         List<OfficerAttendanceData> dataList= new ArrayList<>();
-        System.out.println(employeeIdList);
         for (Integer id:employeeIdList){
-            String query = "SELECT * FROM WorkerAttendanceData WHERE date BETWEEN '2023-01-01' AND '2023-01-01' AND employeeId = id";
+            String query = "SELECT * FROM OfficerAttendanceData WHERE date BETWEEN ? AND ? AND employeeId = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, startDate);
+                preparedStatement.setString(2, endDate);
+                preparedStatement.setInt(3, id);
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
                         int aId=resultSet.getInt("id");

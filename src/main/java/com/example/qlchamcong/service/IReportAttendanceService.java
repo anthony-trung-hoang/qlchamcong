@@ -1,15 +1,15 @@
 package com.example.qlchamcong.service;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
-import com.example.qlchamcong.HRSystem.entity.Employee;
-import com.example.qlchamcong.entity.OfficerReportAttendanceRow;
-import com.example.qlchamcong.entity.WorkerReportAttendanceRow;
+import com.example.qlchamcong.entity.OfficerReportAttendance;
+import com.example.qlchamcong.entity.WorkerReportAttendance;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 public interface IReportAttendanceService {
     List<Department> getDepartmentList();
-    List<OfficerReportAttendanceRow> getOfficerReportAttendanceList(int id, Date date);
-    List<WorkerReportAttendanceRow> getWorkerReportAttendanceList(int id, Date date);
+    List<OfficerReportAttendance> getOfficerReportAttendanceList(int id, Date date);
+    List<WorkerReportAttendance> getWorkerReportAttendanceList(int id, Date date);
 }
