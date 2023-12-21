@@ -1,4 +1,4 @@
-package com.example.qlchamcong.service;
+package com.example.qlchamcong.service.report;
 
 import com.example.qlchamcong.HRSystem.HRSystemAPIService;
 import com.example.qlchamcong.HRSystem.IHRSystemAPIService;

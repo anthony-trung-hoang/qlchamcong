@@ -44,4 +44,24 @@ module com.example.qlchamcong {
     exports com.example.qlchamcong.truongdonvihome;
     exports com.example.qlchamcong.passaargumentutility;
     opens com.example.qlchamcong.passaargumentutility to javafx.fxml;
+    exports com.example.qlchamcong.repository.attendancerecord;
+    opens com.example.qlchamcong.repository.attendancerecord to javafx.fxml;
+    exports com.example.qlchamcong.repository.employee;
+    opens com.example.qlchamcong.repository.employee to javafx.fxml;
+    exports com.example.qlchamcong.repository.officerattendancedata;
+    opens com.example.qlchamcong.repository.officerattendancedata to javafx.fxml;
+    exports com.example.qlchamcong.repository.timekeeper;
+    opens com.example.qlchamcong.repository.timekeeper to javafx.fxml;
+    exports com.example.qlchamcong.repository.workerattendancedata;
+    opens com.example.qlchamcong.repository.workerattendancedata to javafx.fxml;
+    exports com.example.qlchamcong.service.login;
+    opens com.example.qlchamcong.service.login to javafx.fxml;
+    exports com.example.qlchamcong.service.homescreen;
+    opens com.example.qlchamcong.service.homescreen to javafx.fxml;
+    exports com.example.qlchamcong.service.importdata;
+    opens com.example.qlchamcong.service.importdata to javafx.fxml;
+    exports com.example.qlchamcong.service.report;
+    opens com.example.qlchamcong.service.report to javafx.fxml;
+    exports com.example.qlchamcong.service.viewattendancerecord;
+    opens com.example.qlchamcong.service.viewattendancerecord to javafx.fxml;
 }

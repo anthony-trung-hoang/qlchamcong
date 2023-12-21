@@ -4,7 +4,7 @@ import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
 import com.example.qlchamcong.passaargumentutility.IPassArgument;
-import com.example.qlchamcong.service.IHomeScreenService;
+import com.example.qlchamcong.service.homescreen.IHomeScreenService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package testaddrecord;
 
 import com.example.qlchamcong.entity.AttendanceRecord;
-import com.example.qlchamcong.service.ViewAttendanceRecordsService;
+import com.example.qlchamcong.service.viewattendancerecord.ViewAttendanceRecordsService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

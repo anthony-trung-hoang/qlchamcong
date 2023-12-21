@@ -1,8 +1,8 @@
-package com.example.qlchamcong.service;
+package com.example.qlchamcong.service.login;
 
 import com.example.qlchamcong.entity.Employee;
 import com.example.qlchamcong.entity.RoleEmployee;
-import com.example.qlchamcong.repository.IEmployeeRepository;
+import com.example.qlchamcong.repository.employee.IEmployeeRepository;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

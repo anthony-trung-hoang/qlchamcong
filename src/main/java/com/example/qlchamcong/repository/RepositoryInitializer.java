@@ -1,6 +1,16 @@
 package com.example.qlchamcong.repository;
 
 import com.example.qlchamcong.database.DatabaseType;
+import com.example.qlchamcong.repository.attendancerecord.IAttendanceRecordRepository;
+import com.example.qlchamcong.repository.attendancerecord.MySQLAttendanceRecordRepository;
+import com.example.qlchamcong.repository.employee.IEmployeeRepository;
+import com.example.qlchamcong.repository.employee.MySQLEmployeeRepository;
+import com.example.qlchamcong.repository.officerattendancedata.IOfficerAttendanceDataRepository;
+import com.example.qlchamcong.repository.officerattendancedata.MySQLOfficerAttendanceDataRepository;
+import com.example.qlchamcong.repository.timekeeper.ITimekeeperRepository;
+import com.example.qlchamcong.repository.timekeeper.MySQLTimekeeperRepository;
+import com.example.qlchamcong.repository.workerattendancedata.IWorkerAttendanceDataRepository;
+import com.example.qlchamcong.repository.workerattendancedata.MySQLWorkerAttendanceDataRepository;
 
 import java.sql.Connection;
 

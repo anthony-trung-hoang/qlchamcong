@@ -90,15 +90,15 @@ public class HRHomeViewManager implements Initializable {
         Date currentDate = java.sql.Date.valueOf(LocalDate.now());
 
         // current date
-//        fetchAndDisplayWorkerTableData(currentDate);
-//        fetchAndDisplayOfficerTableData(currentDate);
+        fetchAndDisplayWorkerTableData(currentDate);
+        fetchAndDisplayOfficerTableData(currentDate);
 
         // nhưng sẽ fix cứng là 1-1-2023 trước
-        LocalDate localDate = LocalDate.of(2023, 1, 1);
-
-        Date sqlDate = Date.valueOf(localDate);
-        fetchAndDisplayOfficerTableData(sqlDate);
-        fetchAndDisplayWorkerTableData(sqlDate);
+//        LocalDate localDate = LocalDate.of(2023, 1, 1);
+//
+//        Date sqlDate = Date.valueOf(localDate);
+//        fetchAndDisplayOfficerTableData(sqlDate);
+//        fetchAndDisplayWorkerTableData(sqlDate);
         datePicker.setValue(LocalDate.now());
         datePicker.setOnAction(event -> handleDatePickerAction());
     }

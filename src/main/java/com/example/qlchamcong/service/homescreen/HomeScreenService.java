@@ -1,9 +1,9 @@
-package com.example.qlchamcong.service;
+package com.example.qlchamcong.service.homescreen;
 
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
-import com.example.qlchamcong.repository.IOfficerAttendanceDataRepository;
-import com.example.qlchamcong.repository.IWorkerAttendanceDataRepository;
+import com.example.qlchamcong.repository.officerattendancedata.IOfficerAttendanceDataRepository;
+import com.example.qlchamcong.repository.workerattendancedata.IWorkerAttendanceDataRepository;
 import com.example.qlchamcong.repository.RepositoryInitializer;
 
 import java.sql.Date;

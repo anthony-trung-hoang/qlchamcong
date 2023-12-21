@@ -1,9 +1,14 @@
-package com.example.qlchamcong.service;
+package com.example.qlchamcong.service.viewattendancerecord;
 
 import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
 import com.example.qlchamcong.repository.*;
+import com.example.qlchamcong.repository.attendancerecord.IAttendanceRecordRepository;
+import com.example.qlchamcong.repository.employee.IEmployeeRepository;
+import com.example.qlchamcong.repository.officerattendancedata.IOfficerAttendanceDataRepository;
+import com.example.qlchamcong.repository.timekeeper.ITimekeeperRepository;
+import com.example.qlchamcong.repository.workerattendancedata.IWorkerAttendanceDataRepository;
 import com.example.qlchamcong.service.workhourscalculator.OfficerWorkHoursCalculator;
 import com.example.qlchamcong.service.workhourscalculator.WorkerWorkHoursCalculator;
 

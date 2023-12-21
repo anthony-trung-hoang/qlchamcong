@@ -1,4 +1,4 @@
-package com.example.qlchamcong.repository;
+package com.example.qlchamcong.repository.employee;
 
 import com.example.qlchamcong.entity.Employee;
 

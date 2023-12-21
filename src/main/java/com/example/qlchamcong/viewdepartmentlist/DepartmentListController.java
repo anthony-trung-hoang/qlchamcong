@@ -3,7 +3,7 @@ package com.example.qlchamcong.viewdepartmentlist;
 import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.passaargumentutility.IPassArgument;
-import com.example.qlchamcong.service.IReportAttendanceService;
+import com.example.qlchamcong.service.report.IReportAttendanceService;
 import com.example.qlchamcong.service.ServiceInitializer;
 
 import java.util.List;
