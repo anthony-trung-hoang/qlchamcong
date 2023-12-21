@@ -61,13 +61,12 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
 
     @Override
     public void createANewRecord(AttendanceRecord newRecord) {
-        String query = "INSERT INTO AttendanceRecord (employeeId, timeKeeperId, timestamp, type) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO AttendanceRecord (employeeId, timeKeeperId, timestamp) VALUES (?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, newRecord.getEmployeeId());
             preparedStatement.setInt(2, newRecord.getTimeKeeperId());
             preparedStatement.setTimestamp(3, newRecord.getTimestamp());
-            preparedStatement.setString(4, newRecord.getType());
 
             int affectedRows = preparedStatement.executeUpdate();
 

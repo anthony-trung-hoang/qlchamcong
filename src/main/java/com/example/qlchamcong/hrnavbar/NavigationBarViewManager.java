@@ -33,13 +33,13 @@ public class NavigationBarViewManager implements Initializable {
     public ImageView logoImage;
     @FXML
     public ImageView hrImage;
-    private NavigationBarController thanhDHController;
+    private NavigationBarController navigationBarController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         NavigationManager.getInstance().setContentPane(contentPane);
         IActionChangeGUI navigationUtil = new NavigationUtil();
-        thanhDHController = new NavigationBarController(navigationUtil);
+        navigationBarController = new NavigationBarController(navigationUtil);
         try {
             this.setHomeScreen();
         } catch (IOException e) {
@@ -48,21 +48,21 @@ public class NavigationBarViewManager implements Initializable {
     }
 
     public void setHomeScreen() throws IOException {
-        thanhDHController.setHomeScreen();
+        navigationBarController.setHomeScreen();
     }
 
     @FXML
     public void handleImportDLCCButtonAction() throws IOException {
-        thanhDHController.toAttendanceTrackingImportScreen();
+        navigationBarController.toAttendanceTrackingImportScreen();
     }
 
     @FXML
     public void handleHomeButtonAction() throws IOException {
-        thanhDHController.toHomeScreen();
+        navigationBarController.toHomeScreen();
     }
     @FXML
     public void handleDepartmentListButtonAction() throws IOException {
-        thanhDHController.toDepartmentListScreen();
+        navigationBarController.toDepartmentListScreen();
     }
 
     @FXML

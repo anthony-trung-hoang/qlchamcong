@@ -97,7 +97,7 @@ public class ViewAttendanceRecordsService implements IViewAttendanceRecordsServi
             }
 
         } else {
-            throw new TimeKeeperNotFoundException("TimeKeeper with code " + newRecord.getTimeKeeperCode() + " not found.");
+                throw new TimeKeeperNotFoundException("TimeKeeper with code " + newRecord.getTimeKeeperCode() + " not found.");
         }
     }
 
