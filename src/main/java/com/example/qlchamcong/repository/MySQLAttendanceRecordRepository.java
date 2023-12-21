@@ -16,7 +16,7 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
     @Override
     public List<AttendanceRecord> getAttendanceRecordsByEmployeeAndDate(int employeeId, Date date) {
         List<AttendanceRecord> records = new ArrayList<>();
-        String query = "SELECT ar.id, ar.employeeId, ar.timeKeeperId, ar.timestamp, tk.type " +
+        String query = "SELECT ar.id, ar.employeeId, ar.timeKeeperId, ar.timestamp, tk.type, tk.timeKeeperCode " +
                 "FROM AttendanceRecord ar " +
                 "INNER JOIN Timekeeper tk ON ar.timeKeeperId = tk.id " +
                 "WHERE ar.employeeId = ? AND DATE(ar.timestamp) = ?";
@@ -32,8 +32,11 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
                     record.setEmployeeId(resultSet.getInt("employeeId"));
                     record.setTimeKeeperId(resultSet.getInt("timeKeeperId"));
                     record.setTimestamp(resultSet.getTimestamp("timestamp"));
-                    record.setType(resultSet.getString("type"));  // Thêm trường type
+                    record.setType(resultSet.getString("type"));
+                    record.setTimeKeeperCode(resultSet.getString("timeKeeperCode"));
                     records.add(record);
+
+                    System.out.println(record);
                 }
             }
 

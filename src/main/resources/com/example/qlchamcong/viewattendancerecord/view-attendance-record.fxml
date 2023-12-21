@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -18,7 +19,7 @@
             <TableColumn fx:id="idColumn" text="ID" />
             <TableColumn fx:id="timeStampColumn" prefWidth="251.19995880126953" text="Timestamp" />
             <TableColumn fx:id="typeColumn" prefWidth="98.4000244140625" text="Type" />
-            <TableColumn fx:id="timeKeeperIdColumn" prefWidth="139.99996948242188" text="Timekeeper ID" />
+            <TableColumn fx:id="timeKeeperCodeColumn" prefWidth="139.99996948242188" text="Timekeeper code" />
             <TableColumn fx:id="recordVoidTableColumn" prefWidth="224.79998779296875" text="Operation" />
         </columns>
     </TableView>
@@ -26,10 +27,13 @@
    <Label fx:id="employeeIdLabel" layoutX="264.0" layoutY="75.0" prefHeight="18.0" prefWidth="201.0" text="xxx" />
    <Label layoutX="89.0" layoutY="119.0" text="Date" />
    <Label fx:id="dateLabel" layoutX="264.0" layoutY="119.0" prefHeight="18.0" prefWidth="202.0" text="yyy" />
-   <Button layoutX="572.0" layoutY="80.0" mnemonicParsing="false" onAction="#showAddNewRecordModal" prefHeight="49.0" prefWidth="223.0" text="Add a new record">
+   <Button layoutX="572.0" layoutY="80.0" mnemonicParsing="false" onAction="#showAddNewRecordModal" prefHeight="49.0" prefWidth="223.0" style="-fx-background-color: #16fc9c;" text="Add a new record">
       <font>
          <Font size="16.0" />
       </font>
+      <effect>
+         <DropShadow radius="8.245000000000001" width="13.98" />
+      </effect>
    </Button>
    <Button layoutX="24.0" layoutY="27.0" mnemonicParsing="false" onAction="#onBackButtonAction" text=" &lt; Back" />
 </AnchorPane>
