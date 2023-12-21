@@ -1,6 +1,7 @@
 package com.example.qlchamcong.service;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
+import com.example.qlchamcong.entity.Employee;
 import com.example.qlchamcong.entity.OfficerReportAttendance;
 import com.example.qlchamcong.entity.WorkerReportAttendance;
 

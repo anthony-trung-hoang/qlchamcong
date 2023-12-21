@@ -1,7 +1,7 @@
 package com.example.qlchamcong.dangnhap;
 
-import com.example.qlchamcong.entity.Role;
+import com.example.qlchamcong.entity.RoleEmployee;
 
 public interface IDangNhapController {
-    Role dangNhap(String username, String password);
+    RoleEmployee dangNhap(String username, String password);
 }

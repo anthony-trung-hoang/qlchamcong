@@ -4,28 +4,37 @@ import com.example.qlchamcong.entity.AttendanceRecord;
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.Tuple2;
 import com.example.qlchamcong.entity.WorkerAttendanceData;
+import com.example.qlchamcong.exception.InvalidFileFormatException;
 import com.example.qlchamcong.service.ServiceInitializer;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ImportDLCCViewManager implements Initializable {
 
     @FXML
-    private TextField filePath;
+    private TextField filePathCheckIn;
     @FXML
-    private Button chooseFileBtn;
+    private TextField filePathCheckout;
     @FXML
-    private ComboBox<String> attendingMachineIds;
+    private Button chooseFileCheckInBtn;
+    @FXML
+    private Button chooseFileCheckOutBtn;
+    @FXML
+    private ComboBox<String> timekeeperCheckInCodes;
+    @FXML
+    private ComboBox<String> timekeeperCheckOutCodes;
     @FXML
     private Label resultTitle;
     @FXML
@@ -36,7 +45,8 @@ public class ImportDLCCViewManager implements Initializable {
     private Button transformRecordBtn;
 
     private ImportDLCCController importDLCCController;
-    private File attedanceRecordFile;
+    private File attedanceRecordCheckInFile;
+    private File attedanceRecordCheckOutFile;
     private List<AttendanceRecord> attendanceRecordList;
     private TableView tableRecord = new TableView();
     private TableView tableWorker = new TableView();
@@ -46,43 +56,84 @@ public class ImportDLCCViewManager implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         importDLCCController = new ImportDLCCController(ServiceInitializer.getImportDLCCService());
 
-        filePath.setDisable(true);
-        attendingMachineIds.getItems().addAll(getAttendingMachineIDs());
+        filePathCheckIn.setDisable(true);
+        filePathCheckout.setDisable(true);
+        timekeeperCheckInCodes.getItems().addAll(getTimekeeperCheckInCodes());
+        timekeeperCheckOutCodes.getItems().addAll(getTimekeeperCheckOutCodes());
         resultTitle.setVisible(false);
         saveAttendanceDataBtn.setVisible(false);
         transformRecordBtn.setVisible(false);
     }
 
     @FXML
-    protected void handleChooseFileBtnAction() {
+    protected void handleChooseFileCheckInBtnAction() {
         final FileChooser fileChooser = new FileChooser();
-        Stage stage = (Stage) chooseFileBtn.getScene().getWindow();
+        Stage stage = (Stage) chooseFileCheckInBtn.getScene().getWindow();
         try {
-            attedanceRecordFile = fileChooser.showOpenDialog(stage);
-        } catch (NullPointerException ex) {
+            attedanceRecordCheckInFile = fileChooser.showOpenDialog(stage);
+        } catch (Exception ex) {
+            showErrorAlert("Choose File", "Please choose a file");
             return;
         }
-        if (attedanceRecordFile != null) {
-            System.out.println(attedanceRecordFile);
-        }
-        filePath.setText(attedanceRecordFile.getPath());
+        if (attedanceRecordCheckInFile != null) {
+//            System.out.println(attedanceRecordCheckInFile);
+            filePathCheckIn.setText(attedanceRecordCheckInFile.getPath());
 
-        if (attendingMachineIds.getValue() != null) {
-            System.out.println("can handle retrieve");
+            if (timekeeperCheckInCodes.getValue() == null) return;
+            if (timekeeperCheckOutCodes.getValue() == null) return;
+            if (attedanceRecordCheckOutFile == null) return;
+
             handleRetrieve();
         }
     }
 
     @FXML
-    protected void handleChooseAttdendingMachineAction() {
-        if (attendingMachineIds.getValue() == null) {
+    protected void handleChooseFileCheckOutBtnAction() {
+        final FileChooser fileChooser = new FileChooser();
+        Stage stage = (Stage) chooseFileCheckOutBtn.getScene().getWindow();
+        try {
+            attedanceRecordCheckOutFile = fileChooser.showOpenDialog(stage);
+        } catch (Exception ex) {
+            showErrorAlert("Choose File", "Please choose a file");
+            return;
+        }
+        if (attedanceRecordCheckOutFile != null) {
+//            System.out.println(attedanceRecordCheckInFile);
+            filePathCheckout.setText(attedanceRecordCheckOutFile.getPath());
+
+            if (timekeeperCheckInCodes.getValue() == null) return;
+            if (timekeeperCheckOutCodes.getValue() == null) return;
+            if (attedanceRecordCheckInFile == null) return;
+
+            handleRetrieve();
+        }
+
+    }
+
+    @FXML
+    protected void handleChooseTimekeeperCheckInAction() {
+        if (timekeeperCheckInCodes.getValue() == null) {
             System.out.println("not choose machine yet");
         }
 
-        if (attedanceRecordFile != null) {
-            System.out.println("can handle retrieve");
-            handleRetrieve();
+        if (attedanceRecordCheckInFile == null) return;
+        if (attedanceRecordCheckOutFile == null) return;
+        if (timekeeperCheckOutCodes.getValue() == null) return;
+
+        handleRetrieve();
+    }
+
+    @FXML
+    protected void handleChooseTimekeeperCheckOutAction() {
+        if (timekeeperCheckOutCodes.getValue() == null) {
+            System.out.println("not choose machine yet");
         }
+
+        if (attedanceRecordCheckInFile == null) return;
+        if (attedanceRecordCheckOutFile == null) return;
+        if (timekeeperCheckInCodes.getValue() == null) return;
+
+        handleRetrieve();
     }
 
     @FXML
@@ -110,10 +161,25 @@ public class ImportDLCCViewManager implements Initializable {
     private void showRecordTable(List<AttendanceRecord> records) {
         tableRecord.getColumns().clear();
         tableRecord.getItems().clear();
-        TableColumn employeeID = new TableColumn("EmployeeID");
-        TableColumn timestamp = new TableColumn("Timestamp");
+        TableColumn<AttendanceRecord, String> employeeIDColumn = new TableColumn<>("EmployeeID");
+        TableColumn<AttendanceRecord, Long> timestampColumn = new TableColumn<>("Timestamp");
+        TableColumn<AttendanceRecord, String> typeColumn = new TableColumn<>("Type");
 
-        tableRecord.getColumns().addAll(employeeID, timestamp);
+        employeeIDColumn.setCellValueFactory(new PropertyValueFactory<>("employeeCode"));
+
+        timestampColumn.setCellValueFactory(new PropertyValueFactory<>("timestamp"));
+
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        tableRecord.getColumns().addAll(employeeIDColumn, timestampColumn, typeColumn);
+
+        ObservableList<AttendanceRecord> observableRecords = FXCollections.observableArrayList(records);
+
+        observableRecords.sort(Comparator
+                .comparing(AttendanceRecord::getEmployeeCode)
+                .thenComparing(AttendanceRecord::getTimestamp));
+
+        tableRecord.setItems(observableRecords);
 
         tableSpace.getChildren().addAll(tableRecord);
     }
@@ -162,12 +228,33 @@ public class ImportDLCCViewManager implements Initializable {
 
     private List<AttendanceRecord> getTableRecordData() {
         // call controller -> service -> take data back
-        attendanceRecordList = importDLCCController.getAttendanceRecord(attedanceRecordFile);
-
-        return null;
+        try {
+            attendanceRecordList = importDLCCController.getAttendanceRecord(attedanceRecordCheckInFile, attedanceRecordCheckOutFile);
+        } catch (InvalidFileFormatException e) {
+            showErrorAlert("Invalid", e.getMessage());
+        }
+        return attendanceRecordList;
     }
 
-    private List<String> getAttendingMachineIDs() {
-        return List.of("AM01", "AM02", "AM03");
+    private List<String> getTimekeeperCheckInCodes() {
+        return importDLCCController.getAllTimekeeperCheckInCode();
+    }
+
+    private List<String> getTimekeeperCheckOutCodes() {
+        return importDLCCController.getAllTimekeeperCheckOutCode();
+    }
+
+    private void showErrorAlert(String title, String content) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(content);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                alert.close();
+            }
+        });
     }
 }
