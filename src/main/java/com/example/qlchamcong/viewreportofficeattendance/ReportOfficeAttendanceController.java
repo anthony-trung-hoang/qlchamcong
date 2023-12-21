@@ -22,7 +22,6 @@ public class ReportOfficeAttendanceController {
 //        List<OfficerReportAttendanceRow> officerReportAttendanceRows= fetchListOfOfficerReportAttendance();
     }
     public List<OfficerReportAttendance> fetchListOfOfficerReportAttendance(int id, Date date)  {
-        System.out.println(321);
         return reportAttendanceService.getOfficerReportAttendanceList(id,date);
     }
     public Department getInitialData() {

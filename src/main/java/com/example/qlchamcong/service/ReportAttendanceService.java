@@ -1,16 +1,16 @@
 package com.example.qlchamcong.service;
 
 import com.example.qlchamcong.HRSystem.HRSystemAPIService;
+import com.example.qlchamcong.HRSystem.HRSystemInitializer;
 import com.example.qlchamcong.HRSystem.IHRSystemAPIService;
 import com.example.qlchamcong.HRSystem.entity.Department;
-import com.example.qlchamcong.HRSystem.entity.Employee;
+import com.example.qlchamcong.entity.Employee;
 import com.example.qlchamcong.entity.OfficerAttendanceData;
 import com.example.qlchamcong.entity.OfficerReportAttendance;
 import com.example.qlchamcong.entity.WorkerReportAttendance;
 import com.example.qlchamcong.repository.IOfficerReportAttendanceRepository;
 import com.example.qlchamcong.repository.RepositoryInitializer;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,8 +20,10 @@ import java.util.List;
 public class ReportAttendanceService implements IReportAttendanceService {
     private final IOfficerReportAttendanceRepository officerReportAttendanceRepository;
     private IHRSystemAPIService hRSystemAPIService;
+    private final HRSystemInitializer hrSystemInitializer;
     public ReportAttendanceService() {
-        hRSystemAPIService= new HRSystemAPIService();
+        hrSystemInitializer= new HRSystemInitializer();
+        hRSystemAPIService= hrSystemInitializer.getIhrSystemAPIService();
         this.officerReportAttendanceRepository = RepositoryInitializer.getOfficerReportAttendanceRepository();
     }
 
@@ -66,7 +68,9 @@ public class ReportAttendanceService implements IReportAttendanceService {
         return sdf.format(calendar.getTime());
     }
     private List<OfficerReportAttendance> getOfficerReportAttendance(List<Employee> employeeList, List<OfficerAttendanceData> attendanceData,Date date)  {
-        String month= String.valueOf(date.getMonth())+"/"+String.valueOf(date.getYear());
+
+        System.out.println(date.getYear());
+        String month= String.valueOf(date.getMonth()+1)+"/"+String.valueOf(date.getYear()+1900);
         List<OfficerReportAttendance> reportAttendanceList = new ArrayList<OfficerReportAttendance>();
         for (Employee employee:employeeList){
             int employeeId= employee.getEmployeeId();

@@ -51,6 +51,7 @@ public class ReportOfficeAttendanceViewManager implements Initializable {
         employeeId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getEmployeeId()).asObject());
         employeeName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmployeeName()));
         departmentName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDepartmentName()));
+        month.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonth()));
         totalHoursLate.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTotalHoursLate()).asObject());
         totalWorkSession.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTotalWorkSession()).asObject());
         totalHoursLeavingEarly.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTotalHoursLeavingEarly()).asObject());

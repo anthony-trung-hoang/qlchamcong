@@ -19,7 +19,8 @@ public class HRSystemAPIService implements IHRSystemAPIService {
         departmentList.add(new Department(3, "Finance", 20, new Date("10/01/2022"), RoleDepartment.VAN_PHONG));
         departmentList.add(new Department(4, "Factory", 80, new Date("10/01/2022"), RoleDepartment.NHA_MAY));
         departmentList.add(new Department(5, "Design", 30, new Date("10/01/2022"), RoleDepartment.VAN_PHONG));
-        generateEmployeeHung();
+//        generateEmployeeHung();
+        generateEmployees();
     }
 
     private void generateEmployees() {
