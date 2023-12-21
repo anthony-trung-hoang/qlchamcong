@@ -9,19 +9,19 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewreportofficeattendance.ReportOfficeAttendanceViewManager">
-    <Label layoutX="183.0" layoutY="54.0" prefHeight="28.0" prefWidth="295.0" text="Attendance reports of office staff" textAlignment="CENTER">
+    <Label layoutX="201.0" layoutY="23.0" prefHeight="32.0" prefWidth="433.0" text="ATTENDANCE REPORT OF OFFICE STAFF" textAlignment="CENTER">
       <font>
-         <Font name="System Bold" size="16.0" />
+         <Font name="System Bold" size="22.0" />
       </font></Label>
     <TableView fx:id="reportAttendanceTableView" layoutX="12.0" layoutY="117.0" prefHeight="530.0" prefWidth="816.0">
         <columns>
-            <TableColumn fx:id="employeeId" prefWidth="33.5999755859375" text="ID" />
-            <TableColumn fx:id="employeeName" prefWidth="110.40003204345703" text="Name" />
-            <TableColumn fx:id="departmentName" prefWidth="154.39996337890625" text="Department" />
-            <TableColumn fx:id="month" prefWidth="94.39996337890625" text="Month" />
-            <TableColumn fx:id="totalWorkSession" prefWidth="172.79995727539062" text="Work time(sessions)" />
-            <TableColumn fx:id="totalHoursLate" prefWidth="124.0" text="Late(h)" />
-            <TableColumn fx:id="totalHoursLeavingEarly" prefWidth="124.0" text="Leaving early(h)" />
+            <TableColumn fx:id="employeeId" prefWidth="33.5999755859375" style="-fx-alignment: CENTER;" text="ID" />
+            <TableColumn fx:id="employeeName" prefWidth="201.60004425048828" style="-fx-alignment: CENTER;" text="Name" />
+            <TableColumn fx:id="departmentName" prefWidth="124.0" style="-fx-alignment: CENTER;" text="Department" />
+            <TableColumn fx:id="month" prefWidth="128.0" style="-fx-alignment: CENTER;" text="Month" />
+            <TableColumn fx:id="totalWorkSession" prefWidth="135.99990844726562" style="-fx-alignment: CENTER;" text="Work time(sessions)" />
+            <TableColumn fx:id="totalHoursLate" prefWidth="89.59991455078125" style="-fx-alignment: CENTER;" text="Late(h)" />
+            <TableColumn fx:id="totalHoursLeavingEarly" prefWidth="108.0001220703125" style="-fx-alignment: CENTER;" text="Leaving early(h)" />
         </columns>
     </TableView>
    <HBox layoutX="578.0" layoutY="69.0" prefHeight="28.0" prefWidth="242.0">

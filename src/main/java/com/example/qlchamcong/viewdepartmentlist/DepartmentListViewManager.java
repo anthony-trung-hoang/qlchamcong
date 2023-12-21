@@ -60,7 +60,7 @@ public class DepartmentListViewManager implements Initializable {
         leader.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
 
         viewReportColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button viewDetailsButton = new Button("Xem Chi Tiết");
+            private final Button viewDetailsButton = new Button("View Report");
 
             @Override
             protected void updateItem(Void item, boolean empty) {

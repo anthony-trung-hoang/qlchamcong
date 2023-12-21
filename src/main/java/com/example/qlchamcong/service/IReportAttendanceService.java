@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface IReportAttendanceService {
     List<Department> getDepartmentList();
-    List<OfficerReportAttendance> getOfficerReportAttendanceList(int id, Date date);
-    List<WorkerReportAttendance> getWorkerReportAttendanceList(int id, Date date);
+    List<OfficerReportAttendance> getOfficerReportAttendanceList(int id, String month,String year);
+    List<WorkerReportAttendance> getWorkerReportAttendanceList(int id, String month,String year);
 }

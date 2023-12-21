@@ -4,17 +4,21 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewdepartmentlist.DepartmentListViewManager">
-    <Label layoutX="130.0" layoutY="29.0" prefHeight="28.0" prefWidth="215.0" text="Danh sách bộ phận" />
-    <TableView fx:id="departmentListTableView" layoutX="45.0" layoutY="117.0" prefHeight="168.0" prefWidth="522.0">
+    <Label alignment="CENTER" layoutX="316.0" layoutY="27.0" prefHeight="32.0" prefWidth="204.0" text="DEPARTMENT LIST" textAlignment="CENTER">
+      <font>
+         <Font name="System Bold" size="22.0" />
+      </font></Label>
+    <TableView fx:id="departmentListTableView" layoutX="16.0" layoutY="119.0" prefHeight="566.0" prefWidth="803.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0">
       <columns>
-          <TableColumn fx:id="departmentId" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="departmentName" prefWidth="75.0" text="Department name" />
-          <TableColumn fx:id="founding" prefWidth="75.0" text="Founding" />
-          <TableColumn fx:id="numberStaff" prefWidth="75.0" text="Total staff" />
-          <TableColumn fx:id="leader" prefWidth="75.0" text="Leader" />
-          <TableColumn fx:id="viewReportColumn" prefWidth="75.0" text="Operation" />
+          <TableColumn fx:id="departmentId" prefWidth="53.59997367858887" style="-fx-alignment: CENTER;" text="ID" />
+          <TableColumn fx:id="departmentName" prefWidth="191.20001983642578" style="-fx-alignment: CENTER;" text="Department name" />
+          <TableColumn fx:id="founding" prefWidth="107.99993896484375" style="-fx-alignment: CENTER;" text="Founding" />
+          <TableColumn fx:id="numberStaff" prefWidth="134.40008544921875" style="-fx-alignment: CENTER;" text="Total staff" />
+          <TableColumn fx:id="leader" prefWidth="142.39993286132812" style="-fx-alignment: CENTER;" text="Leader" />
+          <TableColumn fx:id="viewReportColumn" prefWidth="181.5999755859375" style="-fx-alignment: CENTER;" text="Operation" />
       </columns>
     </TableView>
 </AnchorPane>

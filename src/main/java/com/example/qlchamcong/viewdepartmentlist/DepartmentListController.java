@@ -1,6 +1,7 @@
 package com.example.qlchamcong.viewdepartmentlist;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
+import com.example.qlchamcong.HRSystem.entity.RoleDepartment;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.service.IReportAttendanceService;
@@ -30,6 +31,9 @@ public class DepartmentListController {
 
     public void showReportAttendance(Department department) throws IOException {
         argumentUtil.setSharedData("fromDepartmentToReportAttendance", department);
-        navUtil.changeGUI("/com/example/qlchamcong/viewreportofficeattendance/view-report-office-attendance.fxml");
+        if(department.getType()== RoleDepartment.VAN_PHONG)
+         navUtil.changeGUI("/com/example/qlchamcong/viewreportofficeattendance/view-report-office-attendance.fxml");
+        else if(department.getType()== RoleDepartment.NHA_MAY)
+            navUtil.changeGUI("/com/example/qlchamcong/viewreportfactoryattendance/view-report-factory-attendance.fxml");
     }
 }

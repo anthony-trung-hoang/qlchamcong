@@ -1,11 +1,13 @@
-package com.example.qlchamcong.viewreportofficeattendance;
+package com.example.qlchamcong.viewreportfactoryattendance;
 
 import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.changeGUIUtility.IActionChangeGUI;
 import com.example.qlchamcong.changeGUIUtility.NavigationUtil;
 import com.example.qlchamcong.entity.OfficerReportAttendance;
+import com.example.qlchamcong.entity.WorkerReportAttendance;
 import com.example.qlchamcong.passaargumentutility.IPassArgument;
 import com.example.qlchamcong.passaargumentutility.PassArgumentUtil;
+import com.example.qlchamcong.viewreportofficeattendance.ReportOfficeAttendanceController;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,37 +16,34 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 import java.net.URL;
-import java.text.ParseException;
-import java.time.Month;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReportOfficeAttendanceViewManager implements Initializable {
-    public TableView<OfficerReportAttendance> reportAttendanceTableView;
-    public TableColumn<OfficerReportAttendance, Integer> employeeId;
-    public TableColumn<OfficerReportAttendance, String> employeeName;
-    public TableColumn<OfficerReportAttendance, String> departmentName;
-    public TableColumn<OfficerReportAttendance, String> month;
-    public TableColumn<OfficerReportAttendance, Integer> totalWorkSession;
-    public TableColumn<OfficerReportAttendance, Double> totalHoursLate;
-    public TableColumn<OfficerReportAttendance, Double> totalHoursLeavingEarly;
+public class ReportFactoryAttendanceViewManager implements Initializable {
+    public TableView<WorkerReportAttendance> reportAttendanceTableView;
+    public TableColumn<WorkerReportAttendance, Integer> employeeId;
+    public TableColumn<WorkerReportAttendance, String> employeeName;
+    public TableColumn<WorkerReportAttendance, String> departmentName;
+    public TableColumn<WorkerReportAttendance, String> month;
+    public TableColumn<WorkerReportAttendance, Double> totalWork;
+    public TableColumn<WorkerReportAttendance, Double> totalOvertime;
     public ComboBox<String> monthReport;
     public ComboBox<Integer> yearReport;
 
-    private ReportOfficeAttendanceController reportOfficeAttendanceController;
+    private ReportFactoryAttendanceController reportFactoryAttendanceController;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         IActionChangeGUI navUtil = new NavigationUtil();
         IPassArgument argumentUtil = new PassArgumentUtil();
-        reportOfficeAttendanceController = new ReportOfficeAttendanceController(navUtil, argumentUtil);
+        reportFactoryAttendanceController = new ReportFactoryAttendanceController(navUtil, argumentUtil);
         Department departmentCurrent = getInitialData();
         displayDatePicker(departmentCurrent.getId());
         fetchAndDisplayTableData(departmentCurrent.getId());
-
     }
 
     private void fetchAndDisplayTableData(int id)  {
@@ -52,12 +51,11 @@ public class ReportOfficeAttendanceViewManager implements Initializable {
         employeeName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmployeeName()));
         departmentName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDepartmentName()));
         month.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonth()));
-        totalHoursLate.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTotalHoursLate()).asObject());
-        totalWorkSession.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTotalWorkSession()).asObject());
-        totalHoursLeavingEarly.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTotalHoursLeavingEarly()).asObject());
-        List<OfficerReportAttendance> officerReportAttendanceList = reportOfficeAttendanceController.fetchListOfOfficerReportAttendance(id,monthReport.getValue(), String.valueOf(yearReport.getValue()));
+        totalWork.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTotalWork()).asObject());
+        totalOvertime.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getTotalOvertime()).asObject());
+        List<WorkerReportAttendance> officerReportAttendanceList = reportFactoryAttendanceController.fetchListOfWorkerReportAttendance(id,monthReport.getValue(), String.valueOf(yearReport.getValue()));
 
-        ObservableList<OfficerReportAttendance> observableList = FXCollections.observableArrayList(officerReportAttendanceList);
+        ObservableList<WorkerReportAttendance> observableList = FXCollections.observableArrayList(officerReportAttendanceList);
         reportAttendanceTableView.setItems(observableList);
     }
     private void displayDatePicker(int id){
@@ -89,6 +87,6 @@ public class ReportOfficeAttendanceViewManager implements Initializable {
 
     }
     public Department getInitialData() {
-        return  reportOfficeAttendanceController.getInitialData();
+        return  reportFactoryAttendanceController.getInitialData();
     }
 }
