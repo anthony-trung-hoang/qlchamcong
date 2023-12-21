@@ -20,7 +20,7 @@ public class DeleteRecordViewManager implements Initializable {
     @FXML
     public Label timeStampLabel;
     @FXML
-    public Label timeKeeperIdLabel;
+    public Label timeKeeperCodeLabel;
 
     @FXML
     public void cancelButtonAction() throws IOException {
@@ -47,7 +47,7 @@ public class DeleteRecordViewManager implements Initializable {
     }
 
     private void setInitialData(AttendanceRecord attendanceRecord) {
-        timeKeeperIdLabel.setText(attendanceRecord.getTimeKeeperId() +"");
+        timeKeeperCodeLabel.setText(attendanceRecord.getTimeKeeperCode());
         timeStampLabel.setText(attendanceRecord.getTimestamp().toString());
     }
 }

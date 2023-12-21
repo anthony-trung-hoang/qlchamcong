@@ -12,6 +12,31 @@ public class AttendanceRecord {
 
     private int timeKeeperId;
 
+    public AttendanceRecord(int employeeId, Timestamp updatedTimestamp, String newTimekeeperCode, String type) {
+        this.employeeId = employeeId;
+        this.timestamp = updatedTimestamp;
+        this.timeKeeperCode = newTimekeeperCode;
+        this.type = type;
+    }
+
+    public AttendanceRecord(int id, int employeeId, Timestamp updatedTimestamp, String newTimeKeeperCode, String type) {
+        this.id = id;
+        this.employeeId = employeeId;
+        this.timestamp = updatedTimestamp;
+        this.timeKeeperCode = newTimeKeeperCode;
+        this.type = type;
+    }
+
+    public String getTimeKeeperCode() {
+        return timeKeeperCode;
+    }
+
+    public void setTimeKeeperCode(String timeKeeperCode) {
+        this.timeKeeperCode = timeKeeperCode;
+    }
+
+    private String timeKeeperCode;
+
     private Timestamp timestamp;
 
     private String type; // checkin or checkout
@@ -61,7 +86,9 @@ public class AttendanceRecord {
         return "AttendanceRecord{" +
                 "id=" + id +
                 ", employeeId=" + employeeId +
+                ", employeeCode='" + employeeCode + '\'' +
                 ", timeKeeperId=" + timeKeeperId +
+                ", timeKeeperCode='" + timeKeeperCode + '\'' +
                 ", timestamp=" + timestamp +
                 ", type='" + type + '\'' +
                 '}';

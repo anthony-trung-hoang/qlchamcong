@@ -34,7 +34,7 @@ public class AttendanceRecordViewManager implements Initializable {
     @FXML
     public TableColumn<AttendanceRecord, String> typeColumn;
     @FXML
-    public TableColumn<AttendanceRecord, Integer> timeKeeperIdColumn;
+    public TableColumn<AttendanceRecord, String> timeKeeperCodeColumn;
     @FXML
     public TableColumn<AttendanceRecord, Void> recordVoidTableColumn;
     @FXML
@@ -52,14 +52,10 @@ public class AttendanceRecordViewManager implements Initializable {
         IPassArgument argumentUtil = new PassArgumentUtil();
         attendanceRecordController = new AttendanceRecordController(navUtil, argumentUtil);
 
-
         Object shareData = getInitialData();
-//        System.out.println(shareData instanceof WorkerAttendanceData);
-//        System.out.println(shareData instanceof OfficerAttendanceData);
         if (shareData instanceof WorkerAttendanceData workerAttendanceData) {
             setInitialUI(workerAttendanceData);
             fetchAndDisplayTableData(workerAttendanceData.getEmployeeId(), workerAttendanceData.getDate());
-
         } else {
             assert shareData instanceof OfficerAttendanceData;
             OfficerAttendanceData officerAttendanceData = (OfficerAttendanceData) shareData;
@@ -84,7 +80,7 @@ public class AttendanceRecordViewManager implements Initializable {
     public void fetchAndDisplayTableData(int employeeId, Date date) {
         idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         timeStampColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTimestamp()));
-        timeKeeperIdColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getTimeKeeperId()).asObject());
+        timeKeeperCodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTimeKeeperCode()));
         typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
 
         recordVoidTableColumn.setCellFactory(param -> new TableCell<>() {

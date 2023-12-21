@@ -16,9 +16,9 @@
       <Label layoutX="108.0" layoutY="65.0" />
       <Label layoutX="92.0" layoutY="64.0" prefHeight="18.0" prefWidth="307.0" text="Are you sure you want to delete this record permanently?" />
       <Label layoutX="148.0" layoutY="113.0" text="Timestamp" />
-      <Label layoutX="130.0" layoutY="138.0" text="Timekeeper ID" />
+      <Label layoutX="130.0" layoutY="138.0" text="Timekeeper code" />
       <Label fx:id="timeStampLabel" layoutX="262.0" layoutY="113.0" text="Label" />
-      <Label fx:id="timeKeeperIdLabel" layoutX="262.0" layoutY="138.0" text="Label" />
+      <Label fx:id="timeKeeperCodeLabel" layoutX="262.0" layoutY="138.0" text="Label" />
       <Button layoutX="419.0" layoutY="223.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
       <Button layoutX="355.0" layoutY="223.0" mnemonicParsing="false" onAction="#confirmButtonAction" text="Confirm" />
    </children>

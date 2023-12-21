@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -28,14 +29,17 @@ public class NavigationBarViewManager implements Initializable {
     public Button dangXuat;
     @FXML
     public Button departmentList;
-
-    private NavigationBarController thanhDHController;
+    @FXML
+    public ImageView logoImage;
+    @FXML
+    public ImageView hrImage;
+    private NavigationBarController navigationBarController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         NavigationManager.getInstance().setContentPane(contentPane);
         IActionChangeGUI navigationUtil = new NavigationUtil();
-        thanhDHController = new NavigationBarController(navigationUtil);
+        navigationBarController = new NavigationBarController(navigationUtil);
         try {
             this.setHomeScreen();
         } catch (IOException e) {
@@ -44,21 +48,21 @@ public class NavigationBarViewManager implements Initializable {
     }
 
     public void setHomeScreen() throws IOException {
-        thanhDHController.setHomeScreen();
+        navigationBarController.setHomeScreen();
     }
 
     @FXML
     public void handleImportDLCCButtonAction() throws IOException {
-        thanhDHController.toAttendanceTrackingImportScreen();
+        navigationBarController.toAttendanceTrackingImportScreen();
     }
 
     @FXML
     public void handleHomeButtonAction() throws IOException {
-        thanhDHController.toHomeScreen();
+        navigationBarController.toHomeScreen();
     }
     @FXML
     public void handleDepartmentListButtonAction() throws IOException {
-        thanhDHController.toDepartmentListScreen();
+        navigationBarController.toDepartmentListScreen();
     }
 
     @FXML

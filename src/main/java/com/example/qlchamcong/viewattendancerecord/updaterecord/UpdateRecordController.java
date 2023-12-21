@@ -32,7 +32,7 @@ public class UpdateRecordController {
     }
 
     public void saveNewRecord(AttendanceRecord newRecord) throws IOException {
-        viewAttendanceRecordsService.updateRecord(newRecord);
+        viewAttendanceRecordsService.updateRecordAndUpdateAttendanceDataAccordingly(newRecord);
         closeModal();
     }
 }

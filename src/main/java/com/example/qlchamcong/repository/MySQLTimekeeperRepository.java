@@ -80,6 +80,26 @@ public class MySQLTimekeeperRepository implements ITimekeeperRepository {
         return false;
     }
 
+    @Override
+    public boolean checkTimeKeeperCodeExists(String timeKeeperCode) {
+        String query = "SELECT COUNT(*) FROM Timekeeper WHERE timeKeeperCode = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, timeKeeperCode);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
     public List<Timekeeper> getTimekeepersByType(String type) {
         List<Timekeeper> timekeepers = new ArrayList<>();
 
@@ -103,5 +123,25 @@ public class MySQLTimekeeperRepository implements ITimekeeperRepository {
         }
 
         return timekeepers;
+    }
+
+    @Override
+    public int getTimekeepersByCode(String code) {
+        String query = "SELECT id FROM Timekeeper WHERE timeKeeperCode = ?";
+        int id = 0;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, code);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    id = resultSet.getInt("id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
     }
 }

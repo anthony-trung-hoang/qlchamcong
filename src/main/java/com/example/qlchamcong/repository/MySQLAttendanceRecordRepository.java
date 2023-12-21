@@ -16,7 +16,7 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
     @Override
     public List<AttendanceRecord> getAttendanceRecordsByEmployeeAndDate(int employeeId, Date date) {
         List<AttendanceRecord> records = new ArrayList<>();
-        String query = "SELECT ar.id, ar.employeeId, ar.timeKeeperId, ar.timestamp, tk.type " +
+        String query = "SELECT ar.id, ar.employeeId, ar.timeKeeperId, ar.timestamp, tk.type, tk.timeKeeperCode " +
                 "FROM AttendanceRecord ar " +
                 "INNER JOIN Timekeeper tk ON ar.timeKeeperId = tk.id " +
                 "WHERE ar.employeeId = ? AND DATE(ar.timestamp) = ?";
@@ -33,7 +33,10 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
                     record.setTimeKeeperId(resultSet.getInt("timeKeeperId"));
                     record.setTimestamp(resultSet.getTimestamp("timestamp"));
                     record.setType(resultSet.getString("type"));
+                    record.setTimeKeeperCode(resultSet.getString("timeKeeperCode"));
                     records.add(record);
+
+                    System.out.println(record);
                 }
             }
 
@@ -58,13 +61,12 @@ public class MySQLAttendanceRecordRepository implements IAttendanceRecordReposit
 
     @Override
     public void createANewRecord(AttendanceRecord newRecord) {
-        String query = "INSERT INTO AttendanceRecord (employeeId, timeKeeperId, timestamp, type) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO AttendanceRecord (employeeId, timeKeeperId, timestamp) VALUES (?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setInt(1, newRecord.getEmployeeId());
             preparedStatement.setInt(2, newRecord.getTimeKeeperId());
             preparedStatement.setTimestamp(3, newRecord.getTimestamp());
-            preparedStatement.setString(4, newRecord.getType());
 
             int affectedRows = preparedStatement.executeUpdate();
 
