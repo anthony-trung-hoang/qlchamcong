@@ -1,7 +1,6 @@
-package com.example.qlchamcong.repository.reportattendancerepositorry;
+package com.example.qlchamcong.repository.officerreportattendancerepositorry;
 
 import com.example.qlchamcong.entity.OfficerAttendanceData;
-import com.example.qlchamcong.repository.reportattendancerepositorry.IOfficerReportAttendanceRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,6 +23,8 @@ public class MySQLOfficerReportAttendanceRepository implements IOfficerReportAtt
         for (Integer id:employeeIdList){
             String query = "SELECT * FROM OfficerAttendanceData WHERE date BETWEEN ? AND ? AND employeeId = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                System.out.println(startDate);
+                System.out.println(endDate);
                 preparedStatement.setString(1, startDate);
                 preparedStatement.setString(2, endDate);
                 preparedStatement.setInt(3, id);

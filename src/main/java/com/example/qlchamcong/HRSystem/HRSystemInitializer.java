@@ -6,7 +6,7 @@ public class HRSystemInitializer {
         ihrSystemAPIService = new HRSystemAPIService();
     }
 
-    public static IHRSystemAPIService getIhrSystemAPIService() {
+        public static IHRSystemAPIService getIhrSystemAPIService() {
         return ihrSystemAPIService;
     }
 }

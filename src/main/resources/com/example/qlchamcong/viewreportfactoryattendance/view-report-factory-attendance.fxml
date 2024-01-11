@@ -8,22 +8,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewreportfactoryattendance.ReportFactoryAttendanceViewManager">
+<AnchorPane  prefHeight="700" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.qlchamcong.viewreportfactoryattendance.ReportFactoryAttendanceViewManager">
     <Label layoutX="152.0" layoutY="23.0" prefHeight="34.0" prefWidth="532.0" text=" ATTENDANCE REPORT OF FACTORY STAFF" textAlignment="CENTER">
         <font>
             <Font name="System Bold" size="23.0" />
         </font></Label>
-    <TableView fx:id="reportAttendanceTableView" layoutX="12.0" layoutY="116.8" prefHeight="530.0" prefWidth="817.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="117.0">
+    <TableView fx:id="reportAttendanceTableView" layoutX="4.0" layoutY="116.8" prefHeight="530.0" prefWidth="768.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="117.0">
+        <placeholder>
+            <Label text="The time you have selected the department has not been established yet, please choose a more reasonable month"/>
+        </placeholder>
         <columns>
             <TableColumn fx:id="employeeId" prefWidth="33.5999755859375" style="-fx-alignment: CENTER;" text="ID" />
-            <TableColumn fx:id="employeeName" prefWidth="110.40003204345703" style="-fx-alignment: CENTER;" text="Name" />
-            <TableColumn fx:id="departmentName" prefWidth="154.39996337890625" style="-fx-alignment: CENTER;" text="Department" />
-            <TableColumn fx:id="month" prefWidth="172.0" style="-fx-alignment: CENTER;" text="Month" />
-            <TableColumn fx:id="totalWork" prefWidth="167.99996948242188" style="-fx-alignment: CENTER;" text="Total Work 1st/2nd shift(h)" />
-            <TableColumn fx:id="totalOvertime" prefWidth="174.4000244140625" style="-fx-alignment: CENTER;" text="Total Overtime" />
+            <TableColumn fx:id="employeeName" prefWidth="190" style="-fx-alignment: CENTER;" text="Name" />
+            <TableColumn fx:id="departmentName" prefWidth="134.39996337890625" style="-fx-alignment: CENTER;" text="Department" />
+            <TableColumn fx:id="month" prefWidth="170.0" style="-fx-alignment: CENTER;" text="Month" />
+            <TableColumn fx:id="totalWork" prefWidth="170" style="-fx-alignment: CENTER;" text="Total Work 1st/2nd shift(h)" />
+            <TableColumn fx:id="totalOvertime" prefWidth="110" style="-fx-alignment: CENTER;" text="Total Overtime" />
         </columns>
     </TableView>
-    <HBox layoutX="578.0" layoutY="69.0" prefHeight="28.0" prefWidth="242.0">
+    <HBox layoutX="568.0" layoutY="69.0" prefHeight="28.0" prefWidth="242.0">
         <children>
             <ComboBox fx:id="monthReport" prefWidth="150.0" promptText="Select month" />
             <ComboBox fx:id="yearReport" prefWidth="150.0" promptText="Select year" />

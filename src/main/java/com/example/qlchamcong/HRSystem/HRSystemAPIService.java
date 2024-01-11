@@ -14,15 +14,18 @@ public class HRSystemAPIService implements IHRSystemAPIService {
     List<Employee> employeeList = new ArrayList<>();
 
     public HRSystemAPIService() {
+      generateDepartment();
+//        generateEmployeeHung();
+        generateEmployees();
+    }
+
+    private void generateDepartment(){
         departmentList.add(new Department(1, "IT", 50, new Date("12/01/2022"), RoleDepartment.VAN_PHONG));
         departmentList.add(new Department(2, "HR", 20, new Date("10/01/2022"), RoleDepartment.VAN_PHONG));
         departmentList.add(new Department(3, "Finance", 20, new Date("10/01/2022"), RoleDepartment.VAN_PHONG));
         departmentList.add(new Department(4, "Factory", 80, new Date("10/01/2022"), RoleDepartment.NHA_MAY));
         departmentList.add(new Department(5, "Design", 30, new Date("10/01/2022"), RoleDepartment.VAN_PHONG));
-//        generateEmployeeHung();
-        generateEmployees();
     }
-
     private void generateEmployees() {
         int employeeIdCounter = 1;
 

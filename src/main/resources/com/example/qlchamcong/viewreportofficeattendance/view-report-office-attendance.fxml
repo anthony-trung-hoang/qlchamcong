@@ -13,18 +13,21 @@
       <font>
          <Font name="System Bold" size="22.0" />
       </font></Label>
-    <TableView fx:id="reportAttendanceTableView" layoutX="12.0" layoutY="117.0" prefHeight="530.0" prefWidth="816.0">
+    <TableView fx:id="reportAttendanceTableView" layoutX="2.0" layoutY="116.8" prefHeight="530.0" prefWidth="768.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="117.0">
+        <placeholder>
+            <Label text="The time you have selected the department has not been established yet, please choose a more reasonable month"/>
+        </placeholder>
         <columns>
             <TableColumn fx:id="employeeId" prefWidth="33.5999755859375" style="-fx-alignment: CENTER;" text="ID" />
-            <TableColumn fx:id="employeeName" prefWidth="201.60004425048828" style="-fx-alignment: CENTER;" text="Name" />
+            <TableColumn fx:id="employeeName" prefWidth="190" style="-fx-alignment: CENTER;" text="Name" />
             <TableColumn fx:id="departmentName" prefWidth="124.0" style="-fx-alignment: CENTER;" text="Department" />
             <TableColumn fx:id="month" prefWidth="128.0" style="-fx-alignment: CENTER;" text="Month" />
-            <TableColumn fx:id="totalWorkSession" prefWidth="135.99990844726562" style="-fx-alignment: CENTER;" text="Work time(sessions)" />
-            <TableColumn fx:id="totalHoursLate" prefWidth="84.00006103515625" style="-fx-alignment: CENTER;" text="Late(h)" />
-            <TableColumn fx:id="totalHoursLeavingEarly" prefWidth="114.39990234375" style="-fx-alignment: CENTER;" text="Leaving early(h)" />
+            <TableColumn fx:id="totalWorkSession" prefWidth="135" style="-fx-alignment: CENTER;" text="Work time(sessions)" />
+            <TableColumn fx:id="totalHoursLate" prefWidth="95" style="-fx-alignment: CENTER;" text="Late(h)" />
+            <TableColumn fx:id="totalHoursLeavingEarly" prefWidth="102" style="-fx-alignment: CENTER;" text="Leaving early(h)" />
         </columns>
     </TableView>
-   <HBox layoutX="578.0" layoutY="69.0" prefHeight="28.0" prefWidth="242.0">
+   <HBox layoutX="568.0" layoutY="69.0" prefHeight="28.0" prefWidth="242.0">
       <children>
          <ComboBox fx:id="monthReport" prefWidth="150.0" promptText="Select month" />
          <ComboBox fx:id="yearReport" prefWidth="150.0" promptText="Select year" />

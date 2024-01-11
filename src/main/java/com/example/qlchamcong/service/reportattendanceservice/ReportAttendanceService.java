@@ -4,7 +4,7 @@ import com.example.qlchamcong.HRSystem.HRSystemInitializer;
 import com.example.qlchamcong.HRSystem.IHRSystemAPIService;
 import com.example.qlchamcong.HRSystem.entity.Department;
 import com.example.qlchamcong.entity.*;
-import com.example.qlchamcong.repository.reportattendancerepositorry.IOfficerReportAttendanceRepository;
+import com.example.qlchamcong.repository.officerreportattendancerepositorry.IOfficerReportAttendanceRepository;
 import com.example.qlchamcong.repository.workerreportattendancereporitory.IWorkerReportAttendanceRepository;
 import com.example.qlchamcong.repository.RepositoryInitializer;
 
